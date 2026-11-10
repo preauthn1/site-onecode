@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{$site_title}</title>
+    {include file="public/js" /}
+    <link rel="stylesheet" href="__CSS__/order/repurchase_log.css?{$css_version}" />
+    <!-- <link rel="stylesheet" href="__CSS__/activity/activity.css?{$css_version}" /> -->
+    <style>
+          .van-nav-bar{
+            background-color: rgba(109, 232, 188, 0);
+        }
+        .van-card__title{
+    max-height: auto !important;
+    height: auto;
+}
+    </style>
+</head>
+<body>
+<div id="app">
+    {include file="public/header" /}
+    <div class="van-tabs van-tabs--line order-main">
+        <div class="van-tabs__wrap" id='tablist'>
+            <ul role="tablist" class="van-tabs__nav van-tabs__nav--line" >
+                <li role="tab" class="van-tab van-tab--active" >{:lang('回购')}</li>
+                <li role="tab" class="van-tab">{:lang('已回购')}</li>
+            </ul>
+        </div>
+        <div class="van-tabs__content">
+            <div role="tabpanel" class="van-tab__pane">
+                <div role="feed" class="van-list">
+                </div>
+            </div>
+            <div role="tabpanel" class="van-tab__pane" style="display: none;">
+                <div role="feed" class="van-list">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="gui-index">
+        <div  class="tab" >
+            <div class="item" v-for="item,index in tablist" :class="tabActive==index?'active':''" :key="index" @click="handleTabItem(item,index)">
+                {{ item.name }}
+              
+            </div>
+            <div class="btm_line" :style="{left:activeLeft+'%'}"></div>
+        </div>
+        <div class="box2">
+        
+            <div class="item" v-for="item,index in 6">
+                
+                <div class="lt">
+                    <img src="__IMG__/wx.png" alt="">
+                </div>
+                <div class="rt-box">
+                <div class="rt">
+                    <div class="title">MaxMara/麦丝玛拉经典款LILMaxMara/麦丝玛拉经典款LILMaxMara/麦丝玛拉 经典款 LIL</div>
+                    <div class="price-box">
+                        <div  class="price1">$703</div>
+                        <div  class="price2">$740</div>
+                    </div>
+                    <div class="btm">
+                        <div class="yongjin">佣金：$40</div>
+                    
+                            <img class="share" src="__IMG__/share_icon.png" alt="">
+                        
+                    </div>
+                </div>
+            </div>
+        
+            </div>
+           
+        </div>
+    </div> -->
+    <div style="height: 20px;"></div>
+</div>
+<script>
+
+    $(function(){
+        $('#app').scroll(function(){
+            var top  = $(this).scrollTop();
+            $('#app .van-nav-bar').css('background-color','rgba(0, 151, 255, '+top/300+')');
+        })
+
+        var itemIndex = 0;
+        var tabLoadEnd = new Array();
+        var pages = new Array();
+        pages[0] = 0;
+        $('.van-tab').on('click',function(){
+            var $this = $(this);
+            itemIndex = $this.index();
+            if (!pages[itemIndex]) {
+                pages[itemIndex] = 0
+            }
+            $this.addClass('van-tab--active').siblings('.van-tab').removeClass('van-tab--active');
+            $('.van-tab__pane').eq(itemIndex).show().siblings('.van-tab__pane').hide();
+
+            // 如果数据没有加载完
+            if(!!!tabLoadEnd[itemIndex]){
+                // 解锁
+                dropload.unlock();
+                dropload.noData(false);
+            }else{
+                // 锁定
+                dropload.lock('down');
+                dropload.noData();
+            }
+            // 重置
+            dropload.resetload();
+        });
+
+        // dropload
+        var dropload =  $('#app').dropload({
+            scrollArea :  $('#app'),
+            domUp:{
+                domClass : 'dropload-up',
+                domRefresh : '<div class="dropload-refresh">↓{:lang("下拉刷新")}</div>',
+                domUpdate : '<div class="dropload-update">↑{:lang("释放更新")}</div>',
+                domLoad : '<div class="dropload-load"><span class="loading"></span>{:lang("加载中")}...</div>'
+            },
+            domDown:{
+                domClass : 'dropload-down',
+                domRefresh : '<div class="dropload-refresh">↑{:lang("上拉加载更多")}</div>',
+                domLoad : '<div class="dropload-load"><span class="loading"></span>{:lang("加载中")}...</div>',
+                domNoData : '<div class="dropload-noData">{:lang("暂无数据")}</div>'
+            },
+            loadDownFn : function(me){
+                pages[itemIndex]++
+                $.ajax({
+                    type: 'GET',
+                    url: '{:url("repurchase_log")}?page=' + pages[itemIndex] + '&type=' + itemIndex,
+                    dataType: 'json',
+                    success: function (res) {
+                        if (res.code == 1) {
+                            $('.van-tab__pane').eq(itemIndex).find('.van-list').append(res.data);
+                        } else {
+                            tabLoadEnd[itemIndex] = true
+                            // 锁定
+                            me.lock();
+                            // 无数据
+                            me.noData(true);
+                        }
+                        me.resetload();
+                    },
+                    error: function (xhr, type) {
+                        // 即使加载出错，也得重置
+                        me.resetload();
+                    }
+                });
+            }
+        });
+    })
+</script>
+
+</body>
+</html>

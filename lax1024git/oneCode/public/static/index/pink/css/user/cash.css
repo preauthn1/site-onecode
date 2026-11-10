@@ -1,0 +1,13 @@
+#app {
+  height: 100vh;
+  width: 100vw;
+  /* background-image: url(../../images/login_bg.png); */
+  background-color: #F4F0E7;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+.van-cell{
+	display: flex;
+	background: #FFFFFF;
+	padding-left: 16px;
+}

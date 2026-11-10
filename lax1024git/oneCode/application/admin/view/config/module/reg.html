@@ -1,0 +1,119 @@
+<div class="form-group">
+    <label class="col-sm-3 control-label">{:lang("注册账号规则")}：</label>
+    <div class="input-group col-sm-4">
+        <input type="text" class="form-control" name="account_rule" value="{$config.account_rule|default=0}">
+        <p class="help-block">0:手机号，1:邮箱地址，2:手机号或邮箱地址，3:任意字母数字</p>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label">{:lang("邀请码是否必填")}：</label>
+    <div class="input-group col-sm-4">
+        <input type="text" class="form-control" name="invite_code_required" value="{$config.invite_code_required|default=1}">
+        <p class="help-block">填1必须，0为可选 </p>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label">{:lang("注册短信验证")}：</label>
+    <div class="input-group col-sm-4">
+        <input type="text" class="form-control" id="is_sms_reg" name="is_sms_reg" value="{$config.is_sms_reg|default=0}">
+        <p class="help-block">填1为开启，0为关闭 </p>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label">{:lang("注册图形验证码")}：</label>
+    <div class="input-group col-sm-4">
+        <input type="text" class="form-control" name="front_image_validate_close" value="{$config.front_image_validate_close|default=0}">
+        <p class="help-block">
+            1为开启， 0为关闭
+        </p>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label">{:lang("开启IP注册数量限制")}：</label>
+    <div class="input-group col-sm-4">
+        <input type="text" class="form-control" name="reg_ip_limit" value="{$config.reg_ip_limit|intval}">
+        <p class="help-block">
+            0为不限制
+        </p>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label">{:lang("开启地区访问限制")}：</label>
+    <div class="input-group col-sm-4">
+        <input type="text" class="form-control" name="open_region_limit" value="{$config.open_region_limit}">
+        <p class="help-block">填1为开启，0为关闭 </p>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label">{:lang("限制字段")}：</label>
+    <div class="input-group col-sm-4">
+        <select class="form-control" name="region_limit_field">
+            <option value="countryCode" {if $config.region_limit_field eq 'countryCode'} selected{/if}>国家代码[countryCode]</option>
+            <option value="countryName" {if $config.region_limit_field eq 'countryName'} selected{/if}>国家名称[countryName]</option>
+            <option value="regionName" {if $config.region_limit_field eq 'regionName'} selected{/if}>省/区级名称[regionName]</option>
+            <option value="cityName" {if $config.region_limit_field eq 'cityName'} selected{/if}>城市名称[cityName]</option>
+        </select>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label">{:lang("允许地区名称")}：</label>
+    <div class="input-group col-sm-4">
+        <input type="text" class="form-control" name="allow_region_limit" value="{$config.allow_region_limit}">
+        <p class="help-block">多个请用英文逗号[,]分隔</p>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label">{:lang("禁止地区名称")}：</label>
+    <div class="input-group col-sm-4">
+        <input type="text" class="form-control" name="deny_region_limit" value="{$config.deny_region_limit}">
+        <p class="help-block">
+            多个请用英文逗号[,]分隔<br>
+            禁止权重高于允许权重<br>
+            禁止和允许只能设置一个
+        </p>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label">{:lang("禁止地区显示提示语")}：</label>
+    <div class="input-group col-sm-4">
+        <input type="text" class="form-control" name="deny_region_limit_tips" value="{$config.deny_region_limit_tips}">
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label">{:lang("您当前IP")}：</label>
+    <div class="input-group col-sm-4">
+        <div class="input-group">
+            <input type="text" class="form-control" id="ip" value="{$ip}">
+            <a class="input-group-addon btn btn-primary" id="query_ip">查询</a>
+        </div>
+        <p class="help-block">
+            输入IP可查询以下信息<br>
+            国家代码[countryCode]:<span id="countryCode">{$ip_local.countryCode|default='-'}</span><br/>
+            国家名称[countryName]:<span id="countryName">{$ip_local['countryName']|default='-'}</span><br/>
+            省/区级名称[regionName]:<span id="regionName">{$ip_local['regionName']|default='-'}</span><br/>
+            城市名称[cityName]:<span id="cityName">{$ip_local['cityName']|default='-'}</span>
+        </p>
+    </div>
+</div>
+<script>
+window.onload = function() {
+    $("#query_ip").on('click', function(){
+        var ip = $('#ip').val();
+        if (!ip) {
+            return;
+        }
+        $.ajax({
+            url:"{:url('index')}",
+            type:'POST',
+            data:{act:'query_ip', ip:ip},
+            dataType:'JSON',
+            success:function(res){
+                $("#countryCode").text(res.data['countryCode']);
+                $("#countryName").text(res.data['countryName']);
+                $("#regionName").text(res.data['regionName']);
+                $("#cityName").text(res.data['cityName']);
+            }
+        });
+    });
+} 
+</script>

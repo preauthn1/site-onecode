@@ -1,0 +1,102 @@
+</div>
+<!-- End Panel Other -->
+<script src="__JS__/bootstrap.min.js?v=3.3.6"></script>
+<script src="__JS__/content.min.js?v=1.0.0"></script>
+<script src="__JS__/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="__JS__/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+<script src="__JS__/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="__JS__/plugins/suggest/bootstrap-suggest.min.js"></script>
+<script src="__JS__/plugins/sweetalert/sweetalert.min.js"></script>
+<script src="__JS__/plugins/layer/layer.min.js"></script>
+<script src="__JS__/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+<script src="__JS__/plugins/webuploader/webuploader.min.js"></script>
+<script src="__JS__/plugins/validate/jquery.validate.min.js"></script>
+<script src="__JS__/plugins/validate/messages_zh.min.js"></script>
+<script src="__JS__/plugins/iCheck/icheck.min.js"></script>
+<script src="__JS__/layui/layui.js"></script>
+<script src="__JS__/jquery.form.js"></script>
+<script src="__JS__/plugins/ueditor/ueditor.config.js?v2"></script>
+<script src="__JS__/plugins/ueditor/ueditor.all.js"></script>
+
+<script type="text/javascript">
+    function showStart(){
+        index = layer.load(0, {shade: false});
+        return true;
+    }
+    function showSuccess(res){
+        layer.ready(function(){
+            layer.close(index);
+            if(1 == res.code){
+               layer.alert(res.msg, {title: "{:lang('友情提示')}", icon: 1, closeBtn: 0}, function(){
+                   window.location.href = res.url;
+               });
+            }else if(111 == res.code){
+                window.location.reload();
+            }else{
+                layer.msg(res.msg, {anim: 6});
+            }
+        });
+    }
+    // 添加商品
+    var formSubmitOptions = {
+        beforeSubmit:showStart,
+        success:showSuccess
+    };
+
+    function initTable() {
+        //先销毁表格
+        $('#cusTable').bootstrapTable('destroy');
+        //初始化表格,动态从服务器加载数据
+        $("#cusTable").bootstrapTable({
+            method: "get",  //使用get请求到服务器获取数据
+            url: index_url, //获取数据的地址
+            striped: true,  //表格显示条纹
+            pagination: true, //启动分页
+            pageSize: 10,  //每页显示的记录数
+            pageNumber:1, //当前第几页
+            pageList: [5, 10, 15, 20, 25],  //记录数可选列表
+            sidePagination: "server", //表示服务端请求
+            paginationFirstText: "{:lang('首页')}",
+            paginationPreText: "{:lang('上一页')}",
+            paginationNextText: "{:lang('下一页')}",
+            paginationLastText: "{:lang('尾页')}",
+            queryParamsType : "undefined",
+            clickToSelect: true,  // 是否启用点击选中行
+            selectItemName: "ids",
+            // uniqueId: "id",       // 每一行的唯一标识，一般为主键列
+            // idField: "id",
+            queryParams: function(params) {   //设置查询参数
+                if (typeof queryParams === 'function') {
+                    return queryParams(params);
+                }
+                
+                return params;
+            },
+            onLoadSuccess: function(res){  //加载成功时执行
+                if(111 == res.code){
+                    window.location.reload();
+                }
+                if (typeof onLoadSuccess === 'function') {
+                    return onLoadSuccess(res);
+                }
+                layer.msg("{:lang('加载成功')}", {time : 1000});
+            },
+            onLoadError: function(){  //加载失败时执行
+                if (typeof onLoadError === 'function') {
+                    return onLoadError();
+                }
+                layer.msg("{:lang('加载数据失败')}");
+            }
+        });
+    }
+
+    $(document).ready(function(){
+        // 提交订单
+        $('#dataForm').submit(function(){
+            $(this).ajaxSubmit(formSubmitOptions);
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

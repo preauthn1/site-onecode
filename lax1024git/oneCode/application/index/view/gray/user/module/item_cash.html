@@ -1,0 +1,32 @@
+{volist name='lists' id='row'}
+<div class="van-cell van-cell--large log-item">
+    <div class="van-cell__title">
+        <div class="guispe guicen topbox">
+            <span class="order_id">ID : {$row.order_id}</span>
+            {if $row.status_str}
+            <div class="van-cell__label guicen">
+                {if $row.status eq 1}
+                <span class="van-tag van-tag--warning">{$row.status_str}</span>
+                {elseif $row.status eq 2}
+                <span class="van-tag van-tag--success">{$row.status_str}</span>
+                {elseif $row.status eq 4}
+                <span class="van-tag van-tag--primary">{$row.status_str}</span>
+                {else}
+                <span class="van-tag van-tag--danger">{$row.status_str}</span>
+                {/if}
+            </div>
+            {/if}
+        </div>
+        <div class="money2"><span style="color: #1F1A1D;">Amount</span><span>{$row.money|i18n_currency}</span></div>
+       
+        {if $row.remark && $row.remark neq '-' && $row.status neq 2}
+        <div class="van-cell__label">{$row.remark}</div>
+        {/if}
+        <div class="van-cell__label btm_time">{:lang('创建时间')} ：{$row.create_time}</div>
+        {if $row.status neq 1}
+        <div class="van-cell__label btm_time">{:lang('更新时间')} ：{$row.update_time}</div>
+        {/if}
+    </div>
+
+</div>
+{/volist}

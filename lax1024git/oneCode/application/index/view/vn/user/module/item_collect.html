@@ -1,0 +1,27 @@
+{volist name='lists' id='row'}
+<div class="van-card order-item">
+    <div class="van-card__header">
+        <a class="van-card__thumb" href="{:url('goods/info', ['id' => $row.goods_id])}">
+            <div class="van-image" style="width: 100%; height: 100%;">
+                <img src="{$row.goods.pic|toMedia}" class="van-image__img" style="object-fit: cover;">
+            </div>
+        </a>
+        <div class="van-card__content">
+            <div>
+                <div class="van-card__title van-multi-ellipsis--l2">
+                    <a href="{:url('goods/info', ['id' => $row.goods_id])}">{$row.goods.goods_name}</a>
+                </div>
+                <div class="van-card__desc retail_price">
+                    {$row.goods.retail_price|i18n_currency} 
+                    <span class="shop_price">{$row.goods.shop_price|i18n_currency}</span>
+                </div>
+                <div>
+                    <span class="van-tag return_bonus van-tag--danger" style="margin-right: 5px;">
+                        {:lang('佣金')}:{$row.goods.return_bonus|i18n_currency}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/volist}

@@ -1,0 +1,201 @@
+    {include file="header" /}
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>{:lang("添加")}</h5>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" id="dataForm" method="post" action="{:url('add')}">
+                        <input type="hidden" name="id" value="{$info.id}"/>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">{:lang("活动标题")}：</label>
+                            <div class="input-group col-sm-4">
+                                <input type="text" class="form-control" value="{$info.title}" name="title" required />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">{:lang("活动图片")}：</label>
+                            <input name="thumb" id="img" value="{$info.thumb}" type="hidden" />
+                            <div class="form-inline">
+                                <div class="input-group col-sm-2">
+                                    <button type="button" class="layui-btn" id="uploader">
+                                        <i class="layui-icon">&#xe67c;</i>{:lang("上传图片")}
+                                    </button>
+                                </div>
+                                <div class="input-group col-sm-3">
+                                    <div id="sm">{if $info.thumb}<img src="{$info.thumb|toMedia}" style="width:40px; height: 40px;"/>{/if}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">{:lang("活动开始时间")}：</label>
+                            <div class="input-group col-sm-4">
+                                <input type="text" class="form-control" value="{$info.start_time}" id="start_time" name="start_time" placeholder="yyyy-MM-dd" lay-key="1" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">{:lang("活动结束时间")}：</label>
+                            <div class="input-group col-sm-4">
+                                <input type="text" class="form-control" value="{$info.end_time}" id="end_time" name="end_time" placeholder="yyyy-MM-dd" lay-key="2" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">{:lang("活动类型")}：</label>
+                            <div class="input-group col-sm-4">
+                                <select class="form-control" name="type" id="activity_new_type">
+                                    <option value="">选择活动类型</option>
+                                    {volist name='activity_new_type' id='name'}
+                                    <option value="{$key}" {if $info.type eq $key} selected {/if}>{$name}</option>
+                                    {/volist}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">{:lang("奖品类型")}：</label>
+                            <div class="input-group col-sm-4">
+                                <select class="form-control" name="reward_type" id="reward_type">
+                                    {volist name='activity_reward_type' id='name'}
+                                    <option value="{$key}" {if $info.reward_type eq $key} selected {/if}>{$name}</option>
+                                    {/volist}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">{:lang("奖金")}：</label>
+                            <div class="input-group col-sm-4">
+                                <input type="text" class="form-control" name="reward" value="{$info.reward}">
+                                <p class="help-block">充值相关活动可填百分比<br>转盘抽奖活动时奖励的是抽奖次数</p>
+                            </div>
+                        </div>
+                        <div class="form-group trigger_type_input">
+                            <label class="col-sm-3 control-label">{:lang("奖励发放触发")}：</label>
+                            <div class="input-group col-sm-4">
+                                {volist name='activity_trigger_type' id='name'}
+                                <label>
+                                <input name="trigger_type[]" type="checkbox" value="{$key}" {if in_array($key, $info.trigger_type)} checked {/if} /> {$name}
+                                </label>&nbsp;&nbsp;&nbsp;
+                                {/volist}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">{:lang("可参与活动用户")}：</label>
+                            <div class="input-group col-sm-4">
+                                {volist name='user_type' id='name'}
+                                <label>
+                                <input name="user_type[]" type="checkbox" value="{$key}" {if in_array($key, $info.user_type)} checked {/if} /> {$name}
+                                </label>&nbsp;&nbsp;&nbsp;
+                                {/volist}
+                                <p class="help-block">
+                                    未充值用户：没有充值过的用户<br>
+                                    充值用户：已经有充值过的用户<br>
+                                    二次充值用户：最少充值2次的用户<br>
+                                    新用户：活动开始时间后注册的用户<br>
+                                    老用户：活动开始时间前注册的用户<br>
+                                    有直属下级的用户：有邀请过下级注册成功的用户
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">{:lang("用户可获奖总次数")}：</label>
+                            <div class="input-group col-sm-4">
+                                <input type="text" class="form-control" name="times" value="{$info.times}">
+                                <p class="help-block">填0时不限制次数</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">{:lang("用户单日可获奖次数")}：</label>
+                            <div class="input-group col-sm-4">
+                                <input type="text" class="form-control" name="day_times" value="{$info.day_times}">
+                                <p class="help-block">必须大于0</p>
+                            </div>
+                        </div>
+                        <div class="form-group trigger_type_input">
+                            <label class="col-sm-3 control-label">{:lang("单日获奖次数区分触发类型")}：</label>
+                            <div class="input-group col-sm-4">
+                                <input type="text" class="form-control" name="day_times_type" value="{$info.day_times_type|default=0}">
+                                <p class="help-block">
+                                    0不区分，1区分<br>
+                                    说明：选择区分时：选中的类型都可获得设置【用户单日可获奖次数】次数奖励
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">{:lang("其他设置")}：</label>
+                            <div class="input-group col-sm-4">
+                                <textarea class="form-control" name="extra">{$info.extra}</textarea>
+                                <p class="help-block">充值活动设置规则:
+                                    <br><code>>=|30000</code>充值金额大于等于3W可参加
+                                    <br><code>=|30000</code>充值金额等于3W可参加
+                                    <br><code><|30000</code>充值金额小于3W可参加
+                                    <br><strong>每行设置一个规则</strong>
+                                </p>
+                                <p class="help-block">邀请活动设置规则:
+                                    <br><code>child_users|直属下级人数</code> 邀请用户数达到设置可参加
+                                    <br><code>child_user_type|1</code> 1充值用户
+                                    <br><code>child_user_vip_level|1</code> 下级用户VIP级别必须大于设置的值
+                                </p>
+                                <p class="help-block">其他设置规则:
+                                    <br><code>url|跳转链接</code>不显示活动内容，直接挑转到指定链接
+                                    <br><code>vip_id|会员等级ID</code>会员升级相关限制,多个等级ID使用<code>,</code>分割
+                                </p>
+                                
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">{:lang("状态")}：</label>
+                            <div class="input-group col-sm-4">
+                                <select class="form-control" name="status">
+                                    <option value="1" {if $info.status eq 1} selected {/if}>{:lang("启用")}</option>
+                                    <option value="0" {if $info.status neq 1} selected {/if}>{:lang("停用")}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">{:lang("活动内容")}：</label>
+                            <div class="input-group col-sm-7">
+                                <script id="container" name="content" type="text/plain">{$info['content']|html_entity_decode}</script>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-6">
+                                <button class="btn btn-primary" type="submit">{:lang("提交")}</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        var editor = UE.getEditor('container', {
+            serverUrl:"{:url('articles/uploadimg')}",
+        });
+        layui.use('laydate', function(){
+            var laydate = layui.laydate;
+            laydate.render({
+                elem: '#start_time'
+                ,trigger: 'click'
+            });
+            laydate.render({
+                elem: '#end_time'
+                ,trigger: 'click'
+            });
+        });
+        $("#activity_new_type").on("change", function(){
+            var type = $(this).val();
+            if (type == 6) {
+                $(".trigger_type_input").show();
+                $("#reward_type").val(3);
+            }else{
+                $(".trigger_type_input").hide();
+                $("#reward_type").val(1);
+            }
+        });
+        $("#activity_new_type").change();
+    });
+</script>
+
+{include file="footer" /}

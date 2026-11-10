@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{$site_title}</title>
+    {include file="public/js" /}
+</head>
+<body>
+    <div id="app">
+        <div class="ucenter">
+            <div class="uc-main">
+                <div class="uc-top">
+                    <div class="uc-info">
+                        <a href="{:url('avatar')}" class="uc-avatar"><img src="{$userInfo['avatar']}" alt=""></a>
+                        <div class="flex-bd">
+                            <div class="uc-id">{$userInfo.nick_name}
+                                {if $userInfo.level_id > 0} 
+                                <div class="uc-vip">
+                                    <img src="__IMG__/VIP{$userInfo.level_id}@2x.png" class="smallVipIcon"/>
+                                    <span class="levelNum">
+                                        {$userLevel.level_name|default=''}
+                                    </span>
+                                </div>
+                                {/if}
+                            </div>
+                            <div class="uc-id">{$userInfo.mobile} <span class="uc-points">{:lang('积分')}:{$userInfo.points|floatval}</span></div>
+                            <div class="uc-id">{:lang("用户ID")}:{$userInfo.id}</div>
+                        </div>
+                    </div>
+                    <div class="uc-code-group">
+                        <span>{:lang('邀请码:')}：{$userInfo.invite_code}</span>
+                        <button data-clipboard-text="{$userInfo.invite_code}" class="copy-btn van-button van-button--warning van-button--normal">
+                            <div class="van-button__content"><span class="van-button__text">{:lang('复制')}</span></div>
+                        </button>
+                    </div>
+                </div>
+                <div class="uc-grid">
+                    <div class="user_money">
+                        <div class="user_money_ye"><img src="__IMG__/user_money_jrsy.png" alt="">{$userInfo.user_money}</div>
+                        <div class="user_money_jrsy"><img src="__IMG__/user_money_ye.png" alt="">{$userInfo.todaysy_money}</div>
+                    </div>
+                    <div class="user-link">
+                        <a class="link" href="{:url('message/index', ['type' => 1])}">{:lang('充值')}</a>
+                        <a class="link cash" href="javascript:;" data-href="{:url('user/cash')}">{:lang('提现')}</a>
+                        <a class="link" href="{:url('recharge/lists')}">{:lang('充值记录')}</a>
+                        <a class="link" href="{:url('user/cash_log')}">{:lang('提现记录')}</a>
+                        <a class="link" href="{:url('user/money_log')}">{:lang('资金明细')}</a>
+                    </div>
+                </div>
+                <div class="uc-menu">
+                    <div class="title">{:lang('我的订单')}</div>
+                    <div class="van-row">
+                        <div class="van-col van-col--8 menu-item">
+                            <a href="{:url('order/index')}" class="menu-card bor-r">
+                                <img src="__IMG__/ucenter/icon-bingo.png" alt="">
+                                <div class="txt">{:lang('拼单')}</div>
+                            </a>
+                        </div>
+                        <div class="van-col van-col--8 menu-item">
+                            <a href="{:url('order/repurchase_log')}" class="menu-card bor-r">
+                                <img src="__IMG__/ucenter/icon-repurchase.png" alt="">
+                                <div class="txt">{:lang('回购')}</div>
+                            </a>
+                        </div>
+                        <div class="van-col van-col--8 menu-item">
+                            <a href="{:url('user/collect')}" class="menu-card">
+                                <img src="__IMG__/ucenter/icon-collect.png" alt="">
+                                <div class="txt">{:lang('收藏')}</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="uc-menu">
+                    <div class="title">{:lang('快捷菜单')}</div>
+                    <div class="van-row">
+                        <div class="van-col van-col--8 menu-item">
+                            <a href="javascript:kefu();" class="menu-card bor-r  bor-b">
+                                <img src="__IMG__/ucenter/icon-service.png" alt="">
+                                <div class="txt">{:lang('客服')}</div>
+                            </a>
+                        </div>
+                        <div class="van-col van-col--8 menu-item">
+                            <a href="{:url('user/bind_card')}" class="menu-card bor-r bor-b">
+                                <img src="__IMG__/ucenter/icon-bank.png" alt="">
+                                <div class="txt">{:lang('银行卡')}</div>
+                            </a>
+                        </div>
+                        <!--<div class="van-col van-col--8 menu-item">
+                            <a href="{:url('user/usdt')}" class="menu-card bor-b">
+                                <img src="__IMG__/ucenter/icon-bank.png" alt="">
+                                <div class="txt">{:lang('USDT')}</div>
+                            </a>
+                        </div>-->
+                        <div class="van-col van-col--8 menu-item">
+                            <a href="{:url('user/pass_word')}" class="menu-card bor-r">
+                                <img src="__IMG__/ucenter/icon-pwd.png" alt="">
+                                <div class="txt">{:lang('修改密码')}</div>
+                            </a>
+                        </div>
+                        <div class="van-col van-col--8 menu-item">
+                            <a href="{:url('login/loginOut')}" class="menu-card bor-r">
+                                <img src="__IMG__/ucenter/icon-logout.png" alt="">
+                                <div class="txt">{:lang('退出登陆')}</div>
+                            </a>
+                        </div>
+                        {volist name='navs' id='nav'}
+                        <div class="van-col van-col--8 menu-item">
+                            <a href="{$nav.url}" class="menu-card bor-r">
+                                <img src="{$nav.thumb}" alt="">
+                                <div class="txt">{$nav.title|lang}</div>
+                            </a>
+                        </div>
+                        {/volist}
+                    </div>
+                </div>
+            </div>
+        </div> 
+        {include file="public/footer" /}
+    </div>
+<script>
+$(document).ready(function(){
+    var clipboard = new ClipboardJS('.copy-btn');
+    clipboard.on('success', function(e) {
+        layer.msg('{:lang("复制成功")}');
+        e.clearSelection();
+    });
+    $(".cash").on('click', function() {
+        weui.actionSheet([
+            {
+                label: '{:lang("银行卡")}',
+                onClick: function () {
+//        {if condition="$userInfo['bank_number'] == ''"}
+
+            weui.dialog({
+                title: '{:lang("提示")}',
+                content: '{:lang("您还没有设置银行卡收款账号")}',
+                className: 'custom-dialog',
+                buttons: [{
+                    label: '{:lang("取消")}',
+                    type: 'default',
+                    onClick: function () {}
+                }, {
+                    label: '{:lang("去添加")}',
+                    type: 'primary',
+                    onClick: function () {
+                        window.location.href = '{:url("user/bind_card")}';
+                    }
+                }]
+            });
+//        {else}
+        
+        goCash(1);
+//        {/if}
+
+                }
+            }, {
+                label: '{:lang("USDT")}',
+                onClick: function () {
+//        {if condition="$userInfo['usdt'] == ''"}
+
+            weui.dialog({
+                title: '{:lang("提示")}',
+                content: '{:lang("您还没有设置USDT收款地址")}',
+                className: 'custom-dialog',
+                buttons: [{
+                    label: '{:lang("取消")}',
+                    type: 'default',
+                    onClick: function () {}
+                }, {
+                    label: '{:lang("去添加")}',
+                    type: 'primary',
+                    onClick: function () {
+                        window.location.href = '{:url("user/usdt")}';
+                    }
+                }]
+            });
+//        {else}
+        
+        goCash(4);
+//        {/if}
+
+                }
+            }
+        ], [
+            {
+                label: '{:lang("取消")}',
+                onClick: function () {
+                    console.log('取消');
+                }
+            }
+        ], {
+            className: 'custom-classname',
+            title:'{:lang("请选择提现方式")}',
+            onClose: function(){
+                console.log('关闭');
+            }
+        });
+    });
+    
+    function goCash(type) {
+        window.location.href = "{:url('user/cash')}?type=" + type;
+    }
+});
+
+</script>
+</body>
+</html>

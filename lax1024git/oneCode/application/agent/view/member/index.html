@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户列表</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="__CSS__/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="__CSS__/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="__CSS__/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+    <link href="__CSS__/animate.min.css" rel="stylesheet">
+    <link href="__CSS__/style.min.css?v=4.1.0" rel="stylesheet">
+    <link href="__CSS__/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <link href="__JS__/layui/css/layui.css" rel="stylesheet">
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            {if $id > 0}
+            <h5>【{$info.mobile}】{:lang("团队下级")}</h5>
+            {else}
+            <h5>{:lang("用户列表")}</h5>
+            {/if}
+        </div>
+        <div class="ibox-content">
+            {if $id > 0}
+            <ul class="nav nav-tabs">
+                <li role="presentation"><a href="{:url('index')}">{:lang("所有用户")}</a></li>
+                <li role="presentation" class="{if $level eq 1}active{/if}"><a href="{:url('index', ['id' => $id, 'level' => 1])}">{:lang("一级")}</a></li>
+                <li role="presentation" class="{if $level eq 2}active{/if}"><a href="{:url('index', ['id' => $id, 'level' => 2])}">{:lang("二级")}</a></li>
+                <li role="presentation" class="{if $level eq 3}active{/if}"><a href="{:url('index', ['id' => $id, 'level' => 3])}">{:lang("三级")}</a></li>
+                <li role="presentation" class="{if $level eq 4}active{/if}"><a href="{:url('index', ['id' => $id, 'level' => 4])}">{:lang("四级")}</a></li>
+                <li role="presentation" class="{if $level eq 5}active{/if}"><a href="{:url('index', ['id' => $id, 'level' => 5])}">{:lang("五级")}</a></li>
+                <li role="presentation" class="{if $level eq 6}active{/if}"><a href="{:url('index', ['id' => $id, 'level' => 6])}">{:lang("六级")}</a></li>
+                <li role="presentation" class="{if $level eq 7}active{/if}"><a href="{:url('index', ['id' => $id, 'level' => 7])}">{:lang("七级")}</a></li>
+            </ul>
+            {/if}
+            <!--搜索框开始-->
+            <form id='commentForm' role="form" method="post" class="form-inline pull-right" action="{$export_url}">
+                <div class="content clearfix m-b">
+                    <div class="form-group">
+                        <label>{:lang("选择时间")}：</label>
+                        <select class="form-control" id="time_type" name="time_type">
+                            <option value="0" selected>{:lang("注册时间")}</option>
+                            <option value="1">{:lang("登录时间")}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="start_time" name="startTime" placeholder="yyyy-MM-dd" lay-key="1" autocomplete="off">
+                        -
+                        <input type="text" class="form-control" id="end_time" name="endTime" placeholder="yyyy-MM-dd" lay-key="2" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label>{:lang("用户类型")}：</label>
+                        <select class="form-control" id="is_xuni" name="is_xuni">
+                            <option value="-1">{:lang("所有")}</option>
+                            <option value="1">{:lang("虚拟用户")}</option>
+                            <option value="0">{:lang("真实用户")}</option>
+                            <option value="2">{:lang("未登录过的用户")}</option>
+                            <option value="3">{:lang("未绑定银行卡的用户")}</option>
+                            <option value="4">{:lang("已绑定银行卡的用户")}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>{:lang("会员等级")}：</label>
+                        <select class="form-control" name="level_id" id="level_id" >
+                            <option value="">{:lang("所有")}</option>
+                            <option value="0">{:lang("非会员用户")}</option>
+                            {volist name='levelAll' id='v'}
+                            <option value="{$v.level_id}">{$v.level_name}</option>
+                            {/volist}
+                        </select>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label>{:lang("邀请码")}：</label>
+                        <input type="text" class="form-control" id="invite_code" name="invite_code">
+                    </div>
+                    <div class="form-group">
+                        <label>{:lang("用户ID")}：</label>
+                        <input type="text" class="form-control" id="userid" name="userid">
+                    </div>
+                    <div class="form-group">
+                        <label>{:lang("手机号/账号")}：</label>
+                        <input type="text" class="form-control" id="username" name="user_name">
+                    </div>
+                    <div class="form-group">
+                        <label>{:lang("IP")}：</label>
+                        <input type="text" class="form-control" id="ip" name="ip" style="width: 120px">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="button" style="margin-top:5px" id="search"><strong>{:lang('搜索')}</strong></button>
+                        <button class="btn btn-danger" type="submit" style="margin-top:5px" id="export"><strong>{:lang("导出")}</strong></button>
+                    </div>
+                </div>
+            </form>
+            <!--搜索框结束-->
+            <div class="example-wrap">
+                <div class="example">
+                    <table id="cusTable" data-toolbar="#toolbar">
+                        <thead>
+                        <th data-field="id" data-sortable="true" data-formatter="textFormatter">{:lang("用户ID")}</th>
+                        <th data-field="nick_name" data-formatter="textFormatter">{:lang("昵称")}</th>
+                        <th data-field="level_id" data-sortable="true">{:lang("会员等级")}</th>
+                        <th data-field="invite_code" data-formatter="textFormatter">{:lang("邀请码")}</th>
+                        <th data-field="mobile" data-formatter="textFormatter">{:lang("手机号")}</th>
+                        <th data-field="user_money" data-sortable="true">{:lang("余额")}</th>
+                        <th data-field="recharge">{:lang("充值")}</th>
+                        <th data-field="withdraw">{:lang("提现")}</th>
+						<th data-field="points">{:lang("积分")}</th>
+                        <th data-field="leader1_mobile">{:lang("上级手机号")}</th>
+                        <th data-field="is_xuni_text">{:lang("虚拟")}</th>
+                        <th data-field="create_time" data-sortable="true">{:lang("注册时间")}</th>
+                        <th data-field="last_login_ip">{:lang("上次登录ip")}</th>
+                        <th data-field="last_login_time" data-sortable="true">{:lang("上次登录时间")}</th>
+                        <th data-field="status">{:lang("状态")}</th>
+                        <th data-field="operate">{:lang("操作")}</th>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            <!-- End Example Pagination -->
+        </div>
+    </div>
+</div>
+<!-- End Panel Other -->
+<script src="__JS__/jquery.min.js?v=2.1.4"></script>
+<script src="__JS__/bootstrap.min.js?v=3.3.6"></script>
+<script src="__JS__/content.min.js?v=1.0.0"></script>
+<script src="__JS__/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="__JS__/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+<script src="__JS__/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="__JS__/plugins/suggest/bootstrap-suggest.min.js"></script>
+<script src="__JS__/plugins/sweetalert/sweetalert.min.js"></script>
+<script src="__JS__/plugins/layer3/layer.js"></script>
+<script src="__JS__/layui/layui.js"></script>
+<script type="text/javascript">
+    function textFormatter(value, row, index) {
+        if (row.is_xuni == 1) {
+            return "<span style='color:red'>"+value+"</span>";
+        }
+        return "<span>"+value+"</span>";
+    }
+    var $table = $('#cusTable');
+    function initTable() {
+        //先销毁表格
+        $table.bootstrapTable('destroy');
+        //初始化表格,动态从服务器加载数据
+        $table.bootstrapTable({
+            method: "get",  //使用get请求到服务器获取数据
+            url: "{$url}", //获取数据的地址
+            striped: true,  //表格显示条纹
+            pagination: true, //启动分页
+            pageSize: 10,  //每页显示的记录数
+            pageNumber:1, //当前第几页
+            pageList: [10, 30, 50, 100, 500],  //记录数可选列表
+            sidePagination: "server", //表示服务端请求
+            paginationFirstText: "{:lang('首页')}",
+            paginationPreText: "{:lang('上一页')}",
+            paginationNextText: "{:lang('下一页')}",
+            paginationLastText: "{:lang('尾页')}",
+            queryParamsType : "undefined",
+            queryParams: function queryParams(params) {   //设置查询参数
+                params.searchText = $('#username').val();
+                params.userid = $('#userid').val();
+                params.invite_code = $('#invite_code').val();
+                params.startTime = $('#start_time').val(); 
+                params.endTime = $('#end_time').val();
+                params.level_id = $('#level_id').val();
+                params.time_type = $('#time_type').val();
+                params.is_xuni = $('#is_xuni').val();
+                params.ip = $('#ip').val();
+                return params;
+            },
+            onLoadSuccess: function(res){  //加载成功时执行
+                if(111 == res.code){
+                    window.location.reload();
+                }
+                layer.msg("{:lang('加载成功')}", {time : 1000});
+            },
+            onLoadError: function(){  //加载失败时执行
+                layer.msg("{:lang('加载数据失败')}");
+            }
+        });
+    }
+    function viewTopId(tree_id) {
+        var tree = tree_id.split('/');
+        var html = '<div style="padding:15px;">';
+        for(var i=0; i<tree.length; i++) {
+            if (i == tree.length-1) {
+//                html += '<p>自己:' + tree[i] + '</p>';
+            }else{
+                html += '<p>第'+(i+1)+'级: <code>' + tree[i] + '</code></p>';
+            }
+        }
+        html += '</div>';
+        layer.open({
+            type: 1, 
+            area: ['500px', '300px'],
+            title:'{:lang("上级列表")}',
+            content: html //这里content是一个普通的String
+        });
+    }
+
+	function balance_add(id){
+		layer.prompt({
+		  formType: 2,
+		  title: '{:lang("请输入增加余额数量")}',
+		  area: ['300px', '35px'] //自定义文本域宽高
+		}, function(value, index, elem){
+		  $.post('balance_add', {id: id,number:value}, function (res) {
+		      if (res.code === 1) {
+				  layer.msg("success");
+				  layer.close(index);
+				  window.location.reload();
+		      }else{
+				layer.msg(res.msg);
+			  }
+		  }, "JSON").error(function (error) {
+		      console.log(error);
+		      layer.msg("{:lang('出错了')}");
+		  });
+		});
+	}
+	
+	function points_add(id){
+		layer.prompt({
+		  formType: 2,
+		  title: '{:lang("请输入增加积分数量")}',
+		  area: ['300px', '35px']
+		}, function(value, index, elem){
+		  $.post('points_add', {id: id,number:value}, function (res) {
+		      if (res.code === 1) {
+				  layer.msg("success");
+				  layer.close(index);
+				  window.location.reload();
+		      }else{
+				layer.msg(res.msg);
+			  }
+		  }, "JSON").error(function (error) {
+		      console.log(error);
+		      layer.msg("出错了");
+		  });
+		});
+	}
+	
+    $(document).ready(function () {
+        layui.use('laydate', function(){
+            var laydate = layui.laydate;
+            laydate.render({
+                elem: '#start_time'
+                ,trigger: 'click'
+            });
+            laydate.render({
+                elem: '#end_time'
+                ,trigger: 'click'
+            });
+        });
+        //调用函数，初始化表格
+        initTable();
+
+        //当点击查询按钮的时候执行
+        $("#search").on("click", initTable);
+    });
+
+</script>
+</body>
+</html>

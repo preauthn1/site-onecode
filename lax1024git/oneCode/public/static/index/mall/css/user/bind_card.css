@@ -1,0 +1,31 @@
+#app {
+  background: #F2F2F2;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+.wrap .wrap-box {
+  background: #FFF;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .3);
+  border-radius: 0.14492754rem;
+  border: 1px solid #fff;
+  padding: 0.33816425rem;
+}
+.wrap .wrap-box .ads-panel {
+  background: none;
+}
+.wrap .wrap-box .ads-panel .card-form .van-cell {
+  border-bottom: 1px dashed #999;
+}
+.wrap .wrap-box .ads-panel .van-field__label {
+  color: #333;
+  font-weight: 500;
+  font-size: 0.38647343rem;
+}
+.wrap .wrap-box .ads-panel .card-form .van-cell:first-child {
+  margin-top: 0.12077295rem;
+}
+.weui-dialog__btn_primary {
+  background-color: #F9F9FA;
+  color: #259253;
+}

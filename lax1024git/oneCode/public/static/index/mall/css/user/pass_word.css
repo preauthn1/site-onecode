@@ -1,0 +1,43 @@
+body,
+html {
+  background-color: none;
+}
+#app {
+  background-size: 100%;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+.van-nav-bar {
+  background-color: rgba(109, 232, 188, 0) !important;
+}
+.pwd-card-box {
+  border-radius: 0.36231884rem;
+  overflow: hidden;
+  margin-left: 20px;
+  margin-right: 20px;
+  border: 1px solid #fff;
+}
+.pwd-card {
+  box-shadow: 0px 0.04830918rem 0.48309179rem 0px rgba(36, 76, 62, 0.1);
+  border-image: linear-gradient(180deg, #baffe7, #f9fdfc) 1 1;
+}
+.pwd-banner {
+  height: 70px;
+}
+.van-nav-bar__left {
+  padding-left: 0px;
+}
+.card-form .van-cell {
+  background-color: #fff;
+  border-radius: 0.24154589rem;
+  margin-bottom: 0.72463768rem;
+}
+.pwd-link {
+  margin-bottom: 0.72463768rem;
+}
+.van-field__label {
+  width: auto;
+}
+.van-button{
+  margin-top: 80px;
+}

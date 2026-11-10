@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{$site_title}</title>
+    {include file="public/js" /}
+    <link rel="stylesheet" href="__CSS__/good/info.css?{$css_version}" />
+    <link rel="stylesheet" href="__CSS__/touchTouch.css?{$css_version}" />
+    <style>
+        .van-nav-bar {
+            background-color: #FFF;
+        }
+        #gallerySlider .placeholder{
+            background: url("__IMG__/preloader.gif") no-repeat center center;
+            height: 100%;
+            line-height: 1px;
+            text-align: center;
+            width:100%;
+            display:inline-block;
+        }
+        #prevArrow{
+            border:none;
+            text-decoration:none;
+            background:url('__IMG__/arrows_left.png') no-repeat;
+            opacity:0.5;
+            cursor:pointer;
+            position:absolute;
+            width:43px;
+            height:58px;
+
+            top:50%;
+            margin-top:-29px;
+
+            -moz-transition:opacity 0.2s ease;
+            -webkit-transition:opacity 0.2s ease;
+            transition:opacity 0.2s ease;
+        }
+        #nextArrow{
+             border:none;
+             text-decoration:none;
+             background:url('__IMG__/arrows_right.png') no-repeat;
+             opacity:0.5;
+             cursor:pointer;
+             position:absolute;
+             width:43px;
+             height:58px;
+
+             top:50%;
+             margin-top:-29px;
+
+             -moz-transition:opacity 0.2s ease;
+             -webkit-transition:opacity 0.2s ease;
+             transition:opacity 0.2s ease;
+         }
+
+     
+        #closeBtn{
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            top: 10px;
+            right: 10px;
+            font-size: 30px;
+            color: #fff;
+            z-index: 99;
+            overflow: hidden;
+            background-image: url('__IMG__/close.png');
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    {include file="public/header" /}
+    <div class="swiper-box">
+        <div class="swiper-container swiper-main-pic">
+            <div class="swiper-wrapper img-container" id="thumbs">
+                {volist name='goods.main_pic' id='pic'} 
+                <div class="swiper-slide gui-slide guicent" href="{$pic|toMedia}">
+                    <img src="{$pic|toMedia}"/>
+                    
+                </div>
+                {/volist}
+            </div>
+        </div>
+    </div>
+    <div class="goods-main">
+        <div class="goods-module1-box">
+            <div class="goods-module goods-module1">
+				<div class="goods-name">{$goods.goods_name}</div>
+                <div class="goods-price-box van-clearfix">
+                    <div class="retail_price">{$goods.retail_price|i18n_currency} <span class="oldPrice">{$goods.shop_price|i18n_currency}</span></div>
+                    <div class="return_price">{:lang('佣金')}:{$goods.return_bonus|i18n_currency}</div>
+                </div>
+				{if $goods.single_num != 0}
+				<div class="goods-price-box van-clearfix guicent" style="justify-content: left;">
+					<div class="retail_price amount">{:lang('数量')}:{$goods.single_num}</div>
+					<div class="retail_price amount">{:lang('总价')}:{$goods.total_price}</div>
+				</div>
+				{/if}
+            </div>
+        </div>
+        {if $undone_order_list}
+        <div class="goods-module goods-other-box">
+            <div class="item-box">
+			<div class="goods-other-box-title">กำลังดำเนินการสั่งซื้อ</div>
+                <!-- <div class="goods-other-box-title">{:lang('正在拼单(%d人)', [count($undone_order_list)])}</div> -->
+            <div class="goods-other-box-list">
+                {volist name='undone_order_list' id='row'}
+                <div class="undone-order-item  guicen guispe">
+                    <div class="user-info guicen">
+                        <img class="avatar" src="{$row.avatar}"/>
+                        <span class="nick_name">{$row.nick_name}</span>
+                    </div>
+                    <div class="user-info-rt guicen">
+
+                        <!-- <div class="tips">
+                            {:lang('%s person left to complete', ['<font color="red">'.$row['less_person_num'].'</font>'])}
+                        </div> -->
+                        <button class="buttonBack van-button van-button--warning van-button--small join" data-id="{$row.id}">{:lang('参与拼单')}</button>
+                    </div>
+                </div>
+                {/volist}
+            </div>
+            </div>
+        </div>
+        {/if}
+        {if $goods.attr}
+        <div class="goods-module">
+            <div class="title">{:lang('规格')}</div>
+            <div class='goods-attr-box van-clearfix'>
+                {volist name='goods.attr' id='item'}
+                <div class="attr">
+                    {$item.name}
+                </div>
+                {/volist}
+            </div>
+        </div>
+        {/if}
+        <div class="goods-module">
+            <div class="title">{:lang('详情')}</div>
+            <div class='goods-detail'>
+                {$goods.content|html_entity_decode}
+            </div>
+        </div>
+    </div>
+    <div class="van-goods-action guispe">
+        <div class="btm_lt guicent">
+            <a role="button" tabindex="0" class="van-goods-action-icon guicent info_btm1" href="{:url('index/index')}">
+                <!-- <div class="van-icon van-icon-wap-home-o van-goods-action-icon__icon"></div> -->
+                <img src="__IMG__/icon-home-active.png" alt="">
+                {:lang('首页')}
+            </a>
+            <div role="button" tabindex="0" class="van-goods-action-icon guicent info_btm2" onclick="kefu()">
+                <!-- <div class="van-icon van-icon-chat-o van-goods-action-icon__icon"></div> -->
+                <img src="__IMG__/service2.png" alt="">
+                {:lang('客服')}
+            </div>
+        </div>
+        <div class="btm_rt guicen">
+           
+                <button data-id="{$goods.goods_id}" class="buttonBack pd van-button van-button--warning van-button--large van-goods-action-button van-goods-action-button--first van-goods-action-button--last van-goods-action-button--danger">
+                    <div class="van-button__content">
+                        <span class="van-button__text">
+                            {:lang('拼单')}
+                        </span>
+                    </div>
+                </button>
+           
+        </div>
+    </div>
+
+{if $goods.attr}
+<div class="sku-container" style="display:none;">
+    <div class="van-overlay" style="z-index: 2034;"></div>
+    <div class="van-popup van-popup--round van-popup--bottom van-popup--safe-area-inset-bottom van-sku-container" style="z-index: 2035;">
+        <div class="van-sku-header van-hairline--bottom">
+            <div class="van-image van-sku-header__img-wrap">
+                <img src="{$goods.pic|toMedia}" class="van-image__img" style="object-fit: cover;">
+            </div>
+            <div class="van-sku-header__goods-info">
+                <div class="van-sku__goods-price">
+                    <span class="van-sku__price-num attr-retail-price">
+                        {$goods.retail_price|i18n_currency}
+                    </span>
+                </div>
+                <div class="van-sku-header-item">
+                    {:lang('佣金')}:<span class="attr-return-bonus">{$goods.return_bonus|i18n_currency}</span>
+                </div>
+                <div class="van-sku-header-item">
+                    {:lang('选择规格')}
+                </div>
+            </div>
+        </div>
+        <div class="van-sku-body" style="max-height: 440px;">
+            <div class="van-sku-row van-hairline--bottom">
+                <div class="van-sku-row__title">
+                    {:lang('规格')}
+                </div>
+                {volist name='goods.attr' id='attr'}
+                <span class="van-sku-row__item goods-attr" data-id="{$attr.id}" data-retail="{$attr.retail_price|i18n_currency}" data-bonus="{$attr.return_bonus|i18n_currency}">
+                    <span class="van-sku-row__item-name">{$attr.name}</span>
+                </span>
+                {/volist}
+            </div>
+        </div>
+        <div class="van-sku-actions">
+            <button class="van-button van-button--warning van-button--large pd" data-id="{$goods.goods_id}">
+                <div class="van-button__content">
+                    <span class="van-button__text">
+                        {:lang('拼单')}
+                    </span>
+                </div>
+            </button>
+        </div>
+        <i role="button" class="van-icon van-icon-cross van-popup__close-icon van-popup__close-icon--top-right"></i>
+    </div>
+</div>
+</div>
+
+<script>
+
+
+var attr_id = 0;
+$(".goods-attr-box").on("click", function(){
+    $('.sku-container').show();
+});
+$(".goods-attr").on('click', function(){
+    attr_id = $(this).data('id');
+    $(".attr-retail-price").text($(this).data('retail'));
+    $(".attr-return-bonus").text($(this).data('bonus'));
+    $(this).addClass('van-sku-row__item--active').siblings('.van-sku-row__item').removeClass('van-sku-row__item--active');
+});
+$(".van-icon-cross").on('click', function(){
+    $(".sku-container").hide();
+})
+</script>
+{/if}
+{include file="public/stat" /}
+<script>
+$(function(){
+    $('#thumbs div').touchTouch();
+
+    $('.swiper-main-pic .swiper-slide img').height(window.innerWidth+'px');
+
+    var swiper = new Swiper('.swiper-main-pic', {
+        autoplay: {
+            delay: 4500,
+            disableOnInteraction: false,
+        },
+        //   pagination: {
+        //         el: '.swiper-pagination',
+        //         clickable: true,
+        //   }
+    });
+});
+$(".pd").on("click", function(res){
+    if (typeof attr_id !== "undefined" && attr_id === 0) {
+        layer.msg("{:lang('请选择规格')}");
+        $('.sku-container').show();
+        return;
+    } else if(typeof attr_id === 'undefined') {
+        attr_id = null;
+    }
+    var goods_id = $(this).data('id');
+    $.post("{:url('toPay')}", {goods_id:goods_id, attr_id:attr_id}, function(res){
+        if(res.code == 1) {
+            layer.msg(res.msg);
+            window.setTimeout(function(){
+                window.location.reload();
+            }, 500);
+        }else if(res.code === 111){
+            window.location.href = res.data;
+        }else{
+            layer.msg(res.msg);
+            if (res.url) {
+                window.location.href = res.url;
+            }
+        }
+    })
+});
+
+// 提交订单
+var isPay = false;
+$(document).on('click', '.join', function(){
+    var id = $(this).data('id');
+    if (isPay) {
+        return;
+    }
+    var _this = $(this);
+    $.ajax({
+        type: "POST",
+        url: '{:url("goods/toPay")}',
+        data: {
+            order_id: id,
+        },
+        dataType: 'json',
+        success: function(res){
+            isPay = false;
+            if(res.code == 1){
+                layer.msg(res.msg, function(){
+                    window.location.reload();
+                });
+            }else if(res.code === 111){
+                window.location.href = res.data;
+            }else{
+                isPay = false;
+                layer.msg(res.msg);
+            }
+        }
+    })
+})
+$(".collect").on('click', function(){
+    var goods_id = $(this).data('id');
+    var _this = $(this);
+    $.post("{:url('collect')}", {goods_id:goods_id}, function(res){
+        layer.msg(res.msg);
+        if(res.code == 1) {
+            if (_this.find('i').hasClass('fa-heart-o')) {
+                _this.find('i').addClass('fa-heart').removeClass('fa-heart-o')
+            }else{
+                _this.find('i').addClass('fa-heart-o').removeClass('fa-heart')
+            }
+        }else if(res.code === 111){
+            window.location.href = res.data;
+        }else{
+            layer.msg(res.msg);
+            if (res.url) {
+                window.location.href = res.url;
+            }
+        }
+    })
+})
+
+var clipboard = new ClipboardJS('.shareIcon'); 
+clipboard.on('success', function(e) {
+    layer.msg('{:lang("分享链接已复制,赶快去分享吧")}');
+    e.clearSelection();
+});
+
+</script>
+</body>
+</html>

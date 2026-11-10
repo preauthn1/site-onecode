@@ -1,0 +1,112 @@
+    {include file="header" /}
+    <div class="row">
+        <div class="col-sm-10">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>{:lang("编辑文章")}</h5>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" id="dataForm" method="post" action="{:url('articles/add')}">
+                        <input type="hidden" name="id" value="{$info['id']}"/>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">{:lang("文章标题")}：</label>
+                            <div class="input-group col-sm-7">
+                                <input id="title" type="text" class="form-control" name="title" required="" aria-required="true" value="{$info['title']}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">{:lang("语言")}：</label>
+                            <div class="input-group col-sm-4">
+                                <select name='lang' class="form-control">
+                                    {volist name='langs' id='lang'}
+                                    <option value="{$lang.lang}" {if $info.lang eq $lang.lang} selected{/if}>{$lang.title|lang}</option>
+                                    {/volist}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">{:lang("文章类型")}：</label>
+                            <div class="input-group col-sm-4">
+                                <select class="form-control" name="is_nav">
+                                    {volist name='article_navs' id='text'}
+                                    <option value="{$key}" {if $info.is_nav eq $key} selected{/if}>{$text|lang}</option>
+                                    {/volist}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">{:lang("排序")}：</label>
+                            <div class="input-group col-sm-4">
+                                <input type="number" class="form-control" value="{$info.sort|intval}" name="sort" required>
+                                <p class="help-block">{:lang("数字越小的排在前面")}</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">{:lang("常用链接")}：</label>
+                            <div class="input-group col-sm-4">
+                                <select onchange="$('#url').val(this.value)" class="form-control">
+                                    <option value="">{:lang("选择常用链接")}</option>
+                                    {volist name='urls' id='row'}
+                                    <option value="{$row.url}">{$row.name|lang}</option>
+                                    {/volist}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">{:lang("跳转链接")}：</label>
+                            <div class="input-group col-sm-4">
+                                <input type="text" class="form-control" value="{$info.url}" name="url" id="url">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">{:lang("图片")}：</label>
+                            <input name="thumb" id="img" value="{$info.thumb}" type="hidden" />
+                            <div class="form-inline">
+                                <div class="input-group col-sm-2">
+                                    <button type="button" class="layui-btn" id="uploader">
+                                        <i class="layui-icon">&#xe67c;</i>{:lang("上传图片")}
+                                    </button>
+                                </div>
+                                <div class="input-group col-sm-3">
+                                    <div id="sm">{if $info.thumb}<img src="{$info.thumb|toMedia}" style="height: 40px;"/>{/if}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">{:lang("状态")}：</label>
+                            <div class="input-group col-sm-4">
+                                <select class="form-control" name="status">
+                                    <option value="1" {if $info.status eq 1} selected {/if}>{:lang("启用")}</option>
+                                    <option value="0" {if $info.status neq 1} selected {/if}>{:lang("停用")}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">{:lang("文章内容")}：</label>
+                            <div class="input-group col-sm-7">
+                                <script id="container" name="content" type="text/plain">
+                                    {$info['content']|html_entity_decode}
+                                </script>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-8">
+                                <!--<input type="button" value="提交" class="btn btn-primary" id="postform"/>-->
+                                <button class="btn btn-primary" type="submit">{:lang("提交")}</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{include file="footer" /}
+<script type="text/javascript">
+    $(document).ready(function(){
+        var editor = UE.getEditor('container', {
+            serverUrl:"{:url('articles/uploadimg')}",
+        });
+    });
+</script>
+

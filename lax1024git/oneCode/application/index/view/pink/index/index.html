@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{$site_title}</title>
+    {include file="public/js" /}
+    <link rel="stylesheet" href="__CSS__/index/index.css?{$css_version}" />
+</head>
+<body data-weui-theme='light' style="background: #FFFFFF;">
+<div id="app">
+    <div class="gui-index">
+        <div class="box1">
+            <div class="serch-box">
+				<div>
+					{if $setting.checkout_language eq 1}
+					    <a class="checkoutLanguage lang" href="javascript:;">{:i18n_text()}</a>
+					{else}
+					    <a href="{:url('user/index')}" class="task-icon"><img src="__IMG__/icon-me.png" alt=""></a>
+					{/if}
+				</div>
+				<div style="font-size: 2px;">——————————————————</div>
+                <div class="serch" onclick="window.location.href='/search'">
+                    <img src="__IMG__/serch_icon.png" alt="">
+					<p>{:lang('搜索')}</p>
+                </div>
+            </div>
+            <div class="lt">
+                {volist name='cates' id='cate'}
+                <a class="item" href="{:url('goods/index', ['cate_id' => $cate.id])}" >
+                    <div class="img-box">
+                        <img src="{$cate.pic|toMedia}" alt="">
+                    </div>
+                    <p class="name">{$cate.name|lang}</p>
+                </a>
+                {/volist}
+            </div>                   
+            <div class="swiper-box" style="height: 200px;margin-top: 16px;">
+                <div class="swiper mySwiper" style="height: 200px;">
+                    <div class="swiper-wrapper" style="height: 200px;width: 100%;">
+                      {volist name='banner' id='vo'} 
+                        <div class="swiper-slide" >
+                            <a href="{$vo.link}"><img style="height: 200px;width: 100%;" src="{$vo.pic}"/></a>
+                        </div>
+                        {/volist}
+                    </div>
+                  </div>
+                  <div class="s-pagination"></div>
+            </div>
+            <!-- <div class="block">
+                {volist name='ad_list' id='ad'}
+                     <a class="item" href="{$ad.url}"><img src="{$ad.thumb}" alt=""></a>
+                {/volist}
+            </div> -->
+        </div>
+        {if $grab_order_mode != 0}
+        <div class="line" id="grab">
+            {:lang('系统抢单')}
+        </div>
+        {/if}
+        <div class="box2" style="margin-bottom:10px;display:flex;justify-content: space-between;">
+            {volist name='goods_list2' id='goods'}
+            <div class="item">
+                <div class="lt">
+                    <a href="{:url('goods/info', ['id' => $goods['goods_id']])}"><img class="proImg" src="{$goods.pic|toMedia}"></a>
+					<img class="share" src="__IMG__/share_icon.png" alt="" data-clipboard-text="{$goods.share_url}">
+				</div>
+                <div class="rt-box-box guicen">
+                <div class="rt-box">
+                    <div class="rt">
+                        <div class="title">
+							<a href="{:url('goods/info', ['id' => $goods['goods_id']])}">{$goods.goods_name}</a>
+							<!-- <img src="__IMG__/share_icon.png" alt="" data-clipboard-text="{$goods.share_url}"> -->
+						</div>
+                        <div class="price-box">
+                            <div  class="price1">{$goods.retail_price|i18n_currency}</div>
+                            <div  class="price2">{$goods.shop_price|i18n_currency}</div>
+                        </div>
+                        <div class="btm">
+                            <div class="yongjin">{:lang('佣金')}：{$goods.return_bonus|i18n_currency}</div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            {/volist}
+        </div>
+        <div class="tab" id="tabIndex">
+            <div class="item active" data-is_discount='0' data-lt="0">{:lang('全部商品')}</div>
+            <div class="item" data-is_discount='1' data-lt="50">{:lang('优惠商品')}</div><div class="btm_line"></div>
+        </div>
+        <div class="box2">
+            <div class="am-list-body">
+                <div class="list-view-section-body"></div>
+            </div>
+
+            <div class="am-list-footer">
+                <div style="padding: 5px; text-align: center;">
+                    <a href="{:url('goods/index')}" class="viewMore" style="display: none;">
+                        {:lang('查看更多')} &gt;&gt;
+                    </a>
+                    <span class="nodata">{:lang('没有数据')}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="height: 20px;"></div>
+</div>
+
+
+<script type='text/template' id='notice-content-template'>
+<div class="dialog-notice">
+<div class="dialog-notice-body">
+{$notice.content}
+</div>
+</div>
+<div class="dialog-close" ><i class="van-icon van-icon-close">&nbsp;</i></div>
+
+</script>
+{include file="public/lang" /}
+{include file="public/footer" /}
+<script>
+$(function() {
+    new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        loop: true,
+        autoplay: {
+            delay: 4000,
+            disableOnInteraction: false,
+        },
+		spaceBetween:32,
+		// previous-margin:16,
+        // pagination: {
+        //     el: ".s-pagination",
+        //     clickable: true,
+        // },
+    });
+    new Swiper(".mySwiper2", {
+        direction: 'vertical',
+        slidesPerView: 1,
+    });
+
+    var swiper = new Swiper(".swiper-part", {
+        slidesPerView: 3,
+        spaceBetween: 0,
+        navigation: {
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev',
+        },
+    });
+    var clipboard = new ClipboardJS('.share');
+    clipboard.on('success', function(e) {
+        layer.msg('{:lang("分享链接已复制,赶快去分享吧")}');
+        e.clearSelection();
+    });
+    //        {if $notice}
+
+    var $dialog = weui.dialog({
+        title: '{:lang("最新公告")}',
+        content: $("#notice-content-template").html(),
+        className: 'dialog-diy',
+        buttons: false
+    });
+    $("body").addClass('van-overflow-hidden');
+    //      {/if}
+
+    $('.dialog-close').click(function(){
+        $dialog.hide(function(){
+            $("body").removeClass('van-overflow-hidden');
+        });
+    });
+
+    function loadGoods(is_discount) {
+        $.getJSON('/goods/list/html', {is_discount:is_discount}, function(res){
+            $(".list-view-section-body").html(res.data);
+            if (res.data) {
+                $(".viewMore").show();
+                $(".nodata").hide();
+            }else{
+                $(".viewMore").hide();
+                $(".nodata").show();
+            }
+        });
+    }
+    loadGoods(0);
+
+    $('.tab .item').on('click', function () {
+        $(this).addClass('active');
+        $(this).siblings().removeClass('active');
+        $('.btm_line').css('left', $(this).attr('data-lt') + '%');
+        var is_discount = $(this).data('is_discount');
+        loadGoods(is_discount);
+    })
+
+    var isGrab = false;
+    function grab() {
+        $.post('/goods/grab', function(res){
+            if (res.code === 0) {
+                layer.msg(res.msg);
+                if(res.url != '')
+                    window.location.href = res.url;
+                isGrab = false;
+            } else if (res.code == 1) {
+                window.location.href = res.url;
+            } else if (res.code == 8) {
+                $("#grab").text("{:lang('您的CP可能需要重新设置，因为CP正在和其他用户拼单')}");
+            } else {
+                window.setTimeout(function(){
+                    grab();
+                }, 5000);
+            }
+        });
+    }
+    $("#grab").on('click', function() {
+        if (isGrab) {
+            return false;
+        }
+        $(this).text("{:lang('系统正在匹配订单中')}...");
+        $(this).addClass("weui-btn_disabled").removeClass("weui-btn_primary");
+        isGrab = true;
+        grab();
+    });
+
+});
+
+ var ele = document.getElementById('tabIndex');
+ var eletop=ele.getBoundingClientRect().top;
+    addEventListener('scroll',function(){
+        var top=ele.getBoundingClientRect().top;
+        var top2  = parseInt(document.documentElement.scrollTop)
+        if(top<1){
+            $('#tabIndex').addClass('addTab');
+        }
+        if(top2<eletop){
+            $('#tabIndex').removeClass('addTab');
+        }
+    })
+
+
+
+</script>
+</body>
+</html>

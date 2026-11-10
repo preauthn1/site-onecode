@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{$site_title}</title>
+    {include file="public/js" /}
+</head>
+<body>
+    <div id="app">
+        {include file="public/header" /}
+        <div class="cus-main">
+            <div class="cus-grid">
+                <img src="__IMG__/touxiang.png" alt="">
+                <div class="cus-tit">{$setting.title} {:lang('VIP')} {:lang('客服中心')}</div>
+                <div class="cus-time">{:lang('7x24H 9:00-24:00')}</div>
+            </div>
+            <div class="cus-list">
+                <a href="{:url('index/kefu')}" class="van-cell van-cell--clickable van-cell--center">
+                    <img src="__IMG__/cus1.png" alt="" class="cus-icon">
+                    <div class="van-cell__title"><span>{:lang('联系在线客服')}</span></div>
+                    <i class="van-icon van-icon-arrow van-cell__right-icon"></i>
+                </a>
+                {volist name='accounts' id='row'}
+                <a href="{$row.url|default='javascript:;'}" class="van-cell van-cell--clickable van-cell--center copy-btn2" data-clipboard-text="{$row.account}">
+                    <img src="__IMG__/icon-{$row.type}.png" onerror="this.src='__IMG__/cus1.png'" class="cus-icon">
+                    <div class="van-cell__title"><span>{$row.text}</span></div>
+                    <i class="van-icon van-icon-arrow van-cell__right-icon"></i>
+                </a>
+                {/volist}
+            </div>
+        </div>
+    </div>
+<script>
+    var clipboard = new ClipboardJS('.copy-btn2'); 
+    clipboard.on('success', function(e) {   
+        layer.msg("{:lang('复制成功')}") 
+        e.clearSelection();    
+        console.log(e.clearSelection);    
+    });
+</script>    
+</body>
+</html>

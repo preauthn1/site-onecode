@@ -1,0 +1,23 @@
+{if !$isHtml5Plus}
+<div class="van-nav-bar van-nav-bar--fixed">
+    {if condition="$isLeft == 1"}
+    <a href="{$leftUrl|default='javascript:history.back();'}" class="van-nav-bar__left">
+        <i class="van-icon van-icon-arrow-left van-nav-bar__arrow"></i>
+    </a>
+    {/if}
+    <div class="van-nav-bar__title van-ellipsis">{$site_title}</div>
+    <div class="van-nav-bar__right" {if condition="$onclick"}onclick="{$onclick}"{/if}>
+        {if condition="$isRight == 1"}
+        <a href="{$rightUrl|default='javascript:;'}">
+            {$rightCon}
+        </a>
+        {/if}
+    </div>
+</div>
+{else}
+<style>
+    body{
+        padding-top: 0;
+    }
+</style>
+{/if}

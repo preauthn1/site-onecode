@@ -1,0 +1,12 @@
+/.idea
+/.vscode
+/vendor
+*.log
+thinkphp
+.env
+nbproject
+composer.lock
+.DS_Store
+application/extra/sms.php
+application/extra/pay.php
+*.cookie

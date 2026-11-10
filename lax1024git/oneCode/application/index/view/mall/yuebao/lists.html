@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{$site_title}</title>
+    <link rel="stylesheet" href="__JS__/minirefresh/minirefresh.min.css" />
+    {include file="public/js" /}
+</head>
+<body data-weui-theme='light'>
+<div id="app">
+    {include file="public/header" /} 
+    <div class="wrap">
+        <div class="uc-tabs Tpanel">
+            <div class="van-tabs van-tabs--line" id="leftTabBox" style='position:static;'>
+                <div class="van-tabs__wrap hd">
+                    <ul role="tablist" class="van-tabs__nav van-tabs__nav--line" >
+                        <li role="tab" class="van-tab van-tab--active" >{:lang("在存记录")}</li>
+                        <li role="tab" class="van-tab" >{:lang("提取记录")}</li>
+                    </ul>
+                </div>
+                <div class="van-tabs__content bd minirefresh-wrap minirefresh-theme-default" id="minirefresh" style="position: absolute; margin-top: 140px; padding: 0 20px 15px;">
+                    <div role="tabpanel" class="van-tab__pane minirefresh-scroll">
+                        <div role="feed" class="record-list" id="listdata">
+                            <div class="van-list__placeholder"><div class="no_more" style="display: none;">{:lang('没有数据')}</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="__JS__/minirefresh/minirefresh.min.js"></script>
+<script>
+    var isSub = false
+    // 取消订单
+    $(document).on('click', '.btn-cancel', function(){
+        if (isSub) {
+            return;
+        }
+        var id = $(this).data('id');
+        weui.dialog({
+            title: '{:lang("确定取出")}?',
+            content: '<div class="dialog-empty"><img src="__IMG__/undraw_Credit_card_re_blml@2x.png" width="130px" alt=""></div>',
+            className: 'custom-dialog',
+            buttons: [{
+                label: '{:lang("取消")}',
+                type: 'default',
+                onClick: function () {}
+            }, {
+                label: '{:lang("确认")}',
+                type: 'primary',
+                onClick: function () {
+                    isSub = true;
+                    // 向服务端提交数据
+                    $.ajax({
+                        type: "POST",
+                        url: '{:url("cancelOrder")}',
+                        data: { id: id },
+                        dataType: 'json',
+                        success: function(res){
+                            isSub = false;
+                            if(res.code == 200){
+                                layer.msg(res.msg, function(){
+                                    location.reload()
+                                });
+                            } else {
+                                layer.msg(res.msg);
+                            }
+                        }
+                    });
+                }
+            }]
+        });
+    })
+    $('img').bind("contextmenu",function(e){
+        e.preventDefault();
+    });
+</script>
+<script>
+    $(function(){
+        var template2 = '<div class="record-card">'
+                        + '<div class="record-icon"><img src="__IMG__/tixian@2x-2.png" alt=""></div>'
+                        + '<div class="flex-bd">'
+                            + '<div class="acc-item">{:lang("取出")}：<span class="text-orange">{{money}}</span></div>'
+                            + '<div class="acc-item">{:lang("收益")}：{{gray}}</div>'
+                            + '<div class="acc-item">{:lang("存入时间")}：{{create_time}}</div>'
+                            + '<div class="acc-item">{:lang("取出时间")}：{{out_time}}</div>'
+                        + '</div>'
+                    + '</div>';
+        var template1 = '<div class="record-card">'
+                        + '<div class="record-icon"><img src="__IMG__/tixian@2x.png" alt=""></div>'
+                        + '<div class="flex-bd">'
+                            + '<div class="acc-item">{:lang("存入")}：<span class="text-orange">{{principal}}</span></div>'
+                            + '<div class="acc-item">{:lang("收益")}：{{gray}}</div>'
+                            + '<div class="acc-item">{:lang("存入时间")}：{{create_time}}</div>'
+                            + '<div class="acc-item">{:lang("结算时间")}：{{income_time}}</div>'
+                            + '<div class="acc-item"><a class="btn-cancel van-button van-button--warning van-button--normal" data-id="{{orderid}}" style="height: auto;padding: 5px 15px; float:right;">{:lang("取出")}</a></div>'
+                        + '</div>'
+                    + '</div>';
+        var params =  {
+            page:       1,
+            pageSize:   10,
+            start_time:'',
+            end_time:'',
+            status: 1
+        };
+        var url = '{:url("lists")}';
+        var itemIndex         = 0;
+        var tabScroolTopArray = [0, 0, 0, 0, 0, 0, 0];
+        var appendTestData = Common.appendTestData,  // 取数据
+            request = Common.request
+            listDom = document.querySelector('#listdata'),
+            requestDelayTime = 600;
+        var renderData = function(res) {
+            var data = [];
+            for (var i = 0; i < res.data.length; i++) {
+                data[i] = {
+                    // 模板绑定数据
+                    orderid:     res.data[i].id,
+                    principal:   res.data[i].principal,
+                    money:       res.data[i].money,
+                    gray:        res.data[i].gray,
+                    create_time: res.data[i].create_time,
+                    income_time: res.data[i].income_time,
+                    out_time:    res.data[i].out_time
+                };
+            }
+            return data;
+        }
+        var miniRefresh = new MiniRefresh({
+            container: '#minirefresh',
+            down: {
+                isLock:true
+            },
+            up: {
+                isAuto: true,
+                contentdown: '',
+                contentrefresh: '{:lang("加载中")}...',
+                contentnomore: '{:lang("没有数据")}',
+                callback: function() {
+                    setTimeout(function() {
+                        request(url, params, function(res){
+                            if(res.code == 200){
+                                var data = renderData(res)
+                                if (params.status == 2) {
+                                    var template = template2
+                                }else{
+                                    var template = template1
+                                }
+                                appendTestData(listDom, data, template);
+                                miniRefresh.endUpLoading(data.length <= 0);
+                                params.page++;
+                            }else{
+                                miniRefresh.endUpLoading(true);
+                            }
+                        });
+                    }, requestDelayTime);
+                }
+            }
+        });
+        var resetScroll = function() {
+            listDom.innerHTML = '';
+            params.page = 1;
+            miniRefresh.triggerUpLoading();
+        };
+        
+        $('.van-tab').on('click', function () {
+            tabScroolTopArray[itemIndex] = $(window).scrollTop();
+            var $this = $(this);
+            itemIndex = $this.index();
+            page = 1;
+            params.status = itemIndex + 1;
+            resetScroll();
+            $(window).scrollTop(tabScroolTopArray[itemIndex]);
+            $this.addClass('van-tab--active').siblings().removeClass('van-tab--active');
+        });
+    })
+</script>
+</html>

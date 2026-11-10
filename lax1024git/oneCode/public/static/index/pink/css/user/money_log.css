@@ -1,0 +1,18 @@
+#app {
+  /* background-image: url(../../images/login_bg.png); */
+  background-color: #F4F0E7;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+.log-item {
+	background: #FFFFFF;
+    margin-bottom: 0.3rem;
+    border-radius: 5px;
+	margin-top:16px;
+	padding: 8px;
+}
+.van-cell__title{
+	display: flex;
+	justify-content: space-between;
+}

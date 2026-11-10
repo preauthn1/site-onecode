@@ -1,0 +1,23 @@
+{volist name='lists' id='row'}
+<div class="van-cell van-cell--large log-item">
+    {if $row.is_btn eq 'block'}
+    <i class="van-icon van-icon-delete-o van-cell__left-icon btn-cancel" data-id="{$row.id}"></i>
+    {/if}
+    <div class="van-cell__title">
+		<div class="price-line guispe">
+			<div class="van-cell__label">{:lang("银行卡充值")}</div>
+			<div class="van-cell__label">{$row.create_time}</div>
+		</div>
+        <!-- <span>{$row.order_id}</span> -->
+        <div class="price-line guispe">
+			<div>{:lang("金额")}</div>
+            <div class="money2">+{$row.money|i18n_currency}</div>
+        </div>
+        {if $row.remark && $row.remark neq '-' && $row.status neq 2}
+        <div class="van-cell__label">{$row.remark}</div>
+        {/if}
+        
+    </div>
+
+</div>
+{/volist}

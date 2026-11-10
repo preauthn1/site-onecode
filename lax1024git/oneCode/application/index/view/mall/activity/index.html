@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{$site_title}</title>
+    {include file="public/js" /}
+    <link rel="stylesheet" href="__CSS__/activity/activity.css?{$css_version}" />
+    <style>
+        .activity-item{
+            display: block;
+            text-align: center;
+            font-size: 0;
+           
+            margin-bottom: 0.35rem;
+        }
+        .activity-item img{
+            max-width: 100%;
+            /* border-radius: 8px; */
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <!-- {include file="public/header" /} -->
+    <div class="ac-header">Activity</div>
+
+	<div class="index-main" style="padding-top: 0;">
+	    <div id="records">
+	        <div class="proList am-list-view-scrollview">
+	            <div class="am-list-body">
+	                <div class="list-view-section-body"></div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+    
+    {include file="public/footer" /}
+</div>
+
+<script>
+    $(function () {
+        // new Swiper(".ac-swiper", {
+        //     loop: true,
+        //     // effect: 'coverflow',
+        //     // slidesPerView: 1.5,
+        //     autoplay: {
+        //         delay: 1500,
+        //         disableOnInteraction: false,
+        //     },
+        //     pagination: {
+        //         el: ".swiper-pagination",
+        //         clickable: true,
+        //     },
+        // });
+        // 页数
+        var page = 0;
+        // dropload
+        var dropload = $('#app').dropload({
+            scrollArea: $('#app'),
+            domUp:{
+                domClass : 'dropload-up',
+                domRefresh : '<div class="dropload-refresh">↓{:lang("下拉刷新")}</div>',
+                domUpdate : '<div class="dropload-update">↑{:lang("释放更新")}</div>',
+                domLoad : '<div class="dropload-load"><span class="loading"></span>{:lang("加载中")}...</div>'
+            },
+            domDown:{
+                domClass : 'dropload-down',
+                domRefresh : '<div class="dropload-refresh">↑{:lang("上拉加载更多")}</div>',
+                domLoad : '<div class="dropload-load"><span class="loading"></span>{:lang("加载中")}...</div>',
+                domNoData : '<div class="dropload-noData">{:lang("暂无数据")}</div>'
+            },
+            loadDownFn: function (me) {
+                page++;
+                $.ajax({
+                    type: 'GET',
+                    url: '{:url("index")}?page=' + page,
+                    dataType: 'json',
+                    success: function (res) {
+                        if (res.code == 1) {
+                            $('.list-view-section-body').append(res.data);
+                        } else {
+                            // 锁定
+                            me.lock();
+                            // 无数据
+                            me.noData(true);
+                        }
+                        me.resetload();
+                    },
+                    error: function (xhr, type) {
+                        // 即使加载出错，也得重置
+                        me.resetload();
+                    }
+                });
+            }
+        });
+        
+        $(document).on("click", ".activity-item", function(){
+            var id = $(this).data('id');
+            $.ajax({
+                type: 'POST',
+                url: '{:url("receive")}',
+                data:{id:id},
+                dataType: 'json',
+                success: function (res) {
+                    layer.msg(res.msg);
+                },
+                error: function (xhr, type) {
+                }
+            });
+        })
+    });
+    
+</script>
+<script type='text/template' id='notice-content-template'>
+<div class="dialog-notice">
+<div class="dialog-notice-body">
+{:lang('活动提示文本')}
+</div>
+</div>
+<div class="dialog-close" ><i class="van-icon van-icon-close">&nbsp;</i></div>
+</script>
+{include file="public/lang" /} 
+{include file="public/footer" /}
+<script>
+    $(function(){
+        var $dialog = weui.dialog({
+            title: '{:lang("活动")}',
+            content: $("#notice-content-template").html(),
+            className: 'dialog-diy',
+            buttons: false
+        });
+        $("body").addClass('van-overflow-hidden');
+
+        $('.dialog-close').click(function(){
+            $dialog.hide(function(){
+                $("body").removeClass('van-overflow-hidden');
+            });
+        });
+        
+    });
+</script>
+</body>
+</html>

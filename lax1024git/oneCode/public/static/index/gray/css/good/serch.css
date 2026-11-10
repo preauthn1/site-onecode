@@ -1,0 +1,127 @@
+#app {
+  /* background-image: url(../../images/login_bg.png); */
+  background-color: #F4F0E7;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+.van-search--show-action {
+  background: rgba(255, 255, 255, 0.51);
+}
+.van-search--show-action {
+  padding: 10px 12px;
+}
+.van-search__action {
+  background: #1b3738;
+  margin-left: 0.36231884rem;
+  padding: 0 0.33816425rem;
+  color: #fff;
+}
+.index-main {
+  padding: 0 15px;
+}
+
+.box2 .item .rt-box {
+  flex: 1;
+  overflow: hidden;
+}
+
+.box2 .item .rt .title {
+  color: #333333;
+  font-weight: 500;
+  font-size: 0.33816425rem;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  word-break: break-all;
+  overflow: hidden;
+}
+.box2 .item .rt .price-box {
+  display: flex;
+  -webkit-display: flex;
+  -ms-display: flex;
+  -o-display: flex;
+  align-items: baseline;
+  margin-top: 0.24154589rem;
+}
+.box2 .item .rt .price-box .price1 {
+  color: #FD050D;
+  font-weight: 500;
+  font-size: 0.43478261rem;
+  margin-right: 0.14492754rem;
+}
+.box2 .item .rt .price-box .price2 {
+  color: #BEBEBE;
+  font-weight: 500;
+  font-size: 0.26570048rem;
+  text-decoration: line-through;
+}
+.box2 .item .rt .btm {
+  display: flex;
+  -webkit-display: flex;
+  -ms-display: flex;
+  -o-display: flex;
+  justify-content: space-between;
+  align-items: center;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  margin-top: 0.24154589rem;
+}
+.box2 .item .rt .btm .yongjin {
+  display: inline-block;
+  height: 0.60386473rem;
+  padding: 0 0.19323671rem;
+  line-height: 0.60386473rem;
+  text-align: center;
+  background: #3E3E3E;
+  border-radius: 0.09661836rem;
+  font-size: 0.24154589rem;
+  color: #FFFFFF;
+  font-weight: 500;
+}
+.box2 .item .rt .btm .share {
+  width: 0.53140097rem;
+  height: 0.53140097rem;
+}
+.category-box .tab {
+  display: flex;
+  -webkit-display: flex;
+  -ms-display: flex;
+  -o-display: flex;
+  height: 1.18357488rem;
+  align-items: center;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  background: rgba(255, 255, 255, 0.51);
+  position: relative;
+  margin-top: 0.36231884rem;
+}
+.category-box .tab .item {
+  flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  -o-flex: 1;
+  color: #999999;
+  font-weight: 500;
+  font-size: 0.38647343rem;
+  text-align: center;
+}
+.category-box .tab .active {
+  color: #093324;
+}
+.category-box .tab .btm_line {
+  position: absolute;
+  bottom: 0;
+  width: 50%;
+  left: 0;
+  height: 0.14492754rem;
+  background: #259253;
+  transition: all 0.5s;
+}
+
+.van-field__control{
+	text-align: left;
+}
+

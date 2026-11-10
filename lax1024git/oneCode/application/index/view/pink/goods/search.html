@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>{$site_title}</title>
+{include file="public/js" /}
+<link rel="stylesheet" href="__CSS__/good/serch.css?{$css_version}" />
+</head>
+<body data-weui-theme='light' style="background: #FFFFFF;">
+<div id="app">
+    {include file="public/header" /}
+    <div class="van-search van-search--show-action">
+        <div class="van-search__content van-search__content--square">
+          <div class="van-cell van-cell--borderless van-field">
+            <div class="van-cell__value van-cell__value--alone van-field__value">
+              <div class="van-field__body">
+                  <input type="search" id="keyword" autofocus placeholder="{:lang('请输入搜索关键词')}" class="van-field__control">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div role="button" id="search" tabindex="0" class="van-search__action">
+          {:lang('搜索')}
+        </div>
+    </div>
+    <div class="index-main">
+        <div class="sticky-box">
+            <div class="proList am-list-view-scrollview">
+
+                <div class="box2">
+                    <div class="am-list-body">
+                        <div class="list-view-section-body"></div>
+                    </div>
+                    <div class="am-list-footer">
+                        <div style="padding: 5px; text-align: center;">
+                            <a href="javascript:;" class="viewMore" style="display: none;">
+                                {:lang('查看更多')} &gt;&gt;
+                            </a>
+                            <span class="nodata" style="display: none;">{:lang('没有数据')}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var gui=$(window).scrollTop();
+    $(window).scroll(function(){
+            var top  = $(window).scrollTop();
+            setTimeout(function(){
+                if(top>gui&&top>40){
+                    gui=top;
+                    $('#app .van-nav-bar').slideUp(200);
+                }else{
+                    gui=top;
+                    $('#app .van-nav-bar').slideDown(100);
+                }
+            },50)
+            $('#app .van-nav-bar').css('background-color','rgba(109, 232, 188, '+top/300+')');
+        })
+    $(function () {
+        var clipboard = new ClipboardJS('.share');
+        clipboard.on('success', function (e) {
+            layer.msg('{:lang("分享链接已复制,赶快去分享吧")}');
+            e.clearSelection();
+        });
+        var page = 1;
+        var isLoad = false;
+        function loadGoods(keyword) {
+            if (isLoad || !keyword) {
+                return;
+            }
+            isLoad = true;
+            $.getJSON('/goods/index', {page: page, keyword:keyword}, function (res) {
+                $(".list-view-section-body").append(res.data);
+                isLoad = false;
+                if (res.data) {
+                    $(".viewMore").show();
+                    $(".nodata").hide();
+                } else {
+                    $(".viewMore").hide();
+                    $(".nodata").show();
+                }
+            });
+        }
+        $("#search").on('click', function() {
+            page = 1;
+            $(".list-view-section-body").empty();
+            loadGoods($("#keyword").val());
+        });
+        $(".viewMore").on('click', function() {
+            page++;
+            loadGoods($("#keyword").val());
+        })
+    });
+</script>
+</body>
+</html>

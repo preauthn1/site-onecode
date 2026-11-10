@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{$site_title}</title>
+    {include file="public/js" /}
+</head>
+<body>
+    <div id="app" class="tx-page">
+        <div class="van-nav-bar van-nav-bar--fixed">
+            <a href="{$leftUrl|default='javascript:history.back();'}" class="van-nav-bar__left">
+                <i class="van-icon van-icon-arrow-left van-nav-bar__arrow" style="color: #FFF;"></i>
+            </a>
+            <div class="van-nav-bar__title van-ellipsis" style="color: #FFF;">{:lang('设置头像')}</div>
+            <div class="van-nav-bar__right"></div>
+        </div>
+        <div class="set-v-grid">
+            {if condition="$userInfo['avatar']"}
+            <div class="v-avatar"><img src="{$userInfo['avatar']}" id="avatar"/></div>
+            {/if}
+            <button class="van-button van-button--default van-button--normal">
+                <div class="van-button__content"><span class="van-button__text">{:lang('立即设置')}</span></div>
+            </button>
+        </div>
+        <div class="set-v-main">
+            <ul class="avatar-list">
+                {volist name="lists" id="vo"}
+                <li data-url="{$vo.url}" data-img="{$vo.img}" class="avatar">
+                    <div class="avatar-box"><img src="{$vo.url}" alt=""></div>
+                </li>
+                {/volist}
+            </ul>
+        </div>
+    </div>
+</body>
+
+<script>
+$(function(){
+    $('.avatar').on('click', function(){
+        var avatar = $(this).data('img');
+        var url    = $(this).data('url');
+        $.ajax({
+            type: "POST",
+            url: '{:url("avatar")}',
+            data: {
+                avatar: avatar
+            },
+            dataType: 'json',
+            success: function(res){
+                console.log(res);
+                if(res.code == 200){
+                    $('#avatar').attr('src', url);
+                } else {
+                    layer.msg(res.msg);
+                }
+            }
+        })
+    });
+
+    $('img').bind("contextmenu",function(e){
+        e.preventDefault();
+    });
+})
+</script>
+</html>

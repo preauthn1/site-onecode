@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp"/>
+<title>后台管理系统</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+
+<!--[if lt IE 9]>
+<meta http-equiv="refresh" content="0;ie.html"/>
+<![endif]-->
+
+<link rel="shortcut icon" href="favicon.ico">
+<link href="__CSS__/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+<link href="__CSS__/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+<link href="__CSS__/animate.min.css" rel="stylesheet">
+<link href="__CSS__/style.min.css?v=4.1.0" rel="stylesheet">
+</head>
+
+<body class="fixed-sidebar full-height-layout gray-bg mini-navbar2 mini-navbar" style="overflow:hidden">
+<div id="wrapper">
+    <!--左侧导航开始-->
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="nav-close"><i class="fa fa-times-circle"></i>
+        </div>
+        <div class="sidebar-collapse">
+            <ul class="nav" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="clear">
+                                <span class="block m-t-xs"><strong class="font-bold">{$userInfo.mobile}</strong></span>
+                                <span class="text-muted text-xs block">{$userInfo.nick_name}<b class="caret"></b></span>
+                            </span>
+                        </a>
+                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                            <li>
+                                <a href="{:url('login/loginOut')}">{:lang("安全退出")}</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="logo-element">{:lang("代理")}</div>
+                </li>
+                <li class="menu active">
+                    <a href="#">
+                        <i class="fa fa-bar-chart-o"></i>
+                        <span class="nav-label">{:lang("菜单")} </span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level collapse in" aria-expanded="true">
+                        <li>
+                            <a class="J_menuItem" href="{:url('member/index')}" data-index="1">{:lang("用户列表")}</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="{:url('index/report')}" data-index="1">{:lang("用户报表")}</a>
+                        </li>                        
+                        <li>
+                            <a class="J_menuItem" href="{:url('index/day_report')}" data-index="1">{:lang("日报表")}</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="{:url('notice/index')}" data-index="1">{:lang("用户公告")}</a>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li class="menu">
+                    <a href="#">
+                        <i class="fa fa-cny"></i>
+                        <span class="nav-label">{:lang("充值管理")} </span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level collapse in" aria-expanded="true">                        
+                        <li>
+                            <a class="J_menuItem" href="{:url('recharge/index')}" data-index="1">{:lang("银行卡充值")}</a>
+                        </li>
+                        
+                        <li>
+                            <a class="J_menuItem" href="{:url('recharge/third')}" data-index="1">{:lang("第三方充值")}</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="{:url('recharge/usdt')}" data-index="1">{:lang("USDT充值")}</a>
+                        </li>
+                        
+                    </ul>
+                </li>
+                
+                <li class="menu">
+                    <a href="#">
+                        <i class="fa fa-list"></i>
+                        <span class="nav-label">{:lang("提现管理")} </span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level collapse in" aria-expanded="true">                        
+                        <li>
+                            <a class="J_menuItem" href="{:url('withdraw/index')}" data-index="1">{:lang("银行卡提现")}</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="{:url('withdraw/usdt')}" data-index="1">{:lang("USDT提现")}</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="menu">
+                    <a href="#">
+                        <i class="fa fa-list"></i>
+                        <span class="nav-label">{:lang("拼单管理")} </span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level collapse in" aria-expanded="true" style="">
+                        <li>
+                            <a class="J_menuItem" href="{:url('order/index')}" data-index="12">{:lang("拼单记录")}</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="{:url('order/repurchase')}" data-index="12">{:lang("回购管理")}</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="{:url('order/grab')}" data-index="12">{:lang("分配订单")}</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="menu">
+                    <a href="#">
+                        <i class="fa fa-comment"></i>
+                        <span class="nav-label">{:lang("活动管理")} </span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level collapse in" aria-expanded="true" style="">
+                        <li>
+                            <a class="J_menuItem" href="{:url('activity_record/index')}" data-index="24">{:lang("活动记录")}</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="menu">
+                    <a href="#">
+                        <i class="fa fa-comment"></i>
+                        <span class="nav-label">{:lang("在线客服")} </span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level collapse in" aria-expanded="true">                        
+                        <li>
+                            <a class="J_menuItem" href="{:url('message/index')}" data-index="1">{:lang("在线客服")}</a>
+                        </li>
+                    </ul>
+                </li>
+                
+            </ul>
+        </div>
+    </nav>
+    <!--左侧导航结束-->
+    <!--右侧部分开始-->
+    <div id="page-wrapper" class="gray-bg dashbard-1">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header"><a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i
+                        class="fa fa-bars"></i> </a>
+                </div>
+                <ul class="nav navbar-top-links navbar-right">
+                    <li class="dropdown hidden-xs">
+                        <a class="right-sidebar-toggle" aria-expanded="false">
+                            <i class="fa fa-tasks"></i> {:lang("主题")}
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="row content-tabs">
+            <button class="roll-nav roll-left J_tabLeft"><i class="fa fa-backward"></i>
+            </button>
+            <nav class="page-tabs J_menuTabs">
+                <div class="page-tabs-content">
+                    <a href="javascript:;" class="active J_menuTab" data-id="index_v1.html">{:lang("首页")}</a>
+                </div>
+            </nav>
+            <button class="roll-nav roll-right J_tabRight"><i class="fa fa-forward"></i>
+            </button>
+            <div class="btn-group roll-nav roll-right">
+                <button class="dropdown J_tabClose" data-toggle="dropdown" style="width: 260px;right: 40px;">{:lang("常用操作")}<span class="caret"></span>
+
+                </button>
+                <ul role="menu" class="dropdown-menu dropdown-menu-right">
+                    <li class="J_tabGo"><a>{:lang("前进")}</a>
+                    </li>
+                    <li class="J_tabBack"><a>{:lang("后退")}</a>
+                    </li>
+                    <li class="J_tabFresh"><a>{:lang("刷新")}</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li class="J_tabShowActive"><a>{:lang("定位当前选项卡")}</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li class="J_tabCloseAll"><a>{:lang("关闭全部选项卡")}</a>
+                    </li>
+                    <li class="J_tabCloseOther"><a>{:lang("关闭其他选项卡")}</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="btn-group roll-nav roll-right" style="right: 190px;">
+                <button class="dropdown J_tabClose" data-toggle="dropdown" style=" position: relative;">
+                    <span class="label label-danger hidden" id="unreadMessageCount" style="position: absolute; right: 0;">0</span>
+                    {:lang("客服消息")}<span class="caret"></span>
+
+                </button>
+                <ul role="menu" class="dropdown-menu dropdown-menu-right" id="unreadMessageList">
+                    
+                </ul>
+            </div>
+            <a href="{:url('login/loginOut')}" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i>
+                {:lang("退出")}</a>
+        </div>
+        <div class="row J_mainContent" id="content-main">
+            <iframe class="J_iframe" name="iframe0" width="100%" height="100%"
+                    src="{:url('Index/indexPage')}" frameborder="0"
+                    data-id="index_v1.html" seamless></iframe>
+        </div>
+    </div>
+    <!--右侧部分结束-->
+    <!--右侧边栏开始-->
+    <div id="right-sidebar">
+        <div class="sidebar-container">
+            <ul class="nav nav-tabs navs-3">
+                <li class="active">
+                    <a data-toggle="tab" href="#tab-1">
+                        <i class="fa fa-gear"></i> {:lang("主题")}
+                    </a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div id="tab-1" class="tab-pane active">
+                    <div class="sidebar-title">
+                        <h3> <i class="fa fa-comments-o"></i> {:lang("主题设置")}</h3>
+                        <small><i class="fa fa-tim"></i> {:lang("你可以从这里选择和预览主题的布局和样式，这些设置会被保存在本地，下次打开的时候会直接应用这些设置。")}</small>
+                    </div>
+                    <div class="skin-setttings">
+                        <div class="title">{:lang("主题设置")}</div>
+                        <div class="setings-item">
+                            <span>{:lang("收起左侧菜单")}</span>
+                            <div class="switch">
+                                <div class="onoffswitch">
+                                    <input type="checkbox" name="collapsemenu" class="onoffswitch-checkbox" id="collapsemenu">
+                                    <label class="onoffswitch-label" for="collapsemenu">
+                                        <span class="onoffswitch-inner"></span>
+                                        <span class="onoffswitch-switch"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="setings-item">
+                            <span>{:lang("固定顶部")}</span>
+
+                            <div class="switch">
+                                <div class="onoffswitch">
+                                    <input type="checkbox" name="fixednavbar" class="onoffswitch-checkbox" id="fixednavbar">
+                                    <label class="onoffswitch-label" for="fixednavbar">
+                                        <span class="onoffswitch-inner"></span>
+                                        <span class="onoffswitch-switch"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="setings-item">
+                                <span>
+                        {:lang("固定宽度")}
+                    </span>
+
+                            <div class="switch">
+                                <div class="onoffswitch">
+                                    <input type="checkbox" name="boxedlayout" class="onoffswitch-checkbox" id="boxedlayout">
+                                    <label class="onoffswitch-label" for="boxedlayout">
+                                        <span class="onoffswitch-inner"></span>
+                                        <span class="onoffswitch-switch"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="title">{:lang("皮肤选择")}</div>
+                        <div class="setings-item default-skin nb">
+                                <span class="skin-name ">
+                         <a href="#" class="s-skin-0">
+                             {:lang("默认皮肤")}
+                         </a>
+                    </span>
+                        </div>
+                        <div class="setings-item blue-skin nb">
+                                <span class="skin-name ">
+                        <a href="#" class="s-skin-1">
+                            {:lang("蓝色主题")}
+                        </a>
+                    </span>
+                        </div>
+                        <div class="setings-item yellow-skin nb">
+                                <span class="skin-name ">
+                        <a href="#" class="s-skin-3">
+                            {:lang("黄色/紫色主题")}
+                        </a>
+                    </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--右侧边栏结束-->
+    <div class="modal" id="bmbModal" style="z-index: 99999 !important;background: rgba(0,0,0,0.8);">
+        <div class="modal-dialog">
+            <div class="modal-content bmd-modalContent">
+
+                <div class="modal-body">
+                    <div class="close-button">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" frameborder="0"></iframe>
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!--mini聊天窗口开始-->
+</div>
+<script src="__JS__/jquery.min.js?v=2.1.4"></script>
+<script src="__JS__/bootstrap.min.js?v=3.3.6"></script>
+<script src="__JS__/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="__JS__/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="__JS__/plugins/layer/layer.min.js"></script>
+<script src="__JS__/hplus.min.js?v=4.1.0"></script>
+<!--<script type="text/javascript" src="__JS__/contabs.min.js"></script>-->
+<script type="text/javascript" src="__JS__/contabs.js"></script>
+<script src="__JS__/plugins/pace/pace.min.js"></script>
+<script src="__JS__/store.js?v=4.1.0"></script>
+<script src="__LIBS__/bmbIframe/jquery.bmbIframe.js"></script>
+<link type="text/css" rel="stylesheet" href="__LIBS__/bmbIframe/bmbIframe.css?{:css_version()}" />
+<script src="__JS__/common.js?{:js_version()}"></script>
+</body>
+
+</html>

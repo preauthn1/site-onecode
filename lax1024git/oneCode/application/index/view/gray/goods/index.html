@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{$site_title}</title>
+    {include file="public/js" /}
+    <link rel="stylesheet" href="__CSS__/good/index.css?{$css_version}" />
+    <style>
+        body{
+  height: 100vh;
+}
+#app{
+    height: calc(100% - 64px);
+  overflow-x: hidden;
+  overflow-y: scroll; 
+}
+    </style>
+</head>
+<body>
+<div id="app">
+    {include file="public/header" /}
+    <div class="index-main" style="padding: 0;">
+        <div class="sticky-box" id="records">
+            <div class="category-box">
+                <div  class="tab" id="tabIndex">
+                    <div class="item {if $is_discount eq 0}active{/if} active" data-is_discount='0' data-lt="0">
+                        {:lang('全部商品')}
+                    </div>
+                    <div class="item {if $is_discount eq 1}active{/if}" data-is_discount='1' data-lt="50">
+                        {:lang('优惠商品')}
+                    </div>
+                </div>
+            </div>
+            <div class="box2">
+                <div class="proList am-list-view-scrollview">
+                    <div class="am-list-body">
+                        <div class="list-view-section-body"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {include file="public/footer" /}
+</div>
+
+<script>
+    $(function () {
+        $('#app').scroll(function(){
+            var top  = $(this).scrollTop();
+            // $('#app .van-nav-bar').css('background-color','rgba(109, 232, 188, '+top/300+')');
+        })
+
+        var clipboard = new ClipboardJS('.share');
+        clipboard.on('success', function(e) {
+            layer.msg('{:lang("分享链接已复制,赶快去分享吧")}');
+            e.clearSelection();
+        });
+        
+        // 页数
+        var page = 0;
+        var is_discount = 0;
+        $('.tab .item').on('click', function() {
+            $(this).addClass('active');
+            $(this).siblings().removeClass('active');
+            $('.btm_line').css('left',$(this).attr('data-lt')+'%');
+
+            is_discount = $(this).data('is_discount');
+            page = 0;
+            $('.list-view-section-body').empty();
+            // 解锁
+            dropload.unlock();
+            dropload.noData(false);
+            // 重置
+            dropload.resetload();
+        });
+        // dropload
+        var dropload = $('#app').dropload({
+            scrollArea: $('#app'),
+            domUp:{
+                domClass : 'dropload-up',
+                domRefresh : '<div class="dropload-refresh">↓{:lang("下拉刷新")}</div>',
+                domUpdate : '<div class="dropload-update">↑{:lang("释放更新")}</div>',
+                domLoad : '<div class="dropload-load"><span class="loading"></span>{:lang("加载中")}...</div>'
+            },
+            domDown:{
+                domClass : 'dropload-down',
+                domRefresh : '<div class="dropload-refresh">↑{:lang("上拉加载更多")}</div>',
+                domLoad : '<div class="dropload-load"><span class="loading"></span>{:lang("加载中")}...</div>',
+                domNoData : '<div class="dropload-noData">{:lang("暂无数据")}</div>'
+            },
+            loadDownFn: function (me) {
+                page++;
+                $.ajax({
+                    type: 'GET',
+                    url: '{:url("index")}?page=' + page,
+                    data:{
+                        is_discount:is_discount,
+                        cate_id:'{$cate_id}',
+                    },
+                    dataType: 'json',
+                    success: function (res) {
+                        if (res.code == 1) {
+                            $('.list-view-section-body').append(res.data);
+                        } else {
+                            // 锁定
+                            me.lock();
+                            // 无数据
+                            me.noData(true);
+                        }
+                        me.resetload();
+                    },
+                    error: function (xhr, type) {
+                        // 即使加载出错，也得重置
+                        me.resetload();
+                    }
+                });
+            }
+        });
+    });
+    
+</script>
+</body>
+</html>

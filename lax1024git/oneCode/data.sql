@@ -1,0 +1,258 @@
+-- ----------------------------
+-- Records of qd_articles
+-- ----------------------------
+BEGIN;
+INSERT INTO `qd_articles` VALUES (27, 'zh-cn', 'article', 'xxxx', '', 3, 0, '', NULL, 1, 1630049431, 1630049440);
+INSERT INTO `qd_articles` VALUES (28, 'zh-cn', 'article', '邀请好友', '', 4, 0, 'image/20210827/e4834eb6fb6fbcf9fa337a99f497dd2e.png', '', 1, 1630053504, 1630053504);
+INSERT INTO `qd_articles` VALUES (29, 'zh-cn', 'article', 'ad2', '', 4, 0, 'image/20210827/a9e50c2f62fd2e3159869c0741d77233.png', NULL, 1, 1630053522, 1630053522);
+COMMIT;
+
+
+-- ----------------------------
+-- Records of qd_banner
+-- ----------------------------
+BEGIN;
+INSERT INTO `qd_banner` VALUES (11, 'zh-cn', '1', '#', 'image/20210827/49d81b0a193658bf76c2cf7a3649f1af.jpg', 1, NULL, 0);
+COMMIT;
+
+-- ----------------------------
+-- Records of qd_node
+-- ----------------------------
+BEGIN;
+INSERT INTO `qd_node` VALUES (1, '后台管理', '#', '#', 2, 0, 'fa fa-users', 555);
+INSERT INTO `qd_node` VALUES (2, '管理员管理', 'user', 'index', 2, 1, '', 0);
+INSERT INTO `qd_node` VALUES (3, '添加管理员', 'user', 'useradd', 1, 2, '', 0);
+INSERT INTO `qd_node` VALUES (4, '编辑管理员', 'user', 'useredit', 1, 2, '', 0);
+INSERT INTO `qd_node` VALUES (5, '删除管理员', 'user', 'userdel', 1, 2, '', 0);
+INSERT INTO `qd_node` VALUES (6, '角色管理', 'role', 'index', 2, 1, '', 0);
+INSERT INTO `qd_node` VALUES (7, '添加角色', 'role', 'roleadd', 1, 6, '', 0);
+INSERT INTO `qd_node` VALUES (8, '编辑角色', 'role', 'roleedit', 1, 6, '', 0);
+INSERT INTO `qd_node` VALUES (9, '删除角色', 'role', 'roledel', 1, 6, '', 0);
+INSERT INTO `qd_node` VALUES (10, '分配权限', 'role', 'giveaccess', 1, 6, '', 0);
+INSERT INTO `qd_node` VALUES (11, '系统管理', '#', '#', 2, 0, 'fa fa-desktop', 666);
+INSERT INTO `qd_node` VALUES (15, '节点管理', 'node', 'index', 2, 1, '', 0);
+INSERT INTO `qd_node` VALUES (16, '添加节点', 'node', 'nodeadd', 1, 15, '', 0);
+INSERT INTO `qd_node` VALUES (17, '编辑节点', 'node', 'nodeedit', 1, 15, '', 0);
+INSERT INTO `qd_node` VALUES (18, '删除节点', 'node', 'nodedel', 1, 15, '', 0);
+INSERT INTO `qd_node` VALUES (19, '文章管理', 'articles', 'index', 2, 0, 'fa fa-book', 444);
+INSERT INTO `qd_node` VALUES (20, '文章列表', 'articles', 'index', 2, 19, '', 0);
+INSERT INTO `qd_node` VALUES (21, '添加/修改', 'articles', 'add', 1, 20, '', 0);
+INSERT INTO `qd_node` VALUES (23, '删除文章', 'articles', 'del', 1, 20, '', 0);
+INSERT INTO `qd_node` VALUES (24, '上传图片', 'articles', 'uploadimg', 1, 20, '', 0);
+INSERT INTO `qd_node` VALUES (25, '个人中心', '#', '#', 1, 0, '', 0);
+INSERT INTO `qd_node` VALUES (26, '编辑信息', 'profile', 'index', 1, 25, '', 0);
+INSERT INTO `qd_node` VALUES (27, '编辑头像', 'profile', 'headedit', 1, 25, '', 0);
+INSERT INTO `qd_node` VALUES (28, '上传头像', 'profile', 'uploadheade', 1, 25, '', 0);
+INSERT INTO `qd_node` VALUES (29, 'Banner管理', 'banner', 'index', 2, 11, '', 0);
+INSERT INTO `qd_node` VALUES (30, '添加/修改', 'banner', 'add', 1, 29, '', 0);
+INSERT INTO `qd_node` VALUES (32, '删除Banner', 'banner', 'del', 1, 29, '', 0);
+INSERT INTO `qd_node` VALUES (33, '公告管理', 'notice', 'index', 2, 19, '', 0);
+INSERT INTO `qd_node` VALUES (34, '添加/修改', 'notice', 'add', 1, 33, '', 0);
+INSERT INTO `qd_node` VALUES (36, '删除公告', 'notice', 'del', 1, 33, '', 0);
+INSERT INTO `qd_node` VALUES (37, '会员管理', '#', '#', 2, 0, 'fa fa-user', 0);
+INSERT INTO `qd_node` VALUES (38, '用户管理', 'member', 'index', 2, 37, '', 0);
+INSERT INTO `qd_node` VALUES (39, '添加用户', 'member', 'useradd', 1, 38, '', 0);
+INSERT INTO `qd_node` VALUES (40, '编辑用户', 'member', 'useredit', 1, 38, '', 0);
+INSERT INTO `qd_node` VALUES (41, '删除用户', 'member', 'userdel', 1, 38, '', 0);
+INSERT INTO `qd_node` VALUES (42, '余额管理', 'member', 'money', 1, 38, '', 0);
+INSERT INTO `qd_node` VALUES (43, '调整余额', 'member', 'moneyadd', 1, 38, '', 0);
+INSERT INTO `qd_node` VALUES (44, '会员等级', 'level', 'index', 2, 37, '', 0);
+INSERT INTO `qd_node` VALUES (45, '添加等级', 'level', 'leveladd', 1, 44, '', 0);
+INSERT INTO `qd_node` VALUES (46, '编辑等级', 'level', 'leveledit', 1, 44, '', 0);
+INSERT INTO `qd_node` VALUES (47, '删除等级', 'level', 'leveldel', 1, 44, '', 0);
+INSERT INTO `qd_node` VALUES (48, '系统设置', 'config', 'index', 2, 11, '', 0);
+INSERT INTO `qd_node` VALUES (49, '运营管理', '#', '#', 2, 0, 'fa fa-bar-chart-o', 50);
+INSERT INTO `qd_node` VALUES (50, '银行卡充值', 'recharge', 'index', 2, 102, '', 0);
+INSERT INTO `qd_node` VALUES (51, '审核充值', 'recharge', 'checkstatus', 1, 50, '', 0);
+INSERT INTO `qd_node` VALUES (52, '商品管理', '#', '#', 2, 0, 'fa fa-cny', 1899);
+INSERT INTO `qd_node` VALUES (53, '商品管理', 'goods', 'index', 2, 52, '', 0);
+INSERT INTO `qd_node` VALUES (54, '添加商品', 'goods', 'goodsadd', 1, 53, '', 0);
+INSERT INTO `qd_node` VALUES (55, '编辑商品', 'goods', 'goodsedit', 1, 53, '', 0);
+INSERT INTO `qd_node` VALUES (56, '删除商品', 'goods', 'goodsdel', 1, 53, '', 0);
+INSERT INTO `qd_node` VALUES (67, '银行卡提现', 'withdraw', 'index', 2, 103, '', 0);
+INSERT INTO `qd_node` VALUES (68, '审核提现', 'withdraw', 'checkstatus', 1, 67, '', 0);
+INSERT INTO `qd_node` VALUES (74, '银行卡收款设置', 'payment', 'index', 2, 11, '', 0);
+INSERT INTO `qd_node` VALUES (75, '添加收款', 'payment', 'add', 1, 74, '', 0);
+INSERT INTO `qd_node` VALUES (76, '删除收款', 'payment', 'del', 1, 74, '', 0);
+INSERT INTO `qd_node` VALUES (78, '绑定谷歌密钥', 'user', 'authy', 1, 2, '', 0);
+INSERT INTO `qd_node` VALUES (79, 'USDT提现', 'withdraw', 'usdt', 2, 103, '', 0);
+INSERT INTO `qd_node` VALUES (80, 'USDT充值', 'recharge', 'usdt', 2, 102, '', 0);
+INSERT INTO `qd_node` VALUES (82, 'USDT收款设置', 'payment', 'usdt', 2, 11, '', 0);
+INSERT INTO `qd_node` VALUES (83, '团队下级', 'member', 'sublist', 1, 38, '', 0);
+INSERT INTO `qd_node` VALUES (84, '多语言管理', '#', '#', 2, 0, 'fa fa-globe', 999);
+INSERT INTO `qd_node` VALUES (85, '语言列表', 'lang', 'index', 2, 84, '', 0);
+INSERT INTO `qd_node` VALUES (86, '添加/修改', 'lang', 'add', 1, 85, '', 0);
+INSERT INTO `qd_node` VALUES (87, '删除', 'lang', 'del', 1, 85, '', 0);
+INSERT INTO `qd_node` VALUES (88, '文字列表', 'text', 'index', 2, 84, '', 0);
+INSERT INTO `qd_node` VALUES (89, '添加/修改', 'text', 'add', 1, 88, '', 0);
+INSERT INTO `qd_node` VALUES (90, '删除', 'text', 'del', 1, 88, '', 0);
+INSERT INTO `qd_node` VALUES (91, '客服管理', '#', '#', 2, 0, 'fa fa-comment', 333);
+INSERT INTO `qd_node` VALUES (92, '在线客服', 'message', 'index', 2, 91, '', 0);
+INSERT INTO `qd_node` VALUES (93, '聊天', 'message', 'chat', 1, 92, '', 0);
+INSERT INTO `qd_node` VALUES (94, '下一条', 'message', 'get_next', 1, 92, '', 0);
+INSERT INTO `qd_node` VALUES (95, '获取提示', 'message', 'get_tips', 1, 92, '', 0);
+INSERT INTO `qd_node` VALUES (96, '获取消息列表', 'message', 'get_list', 1, 92, '', 0);
+INSERT INTO `qd_node` VALUES (97, '回复消息', 'message', 'reply', 1, 92, '', 0);
+INSERT INTO `qd_node` VALUES (98, '上传图片', 'message', 'upload', 1, 92, '', 0);
+INSERT INTO `qd_node` VALUES (99, '第三方收款渠道', 'payment', 'third', 2, 11, '', 0);
+INSERT INTO `qd_node` VALUES (100, '第三方充值', 'recharge', 'third', 2, 102, '', 0);
+INSERT INTO `qd_node` VALUES (101, '操作日志', 'operation', 'index', 2, 11, '', 0);
+INSERT INTO `qd_node` VALUES (102, '充值管理', '#', '#', 2, 0, 'fa fa-comment', 10);
+INSERT INTO `qd_node` VALUES (103, '提现管理', '#', '#', 2, 0, 'fa fa-comment', 20);
+INSERT INTO `qd_node` VALUES (104, '注册统计', 'stat', 'reg', 2, 49, '', 60);
+INSERT INTO `qd_node` VALUES (105, '每日充值统计', 'stat', 'rechargedays', 2, 49, '', 50);
+INSERT INTO `qd_node` VALUES (106, '充值统计', 'stat', 'recharge', 2, 49, '', 20);
+INSERT INTO `qd_node` VALUES (107, '会员账变记录', 'moneyLog', 'index', 2, 37, '', 0);
+INSERT INTO `qd_node` VALUES (108, '总报表', 'stat', 'total', 2, 49, '', 10);
+INSERT INTO `qd_node` VALUES (109, '注册报表', 'stat', 'reg_report', 2, 49, '', 0);
+INSERT INTO `qd_node` VALUES (110, '注册详情报表', 'stat', 'reg_report_day', 2, 109, '', 0);
+INSERT INTO `qd_node` VALUES (111, '日报表', 'stat', 'day_report', 2, 49, '', 40);
+INSERT INTO `qd_node` VALUES (115, '用户提现银行设置', 'bank', 'index', 2, 11, '', 990);
+INSERT INTO `qd_node` VALUES (116, '添加/修改', 'bank', 'add', 1, 115, '', 0);
+INSERT INTO `qd_node` VALUES (117, '删除', 'bank', 'del', 1, 115, '', 0);
+INSERT INTO `qd_node` VALUES (118, '活动管理', '#', '#', 2, 0, 'fa fa-comment', 60);
+INSERT INTO `qd_node` VALUES (119, '活动列表', 'activity', 'index', 2, 118, 'fa fa-comment', 10);
+INSERT INTO `qd_node` VALUES (120, '活动记录', 'activityRecord', 'index', 2, 118, 'fa fa-comment', 20);
+INSERT INTO `qd_node` VALUES (121, '添加/修改', 'activity', 'add', 1, 119, 'fa fa-comment', 10);
+INSERT INTO `qd_node` VALUES (122, '删除', 'activity', 'del', 1, 119, 'fa fa-comment', 20);
+INSERT INTO `qd_node` VALUES (123, '获取图标信息', 'stat', 'get_reg_option', 1, 104, '', 0);
+INSERT INTO `qd_node` VALUES (124, '充值/提现统计', 'stat', 'index', 2, 49, '', 10);
+INSERT INTO `qd_node` VALUES (127, '注册IP统计', 'stat', 'iprank', 2, 49, '', 999);
+INSERT INTO `qd_node` VALUES (129, '参数设置', 'level', 'setting', 1, 44, '', 0);
+INSERT INTO `qd_node` VALUES (130, '商品分类', 'cate', 'index', 2, 52, '', 70);
+INSERT INTO `qd_node` VALUES (131, '添加/修改', 'cate', 'add', 1, 130, '', 0);
+INSERT INTO `qd_node` VALUES (132, '删除', 'cate', 'del', 1, 130, '', 0);
+INSERT INTO `qd_node` VALUES (133, '拼单管理', '#', '#', 2, 0, 'fa fa-list', 40);
+INSERT INTO `qd_node` VALUES (134, '拼单记录', 'order', 'index', 2, 133, '', 10);
+INSERT INTO `qd_node` VALUES (135, '详情', 'order', 'detail', 1, 134, '', 0);
+INSERT INTO `qd_node` VALUES (136, '回购管理', 'order', 'repurchase', 2, 133, '', 20);
+INSERT INTO `qd_node` VALUES (137, '设置CP', 'member', 'setcp', 1, 38, '', 999);
+INSERT INTO `qd_node` VALUES (138, '限制会员提现', 'withdraw_limit', 'index', 2, 37, '', 900);
+INSERT INTO `qd_node` VALUES (139, '添加/修改', 'withdraw_limit', 'add', 1, 138, '', 900);
+INSERT INTO `qd_node` VALUES (140, '删除', 'withdraw_limit', 'del', 1, 138, '', 900);
+INSERT INTO `qd_node` VALUES (141, '分配订单', 'order', 'grab', 2, 133, '', 60);
+INSERT INTO `qd_node` VALUES (142, '添加/修改', 'activityRecord', 'add', 1, 120, '', 0);
+INSERT INTO `qd_node` VALUES (143, '删除', 'activityRecord', 'del', 1, 120, '', 0);
+INSERT INTO `qd_node` VALUES (144, '手动补单', 'recharge', 'add', 1, 50, '', 0);
+INSERT INTO `qd_node` VALUES (145, '评论文字管理', 'comment', 'index', 2, 52, '', 120);
+INSERT INTO `qd_node` VALUES (146, '添加/修改', 'comment', 'add', 1, 145, '', 0);
+INSERT INTO `qd_node` VALUES (147, '删除', 'comment', 'del', 1, 145, '', 0);
+INSERT INTO `qd_node` VALUES (148, '评论管理', 'goods', 'comment', 1, 53, '', 0);
+INSERT INTO `qd_node` VALUES (149, '删除评论', 'goods', 'delcomment', 1, 53, '', 0);
+INSERT INTO `qd_node` VALUES (150, '批量生成商品评论', 'goods', 'rand', 1, 53, '', 0);
+INSERT INTO `qd_node` VALUES (151, '域名管理', 'domain', 'index', 2, 11, '', 200);
+INSERT INTO `qd_node` VALUES (152, '添加/修改', 'domain', 'add', 1, 151, '', 0);
+INSERT INTO `qd_node` VALUES (153, '删除', 'domain', 'del', 1, 151, '', 0);
+COMMIT;
+-- ----------------------------
+-- Records of qd_role
+-- ----------------------------
+BEGIN;
+INSERT INTO `qd_role` VALUES (1, '超级管理员', '*');
+COMMIT;
+
+-- ----------------------------
+-- Records of qd_setting
+-- ----------------------------
+BEGIN;
+INSERT INTO `qd_setting` VALUES ('account_rule', 'account_rule', '3', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('admin_white_ip', 'admin_white_ip', '', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('allow_region_limit', 'allow_region_limit', '', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('android_url', 'android_url', '', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('auto_yuebao_current_open', 'auto_yuebao_current_open', '0', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('auto_yuebao_rate_id', 'auto_yuebao_rate_id', '6', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('auto_yuebao_time', 'auto_yuebao_time', '00:01', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('checkout_language', 'checkout_language', '1', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('day_order_count', 'day_order_count', '5', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('day_tx_count', 'day_tx_count', '1', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('deny_region_limit', 'deny_region_limit', '', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('deny_region_limit_tips', 'deny_region_limit_tips', '您所在地区禁止访问', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('exchange_rate', 'exchange_rate', '6.5', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('file', 'file', '', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('free_withdraw_amount', 'free_withdraw_amount', '0', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('front_image_validate_close', 'front_image_validate_close', '0', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('fx_level', 'fx_level', '3', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('fx_rate_1', 'fx_rate_1', '12.00', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('fx_rate_2', 'fx_rate_2', '6.00', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('fx_rate_3', 'fx_rate_3', '3.00', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('grab_order_mode', 'grab_order_mode', '1', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('invite_code_required', 'invite_code_required', '1', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('ios_url', 'ios_url', '', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('is_must_cp', 'is_must_cp', '0', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('is_sms_reg', 'is_sms_reg', '0', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('kefu_account', 'kefu_account', 'zalo官方福利客户支持|xxxx', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('kefu_code', 'kefu_code', '', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('kefu_fast_message', 'kefu_fast_message', '我要拼单\n我要回购\n我要充值\n设置CP\n哈哈', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('limit_recharge_fx', 'limit_recharge_fx', '0', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('logo', 'logo', 'image/20210820/6793c56312bcc1f8fd3f992a68c0aad1.png', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('max_pd_count', 'max_pd_count', '5', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('meiqia_url', 'meiqia_url', '', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('member_buy_rule', 'member_buy_rule', '1', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('member_force_todo', 'member_force_todo', '0', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('name', 'name', '拼单', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('online_kefu_open', 'online_kefu_open', '1', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('open_region_limit', 'open_region_limit', '0', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('pd_name_0', 'pd_name_0', '新手区', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('pd_name_1', 'pd_name_1', '初级区', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('pd_name_2', 'pd_name_2', '中级区', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('pd_name_3', 'pd_name_3', '高级区', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('pd_name_4', 'pd_name_4', 'VIP区', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('pd_name_5', 'pd_name_5', '奢侈品区', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('pd_price_max_0', 'pd_price_max_0', '2999', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('pd_price_max_1', 'pd_price_max_1', '10999', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('pd_price_max_2', 'pd_price_max_2', '29999', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('pd_price_max_3', 'pd_price_max_3', '109999', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('pd_price_max_4', 'pd_price_max_4', '509999', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('pd_price_max_5', 'pd_price_max_5', '1999999', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('pd_price_min_0', 'pd_price_min_0', '251', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('pd_price_min_1', 'pd_price_min_1', '3000', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('pd_price_min_2', 'pd_price_min_2', '11000', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('pd_price_min_3', 'pd_price_min_3', '30000', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('pd_price_min_4', 'pd_price_min_4', '110000', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('pd_price_min_5', 'pd_price_min_5', '509999', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('pd_rate_default', 'pd_rate_default', '5', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('pd_rebate_ratios_0', 'pd_rebate_ratios_0', '7', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('pd_rebate_ratios_1', 'pd_rebate_ratios_1', '8', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('pd_rebate_ratios_2', 'pd_rebate_ratios_2', '9', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('pd_rebate_ratios_3', 'pd_rebate_ratios_3', '11', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('pd_rebate_ratios_4', 'pd_rebate_ratios_4', '13', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('pd_rebate_ratios_5', 'pd_rebate_ratios_5', '15', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('recharge_default_money', 'recharge_default_money', '350000,1000000,1680000,3500000,10000000,16800000,34000000,165000000', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('recharge_min_money', 'recharge_min_money', '0', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('recharge_open', 'recharge_open', '1', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('recharge_video', 'recharge_video', '4nxVyptdFqQ', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('region_limit_field', 'region_limit_field', 'countryCode', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('reg_ip_limit', 'reg_ip_limit', '0', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('send_sms_verify', 'send_sms_verify', '0', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('sms_sign', 'sms_sign', 'SOP', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('stat_code', 'stat_code', '', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('title', 'title', '拼单', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('tx_info', 'tx_info', '亲，当天未抢完额定单数只可提现余额的百分之10哦，温馨提示：每天只能提现一次，每次提现会扣除千分之六的手续费！', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('tx_max', 'tx_max', '50000', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('tx_min', 'tx_min', '100', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('tyj_expire', 'tyj_expire', '3', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('tyj_expire_tips', 'tyj_expire_tips', '您的体验金已过期！', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('tyj_money', 'tyj_money', '0', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('update_time', 'update_time', '1637305303', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('user_level_down_rule', 'user_level_down_rule', '1', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('user_level_rule', 'user_level_rule', '2', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('user_level_user_type', 'user_level_user_type', '0', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('withdraw_day', 'withdraw_day', '0,1,2,3,4,5,6', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('withdraw_open', 'withdraw_open', '1', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('withdraw_rate', 'withdraw_rate', '0.6', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('withdraw_rate_method', 'withdraw_rate_method', '1', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('withdraw_time_end', 'withdraw_time_end', '23:59', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('withdraw_time_start', 'withdraw_time_start', '00:00', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('withdraw_video', 'withdraw_video', '4nxVyptdFqQ', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('zp_enable', 'zp_enable', '0', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('zp_expend', 'zp_expend', '0', '', 0, 0, '');
+INSERT INTO `qd_setting` VALUES ('zp_rules', 'zp_rules', '', '', 0, 0, '');
+COMMIT;
+
+
+-- ----------------------------
+-- Records of qd_user
+-- ----------------------------
+BEGIN;
+INSERT INTO `qd_user` VALUES (1, 'admin', '84386805f4fa719c7023544210fea50c', '/static/admin/images/profile_small.jpg', 444, '103.1.153.224', 1588674411, 'admin', 1, 1, 'VZ6G5RNUTOGJ2X3A');
+COMMIT;

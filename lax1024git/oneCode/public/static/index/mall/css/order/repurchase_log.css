@@ -1,0 +1,99 @@
+body{
+  height: 100vh;
+}
+#app {
+background-color: #f6f6f6;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll; 
+}
+.van-tabs--line .van-tabs__wrap {
+  background: rgba(255, 255, 255, 0.51);
+}
+.van-tab {
+  color: #999999;
+}
+.van-tab--active {
+  color: #093324;
+}
+.van-tab--active::after {
+  background-color: #000;
+  width: 100%;
+  margin-left: 0px;
+  border-radius: 0;
+  left: 0;
+  height: 0.12077295rem;
+  transition: all 0.5s;
+}
+.van-card__header {
+  height: 3.14009662rem;
+}
+.order-item {
+  border-radius: 0.48309179rem 0.14492754rem 0.14492754rem 0.48309179rem;
+  background-color: #E2E2E2;
+  padding: 0px;
+  height: 3.14009662rem;
+}
+.van-card__content {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 0.33816425rem 0;
+  padding-left: 0.32463768rem;
+  border-radius: 0.14492754rem;
+  min-height: auto;
+  padding-right: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  height: 100%;
+}
+.van-card__thumb {
+  height: 3.14009662rem;
+  width: 3.14009662rem;
+  height: 100%;
+  overflow: hidden;
+  margin-right: 0.12077295rem;
+}
+.van-image {
+  width: auto;
+  width: 100%;
+  height: 100%;
+
+}
+
+.van-image2 img{
+  max-width: 100%;
+  max-height: 100%;
+}
+  .van-card-box {
+  border-radius: 0 0.14492754rem 0.14492754rem 0;
+  background-color: #F6FCFA;
+  height: 100%;
+}
+.van-card__title a {
+  color: #333333;
+  font-weight: 500;
+  font-size: 0.33816425rem;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.order-item .van-card__header .retail_price {
+  font-size: 0.43478261rem;
+}
+.order-item .van-card__header .retail_price .shop_price {
+  font-size: 0.26570048rem;
+}
+.order-item .van-card__header .return_bonus {
+  background: #3E3E3E;
+  color: #FFFFFF;
+  font-size: 0.24154589rem;
+  height: 0.48309179rem;
+  line-height: 0.48309179rem;
+  border-radius: 0.09661836rem;
+  padding: 0.09661836rem 0.14492754rem;
+}
+.order-item .van-card__header .retail_price {
+  margin: 0.24154589rem 0;
+}

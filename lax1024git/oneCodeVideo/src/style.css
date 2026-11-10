@@ -1,0 +1,188 @@
+:root {
+  --maxWidth:425px
+}
+
+:root:root {
+  --van-tabbar-item-icon-margin-bottom:9px;
+  --van-nav-bar-background:#0C0914;
+  --van-field-input-text-color:#fff;
+  --van-button-round-radius:5px;
+  --van-checkbox-label-color:#fff;
+  --van-nav-bar-title-text-color:#fff;
+  --van-nav-bar-title-font-size: 16px;
+  --van-nav-bar-icon-color:#fff;
+  --van-nav-bar-height:5.6rem;
+  --van-popup-background:#15131D;
+}
+
+.van-hairline--bottom:after,.van-hairline--top-bottom:after{
+  content: none !important;
+}
+
+.van-tabbar-item--active .van-tabbar-item__text {
+  background: linear-gradient(180deg,#75F8D2 0%, #6096DB 50%, #2AE3FC 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  font-size: 12px !important; 
+}
+
+.van-tabbar-item--active {
+  position: relative;
+  background-color: transparent !important;
+  /* background-image: url('@/assets/images/tabbar_ac_bg.png') !important;
+  background-repeat: no-repeat;
+  background-size: 100% 100% !important; */
+}
+
+/* .van-tabbar-item--active::before{
+  content: '';
+  position: absolute;
+  width: 36%;
+  height: 5px;
+  background: linear-gradient(180deg, #FDC2D8 0%, #FCA65E 35.009765625%, #FF7983 64.990234375%, #041282 100%) !important;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+} */
+
+*{
+  color: #fff;
+  font-size: 12px;
+}
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  max-width: var(--maxWidth);
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+.card {
+  padding: 2em;
+}
+
+#app {
+  position: relative;
+  margin: 0 auto;
+  width: 100vw;
+  min-height: 100vh;
+  max-width: 425px;
+  background-color: #0C0914;
+  color: #fff;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+.van-tabbar,.van-nav-bar--fixed{
+  width: 100vw;
+  max-width: 425px !important;
+  left: 50% !important;
+  transform: translateX(-50%)!important;
+}
+
+.van-tabbar{
+  height: 74px !important;
+  background: #15131E !important; 
+  border-top-left-radius: 29px !important;
+  border-top-right-radius: 29px !important;
+}
+
+.van-tabs__nav--line{
+  background: transparent !important;
+}
+
+.van-cell{
+  background-color: #15131D !important;
+  border-radius: 5px !important;
+  margin-bottom: 11px;
+}
+
+.van-cell-group{
+  background-color: transparent !important;
+}
+
+.van-button--primary{
+  background: #0937AD !important;
+  border: none !important;
+}
+
+.van-popup--center{
+  max-width: 425px !important;
+}
+
+.van-skeleton{
+  padding: 0 !important;
+  background-color: #15131E;
+  border-radius: 5px;
+  margin-bottom: 12px;
+}
+.van-skeleton-paragraph{
+  border-radius: 5px;
+}
+.van-calendar {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #15131D !important;
+}
+.van-calendar__day--disabled {
+  color: #89898A !important;
+  cursor: default;
+}
+.van-calendar__header-subtitle {
+  color: #ffffff !important;
+  height: var(--van-calendar-header-title-height);
+  font-weight: var(--van-font-bold);
+  line-height: var(--van-calendar-header-title-height);
+  text-align: center;
+}
+.van-toast {
+  font-size: 20px;  /* 修改文字大小 */
+  background-color: #000;  /* 修改背景颜色 */
+  color: white; /* 修改文字颜色 */
+}

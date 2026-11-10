@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{$site_title}</title>
+    {include file="public/js" /}
+</head>
+<body data-weui-theme='light'>
+<div class="van-placeholder">
+    {include file="public/header" /}
+</div>
+<div class="inwarp">
+    <div class="team">
+        <div class="weui-flex team-flex">
+            <div class="weui-flex__item">
+                <div class="placeholder">
+                    <div class="team-label">{:lang('团队人数')}</div>
+                    <div class="team-val">{$stat.team_total_count}</div>
+                </div>
+            </div>
+            <div class="weui-flex__item">
+                <div class="placeholder">
+                    <div class="team-label">{:lang('团队收益')}</div>
+                    <div class="team-val">{$stat.team_total_grey|i18n_number_format}</div>
+                </div>
+            </div>
+        </div>
+        <div class="weui-flex team-flex">
+            <div class="weui-flex__item">
+                <div class="placeholder">
+                    <div class="team-label">{:lang('团队总充值')}</div>
+                    <div class="team-val">{$stat.team_total_recharge_money|i18n_number_format}</div>
+                </div>
+            </div>
+            <div class="weui-flex__item">
+                <div class="placeholder">
+                    <div class="team-label">{:lang('充值总人数')}</div>
+                    <div class="team-val">{$stat.team_total_recharge_users}</div>
+                </div>
+            </div>
+        </div>
+        <div class="weui-flex team-flex">
+            <div class="weui-flex__item">
+                <div class="placeholder">
+                    <div class="team-label">{:lang('团队总提醒')}</div>
+                    <div class="team-val">{$stat.team_total_withdraw_money|i18n_number_format}</div>
+                </div>
+            </div>
+            <div class="weui-flex__item">
+                <div class="placeholder">
+                    <div class="team-label">{:lang('提现总人数')}</div>
+                    <div class="team-val">{$stat.team_total_withdraw_users}</div>
+                </div>
+            </div>
+        </div>
+        <div class="weui-flex team-flex">
+            <div class="weui-flex__item">
+                <div class="placeholder">
+                    <div class="team-label">{:lang('团队总余额')}</div>
+                    <div class="team-val">{$stat.team_total_user_money|i18n_number_format}</div>
+                </div>
+            </div>
+            <div class="weui-flex__item">
+                <div class="placeholder">
+                    <div class="team-label">{:lang('当天新增人数')}</div>
+                    <div class="team-val">{$stat.team_today_new_users}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="weui-tab team-tab" id="tab">
+        <div class="weui-navbar" style=" display: block; overflow: scroll;">
+            <div style="width: {$fx_level_width}px;">
+            {volist name="fx_level" id="v"}
+            <div class="weui-navbar__item {if $key eq 0}weui-bar__item_on{/if}" style="width: 80px; float: left;">{:lang($v . '级')}
+                <br>
+                <br>
+                {$fx_level_count[$key]}{:lang('人')}
+            </div>
+            {/volist}
+            </div>
+        </div>
+        <div class="tab__panel">
+            {volist name="fx_level" id="v"}
+            <div class="tab__content" {if $key eq 0} style="display: block;"{/if}>
+                <div class="team-tabel">
+                    <div class="table-list">
+                        <div class="empty-data" style="display: none;">
+                            <div class="empty-data-hd">
+                                <h5>{:lang('您目前还没开始任何交易！')}</h5>
+                                <p>{:lang('您可以尝试进行首次投资或者推荐好友使用，赚取第一笔稳定收益！')}</p>
+                            </div>
+                            <div class="empty-data-bd">
+                                <div class="weui-grids">
+                                    <a href="{:url('user/share')}" class="weui-grid">
+                                        <div class="weui-grid__icon">
+                                            <img src="__IMG__/icon-team-like.png" alt="">
+                                        </div>
+                                        <p class="weui-grid__label">{:lang('推荐好友，赚取佣金')}</p>
+                                    </a>
+                                    <a href="{:url('goods/index')}" class="weui-grid">
+                                        <div class="weui-grid__icon">
+                                            <img src="__IMG__/icon-team-transaction.png" alt="">
+                                        </div>
+                                        <p class="weui-grid__label">{:lang('拼单')}</p>
+                                    </a>
+                                    <a href="{:url('recharge/index')}" class="weui-grid">
+                                        <div class="weui-grid__icon">
+                                            <img src="__IMG__/icon-team-recharge.png" alt="">
+                                        </div>
+                                        <p class="weui-grid__label">{:lang('首次充值')}</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/volist}
+        </div>
+    </div>
+</div>
+<script>
+$(function(){
+    var itemIndex = 0;
+    var tabLoadEnd = new Array();
+    var pages = new Array();
+    pages[0] = 0;
+    // tab
+    $('.weui-navbar .weui-navbar__item').on('click',function(){
+        var $this = $(this);
+        itemIndex = $this.index();
+        if (!pages[itemIndex]) {
+            pages[itemIndex] = 0
+        }
+        $this.addClass('weui-bar__item_on').siblings('.weui-navbar__item').removeClass('weui-bar__item_on');
+        $('.tab__content').eq(itemIndex).show().siblings('.tab__content').hide();
+        
+        // 如果数据没有加载完
+        if(!!!tabLoadEnd[itemIndex]){
+            // 解锁
+            dropload.unlock();
+            dropload.noData(false);
+        }else{
+            // 锁定
+            dropload.lock('down');
+            dropload.noData();
+        }
+        // 重置
+        dropload.resetload();
+    });
+
+    // dropload
+    var dropload = $('.tab__panel').dropload({
+        scrollArea : window,
+        domUp:{
+            domClass : 'dropload-up',
+            domRefresh : '<div class="dropload-refresh">↓{:lang("下拉刷新")}</div>',
+            domUpdate : '<div class="dropload-update">↑{:lang("释放更新")}</div>',
+            domLoad : '<div class="dropload-load"><span class="loading"></span>{:lang("加载中")}...</div>'
+        },
+        domDown:{
+            domClass : 'dropload-down',
+            domRefresh : '<div class="dropload-refresh">↑{:lang("上拉加载更多")}</div>',
+            domLoad : '<div class="dropload-load"><span class="loading"></span>{:lang("加载中")}...</div>',
+            domNoData : '<div class="dropload-noData">{:lang("暂无数据")}</div>'
+        },
+        loadDownFn : function(me){
+            pages[itemIndex]++
+            $.ajax({
+                type: 'GET',
+                url: '{:url("team_list")}?page=' + pages[itemIndex] + '&type=' + (itemIndex+1),
+                dataType: 'json',
+                success: function (res) {
+                    if (res.code == 1) {
+                        $('.tab__content').eq(itemIndex).find('.table-list').append(res.data);
+                    } else {
+                        tabLoadEnd[itemIndex] = true
+                        // 锁定
+                        me.lock();
+                        // 无数据
+                        me.noData(true);
+                        if ($('.tab__content').eq(itemIndex).find('.table-list').find(".user-item").length == 0) {
+                            $('.tab__content').eq(itemIndex).find('.table-list').find('.empty-data').show();
+                        }
+                    }
+                    me.resetload();
+                },
+                error: function (xhr, type) {
+                    // 即使加载出错，也得重置
+                    me.resetload();
+                }
+            });
+        }
+    });
+});
+</script>
+</body>
+</html>

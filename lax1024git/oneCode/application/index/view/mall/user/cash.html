@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{$site_title}</title>
+    {include file="public/js" /}
+    <link rel="stylesheet" href="__CSS__/user/cash.css?{$css_version}" />
+</head>
+<body data-weui-theme='light'>
+<div id="app">
+    {if $setting.withdraw_video}
+    {php}
+    $isRight = 1;
+    $rightCon = '<i class="fa fa-question-circle czjc" style=""></i>';
+    {/php}
+    {/if}
+    {include file="public/header" /} 
+    <div class="wrap">
+        <div class="ads-panel">
+            <div class="card-form">
+                <div class="van-cell van-cell--center van-field">
+                    <div class="van-cell__title van-field__label">{:lang('账户余额')}</div>
+                    <div class="van-cell__value van-field__value">
+                        <div class="van-field__body">
+                            <input style="color: red;" type="text" readonly id="withdrawAccount" value="{$userInfo.user_money|i18n_currency}" class="van-field__control">
+                        </div>
+                    </div>
+                </div>
+                {if $type eq 4}
+                <div class="van-cell van-cell--center van-field">
+                    <div class="van-cell__title van-field__label">{$userInfo['usdt_type']}{:lang('地址')}</div>
+                    <div class="van-cell__value van-field__value">
+                        <div class="van-field__body">
+                            <input type="hidden" name="type" id="withdrawtype" value="4">
+                            <input type="text" readonly id="withdrawAccount" value="{$userInfo['usdt']}" class="van-field__control">
+                        </div>
+                    </div>
+                </div>
+				{elseif $type eq 3}
+				<div class="van-cell van-cell--center van-field">
+				    <div class="van-cell__title van-field__label">{:lang('收款账号')}</div>
+				    <div class="van-cell__value van-field__value">
+				        <div class="van-field__body">
+				            <input type="hidden" name="type" id="withdrawtype" value="3">
+				            <input type="text" readonly id="withdrawAccount" value="{$userInfo['php_wallet']}" class="van-field__control">
+				        </div>
+				    </div>
+				</div>
+                {else}
+                <div class="van-cell van-cell--center van-field">
+                    <div class="van-cell__title van-field__label">{:lang('银行卡')}</div>
+                    <div class="van-cell__value van-field__value">
+                        <div class="van-field__body">
+                            <input type="hidden" name="type" id="withdrawtype" value="1">
+                            <input type="text" readonly id="withdrawAccount" value="{$userInfo['bank_number']}" class="van-field__control">
+                        </div>
+                    </div>
+                </div>
+                {/if}
+                <div class="van-cell van-cell--center van-field">
+                    <div class="van-cell__title van-field__label"><span class="red">*</span>{:lang('提现金额')}</div>
+                    <div class="van-cell__value van-field__value">
+                        <div class="van-field__body"><input type="text"name="money" id="money" placeholder="{:lang('最大可提现')}:{$max_withdraw}" value="" class="van-field__control"></div>
+                    </div>
+                </div>
+                <div class="van-cell van-cell--center van-field">
+                    <div class="van-cell__title van-field__label"><span class="red">*</span>{:lang('提现密码')}</div>
+                    <div class="van-cell__value van-field__value">
+                        <div class="van-field__body"><input type="password" name="paypwd" id="paypwd" placeholder="{:lang('请输入提现密码')}" class="van-field__control"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        {if $config.tx_info}
+        <div class="ads-tip">
+            <div class="hd">{:lang('限额说明')}</div>
+            <div class="bd">{$config.tx_info|lang}</div>
+        </div>
+        {/if}
+        <div class="btn-rows van-row">
+            <button class="van-button van-button--warning van-button--normal van-button--block" onclick="checkForm()">
+                {:lang('马上提现')}
+            </button>
+        </div>
+    </div>
+</div>
+<textarea id="czjcTmp" style="display:none;">
+    <div class="van-nav-bar__placeholder">
+        <div class="van-nav-bar van-nav-bar--fixed">
+            <a href="javascript:;" onclick="layer.closeAll();" class="van-nav-bar__left">
+                <i class="van-icon van-icon-arrow-left van-nav-bar__arrow"></i>
+            </a>
+            <div class="van-nav-bar__title van-ellipsis">{:lang('我知道了')}</div>
+            <div class="van-nav-bar__right"></div>
+        </div>
+    </div>
+    <div class="wrap">
+        <div class="know-video"><div id="ytplayer"><img src="__IMG__/zhidao.png" alt=""></div></div>
+        <div class="btn-rows van-row" style="margin-top:20px;">
+            <div class="van-col van-col--24">
+                <button class="van-button van-button--warning van-button--normal van-button--block" onclick="layer.closeAll();">
+                    {:lang('我知道了')}
+                </button>
+            </div>
+        </div>
+    </div>
+</textarea>
+
+<script>
+  // Load the IFrame Player API code asynchronously.
+  var tag = document.createElement('script');
+  tag.src = "https://www.youtube.com/player_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+</script>
+<script type="text/javascript">
+    $(function(){
+//        {if condition="$userInfo['is_demo'] == 1"}
+
+            layer.msg('{:lang("测试账号，不能使用该功能")}');
+//        {elseif condition="$userInfo['bank_number'] == ''"}
+
+            // weui.dialog({
+            //     title: '{:lang("提示")}',
+            //     content: '{:lang("第一次提现请完善个人信息")}',
+            //     className: 'custom-dialog',
+            //     buttons: [{
+            //         label: '{:lang("确定")}',
+            //         type: 'primary',
+            //         onClick: function () {
+            //             window.location.href = '{:url("bind_card")}';
+            //         }
+            //     }]
+            // });
+//        {/if}
+    
+        $(".selectWithdraw").on("click", function(){
+            if ($(this).hasClass("active")) {
+                return;
+            }
+            $(this).addClass("active").siblings().removeClass("active");
+            $("#withdrawAccount").val($(this).data('account'))
+            $("#withdrawtype").val($(this).data('type'))
+        });
+
+        $(".czjc").on("click", function(){
+            var html = $("#czjcTmp").val();
+            layer.open({
+                type: 1,
+                content: html,
+                title: false,
+                closeBtn: 0,
+                anim: 'up',
+                skin: 'diy-layer',
+                success:function(){
+                    var player;
+                    player = new YT.Player('ytplayer', {
+                      height: $(document).innerHeight() - 180,
+                      width: $(document).innerWidth() - 40,
+                      videoId: '{$setting.withdraw_video}'
+                    });
+                }
+            });
+        });
+    });
+    var isSubmit = false;
+    function checkForm(){
+        if (isSubmit) {
+            return;
+        }
+        
+        isSubmit = true;
+        var money = $('#money').val();
+        var type = $('#withdrawtype').val();
+        if(money == ''){
+            isSubmit = false;
+            layer.msg('{:lang("请填写充值金额")}');
+            return false;
+        }
+//        if (money >= 10000  && type == 0) {
+//            isSubmit = false;
+//            layer.msg('{:lang("支付宝提款限额当日限额1万，请提款到您银行卡")}');
+//            return false;
+//        }
+        var paypwd       = $('#paypwd').val();
+        if(paypwd == '') {
+            isSubmit = false;
+            layer.msg('{:lang("请输入资金密码")}');
+            return false;
+        }
+        $.ajax({
+            type: "POST",
+            url: '{:url("cash")}',
+            data: {
+                money:  money,
+                paypwd: paypwd,
+                type:type
+            },
+            dataType: 'json',
+            success: function(res){
+                isSubmit = false;
+                console.log(res);
+                if(res.code == 200){
+                    location.href = '{:url("cash_log")}'; 
+                } else {
+                    layer.msg(res.msg);
+                }
+            }
+        })
+    }
+</script>
+</body>
+</html>

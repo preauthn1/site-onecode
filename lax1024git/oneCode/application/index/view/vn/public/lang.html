@@ -1,0 +1,43 @@
+{if $setting.checkout_language eq 1}
+{php}
+$range = \think\Lang::range();
+$langs = getLangs(1);
+{/php}
+<script>
+function goLang(range){
+    $.ajax({
+        type: "GET",
+        url: '{:url("login/check_lang")}',
+        data:{lang:range},
+        dataType: 'json',
+        success: function(){
+            window.location.reload();
+        }
+    });
+}
+
+$(".checkoutLanguage").on('click', function() {
+    weui.actionSheet([
+//         {volist name='langs' id='row'}
+
+        {
+            label: '{$row.title|lang}',
+            onClick: function () {
+                goLang("{$row.lang}");
+            }
+        },
+//          {/volist}
+
+    ], [
+        {
+            label: '{:lang("取消")}',
+            onClick: function () {
+            }
+        }
+    ], {
+        className: 'custom-classname',
+        title:'{:lang("选择语言")}'
+    });
+});
+</script>
+{/if}

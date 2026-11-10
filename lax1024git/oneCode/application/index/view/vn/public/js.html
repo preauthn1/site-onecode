@@ -1,0 +1,33 @@
+<script type="text/javascript" src="__JS__/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="__JS__/clipboard.min.js"></script>
+<script type="text/javascript" src="__JS__/size.js"></script>
+<script type="text/javascript" src="__JS__/qrcode.min.js"></script>
+<script type="text/javascript" src="__JS__/common.js?{$js_version}"></script>
+<script src="__LIBS__/layer/layer.js"></script>
+<link rel="stylesheet" href="__COMM__/css/font-awesome.min.css">
+<link rel="stylesheet" href="__CSS__/ui.css?{$css_version}" />
+<script src="__LIBS__/weui/weui.min.js?{$js_version}"></script>
+<script src="__THEME_JS__/dropload.min.js?{$js_version}"></script>
+<link rel="stylesheet" href="__LIBS__/mobiscroll/mobiscroll.custom-3.0.0-beta6.min.css?{$css_version}" />
+<script src="__LIBS__/mobiscroll/mobiscroll.custom-3.0.0-beta6.min.js?{$css_version}"></script>
+<link rel="stylesheet" href="__LIBS__/weui/weui.css?{$css_version}" />
+<link rel="stylesheet" href="__CSS__/../fonts/iconfont.css?{$css_version}" />
+<link rel="stylesheet" href="__CSS__/css.css?{$css_version}" />
+<link rel="stylesheet" href="__LIBS__/swiper/swiper-bundle.min.css">
+<script src="__LIBS__/swiper/swiper-bundle.min.js"> </script>
+{if $setting.logo}
+<link rel="shortcut icon" href="{$setting.logo|toMedia}">
+<link rel="apple-touch-icon" href="{$setting.logo|toMedia}">
+{/if}
+<meta name="apple-mobile-web-app-title" content="{$setting.name}">
+<!-- IOS 主屏幕应用全屏 -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="format-detection" content="telephone=no">
+{if !$setting.kefu_code}
+<script>
+function kefu() {
+    window.location.href = '{:url("index/kefu")}';
+}
+</script>
+{/if}

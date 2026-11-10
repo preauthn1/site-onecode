@@ -1,0 +1,92 @@
+<div class="form-group">
+    <div class="col-sm-6 col-sm-offset-3">
+        <h3 class="intervalText"></h3>
+        <h3 class="rebateRatio"></h3>
+    </div>
+</div>
+<div id="goods-attr-box">
+{volist name='info.attr' id='attr'}
+<div class="form-group">
+    <div class="input-group col-sm-8 col-sm-offset-2">
+        <input type="hidden" name="attr[id][]" value="{$attr.id}">
+        <span class="input-group-addon">{:lang("属性名称")}</span>
+        <input type="text" class="form-control" name="attr[name][]" value="{$attr.name}">
+        <span class="input-group-addon">{:lang("实际价格")}</span>
+        <input type="number" class="form-control attr_shop_price" name="attr[shop_price][]" value="{$attr.shop_price|floatval}">
+        <span class="input-group-addon">{:lang("拼单价格")}</span>
+        <input type="number" class="form-control attr_retail_price" name="attr[retail_price][]" value="{$attr.retail_price|floatval}">
+        <span class="input-group-addon">{:lang("佣金")}</span>
+        <input type="number" class="form-control attr_return_bonus" name="attr[return_bonus][]" value="{$attr.return_bonus|floatval}">
+        <span class="input-group-btn">
+            <button class="btn btn-danger attrRemove" data-id="{$attr.id}" type="button" style="margin-bottom: 0;">-</button>
+        </span>
+    </div>
+</div>
+{/volist}
+<div class="form-group">
+    <div class="input-group col-sm-8 col-sm-offset-2">
+        <input type="hidden" name="attr[id][]" value="">
+        <span class="input-group-addon">{:lang("属性名称")}</span>
+        <input type="text" class="form-control" name="attr[name][]" value="">
+        <span class="input-group-addon">{:lang("实际价格")}</span>
+        <input type="number" class="form-control attr_shop_price" name="attr[shop_price][]" value="">
+        <span class="input-group-addon">{:lang("拼单价格")}</span>
+        <input type="number" class="form-control attr_retail_price" name="attr[retail_price][]" value="">
+        <span class="input-group-addon">{:lang("佣金")}</span>
+        <input type="number" class="form-control attr_return_bonus" name="attr[return_bonus][]" value="">
+        <span class="input-group-btn">
+            <button class="btn btn-primary attrAdd" type="button" style="margin-bottom: 0;">+</button>
+        </span>
+    </div>
+</div>
+</div>
+<script type="text/template" id="attrTemp">
+<div class="form-group">
+    <div class="input-group col-sm-8 col-sm-offset-2">
+        <span class="input-group-addon">{:lang("属性名称")}</span>
+        <input type="text" class="form-control" name="attr[name][]" value="">
+        <span class="input-group-addon">{:lang("实际价格")}</span>
+        <input type="number" class="form-control attr_shop_price" name="attr[shop_price][]" value="">
+        <span class="input-group-addon">{:lang("拼单价格")}</span>
+        <input type="number" class="form-control attr_retail_price" name="attr[retail_price][]" value="">
+        <span class="input-group-addon">{:lang("佣金")}</span>
+        <input type="number" class="form-control attr_return_bonus" name="attr[return_bonus][]" value="">
+        <span class="input-group-btn">
+            <button class="btn btn-danger attrRemove" type="button" style="margin-bottom: 0;">-</button>
+        </span>
+    </div>
+    <p class="help-block"></p>
+</div>
+</script>
+<script type="text/javascript">
+    $(function(){
+        $(".attrAdd").on("click", function(){
+            $("#goods-attr-box").append($("#attrTemp").html());
+        })
+        $(document).on("click", ".attrRemove", function(){
+            var attr_id = $(this).data('id');
+            var _this = $(this);
+            if (attr_id) {
+                layer.confirm('{:lang("确认删除")}?', {icon: 3, title:'{:lang("提示")}'}, function(index){
+                    $.getJSON("{:url('delattr')}", {'id' : attr_id}, function(res){
+                        if(1 == res.code){
+                            _this.parents(".form-group").remove();
+                        }else if(111 == res.code){
+                            window.location.reload();
+                        }else{
+                            layer.alert(res.msg, {title: "{:lang('友情提示')}", icon: 2});
+                        }
+                    });
+
+                    layer.close(index);
+                })
+            }else{
+                _this.parents(".form-group").remove();
+            }
+        });
+        $(document).on('input propertychange', '.attr_retail_price', function(){  
+            var val = setCurrentItemLevel(this.value);
+            $(this).siblings(".attr_return_bonus").val(val);
+        });
+    })
+</script>

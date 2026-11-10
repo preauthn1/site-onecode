@@ -1,0 +1,271 @@
+{include file="header" /}
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            {if $id > 0}
+            <h5>【{$info.mobile}】{:lang("团队下级")}</h5>
+            {else}
+            <h5>{:lang("用户列表")}</h5>
+            {/if}
+        </div>
+        <div class="ibox-content">
+            {if $id > 0}
+            <ul class="nav nav-tabs">
+                <li role="presentation"><a href="{:url('index')}">{:lang('所有用户')}</a></li>
+                <li role="presentation" class="{if $level eq 99}active{/if}"><a href="{:url('index', ['id' => $id, 'level' => 99])}">{:lang('所有下级')}</a></li>
+                <li role="presentation" class="{if $level eq 1}active{/if}"><a href="{:url('index', ['id' => $id, 'level' => 1])}">{:lang('一级')}</a></li>
+                <li role="presentation" class="{if $level eq 2}active{/if}"><a href="{:url('index', ['id' => $id, 'level' => 2])}">{:lang('二级')}</a></li>
+                <li role="presentation" class="{if $level eq 3}active{/if}"><a href="{:url('index', ['id' => $id, 'level' => 3])}">{:lang('三级')}</a></li>
+                <li role="presentation" class="{if $level eq 4}active{/if}"><a href="{:url('index', ['id' => $id, 'level' => 4])}">{:lang('四级')}</a></li>
+                <li role="presentation" class="{if $level eq 5}active{/if}"><a href="{:url('index', ['id' => $id, 'level' => 5])}">{:lang('五级')}</a></li>
+                <li role="presentation" class="{if $level eq 6}active{/if}"><a href="{:url('index', ['id' => $id, 'level' => 6])}">{:lang('六级')}</a></li>
+                <li role="presentation" class="{if $level eq 7}active{/if}"><a href="{:url('index', ['id' => $id, 'level' => 7])}">{:lang('七级')}</a></li>
+            </ul>
+            {/if}
+            <div id="toolbar">
+                {if authCheck('member/userdel')}
+                <button id="remove" class="btn btn-danger btn-sm" disabled>
+                  <i class="glyphicon glyphicon-remove"></i> {:lang('批量删除')}
+                </button>
+                {/if}
+                {if authCheck('member/useradd') }
+                <a href="{:url('member/userAdd')}" class="btn btn-outline btn-primary btn-sm">{:lang('添加用户')}</a>
+                {/if}
+                {if $id > 0}
+                <a href="{:url('member/batch', ['id' => $id, 'type' =>'1'])}" class="btn btn-info btn-sm" onclick="return window.confirm('确定操作?')">{:lang('封停整条线')}</a>
+                <a href="{:url('member/batch', ['id' => $id, 'type' =>'2'])}" class="btn btn-success btn-sm" onclick="return window.confirm('确定操作?')">{:lang('解封整条线')}</a>
+                {/if}
+                
+                <a href="javascript:void(0)" class="btn btn-outline btn-primary btn-sm" onclick="disableMember(2)">{:lang('封停勾选的用户')}</a>
+                <a href="javascript:void(0)" class="btn btn-outline btn-primary btn-sm" onclick="disableMember(1)">{:lang('解封勾选的用户')}</a>
+            </div>
+            <!--搜索框开始-->
+            <form id='commentForm' role="form" method="post" class="form-inline pull-right" action="{$export_url}">
+                <div class="content clearfix m-b">
+                    <div class="form-group">
+                        <label>{:lang("手机号")}/{:lang("邀请码")}/{:lang("账号")}/{:lang("用户ID")}：</label>
+                        <input type="text" class="form-control" id="username" name="user_name">
+                    </div>
+                    <div class="form-group">
+                        <label>{:lang("选择时间")}：</label>
+                        <select class="form-control" id="time_type" name="time_type">
+                            <option value="0" selected>{:lang("注册时间")}</option>
+                            <option value="1">{:lang("登录时间")}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="start_time" name="startTime" placeholder="yyyy-MM-dd" lay-key="1" autocomplete="off">
+                        -
+                        <input type="text" class="form-control" id="end_time" name="endTime" placeholder="yyyy-MM-dd" lay-key="2" autocomplete="off">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label>{:lang("用户类型")}：</label>
+                        <select class="form-control" id="is_xuni" name="is_xuni">
+                            <option value="-1">{:lang("所有")}</option>
+                            <option value="1">{:lang("虚拟用户")}</option>
+                            <option value="0">{:lang("真实用户")}</option>
+                            <option value="2">{:lang("未登录过的用户")}</option>
+                            <option value="3">{:lang("未绑定银行卡的用户")}</option>
+                            <option value="4">{:lang("已绑定银行卡的用户")}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>{:lang("会员等级")}：</label>
+                        <select class="form-control" name="level_id" id="level_id" >
+                            <option value="">{:lang("所有")}</option>
+                            <option value="0">{:lang("非会员用户")}</option>
+                            {volist name='levelAll' id='v'}
+                            <option value="{$v.level_id}">{$v.level_name}</option>
+                            {/volist}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>{:lang("IP")}：</label>
+                        <input type="text" class="form-control" id="ip" name="ip" style="width: 120px">
+                    </div>
+                    <div class="form-group">
+                        <label>{:lang("CP")}：</label>
+                        <input type="text" class="form-control" id="cp_id" name="cp_id" style="width: 80px">
+                    </div>
+                    <div class="form-group">
+                        <label>{:lang("只看重复IP")}：</label>
+                        <select class="form-control" id="repeat_ip" name="repeat_ip">
+                            <option value="0">{:lang("否")}</option>
+                            <option value="1">{:lang("是")}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="button" style="margin-top:5px" id="search"><strong>{:lang('搜索')}</strong></button>
+                        {if authCheck('member/export')}
+                        <button class="btn btn-danger" type="submit" style="margin-top:5px" id="export"><strong>{:lang("导出")}</strong></button>
+                        {/if}
+                    </div>
+                </div>
+            </form>
+            <!--搜索框结束-->
+            <div class="example-wrap">
+                <div class="example">
+                    <table id="cusTable" data-toolbar="#toolbar">
+                        <thead>
+                        <th data-checkbox="true" data-formatter="stateFormatter">ID</th>
+                        <th data-field="id" data-sortable="true" data-formatter="textFormatter">{:lang("用户ID")}</th>
+                        <th data-field="userinfo" data-formatter="userFormatter">{:lang("用户信息")}</th>
+                        <th data-field="level_id" data-sortable="true">{:lang("会员等级")}</th>
+                        <th data-field="user_money" data-sortable="true">{:lang("余额")}</th>
+                        <th data-field="recharge">{:lang("充值")}</th>
+                        <th data-field="withdraw">{:lang("提现")}</th>
+                        <th data-field="leader1_mobile">{:lang("上级手机号")}</th>
+                        <th data-field="is_xuni_text">{:lang("虚拟")}</th>
+                        <th data-field="create_time" data-sortable="true">{:lang("注册时间")}</th>
+                        <th data-field="ip_info">{:lang("IP地址")}</th>
+                        <th data-field="last_login_time" data-sortable="true">{:lang("上次登录时间")}</th>
+                        <th data-field="status">{:lang("状态")}</th>
+                        <th data-field="operate">{:lang("操作")}</th>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            <!-- End Example Pagination -->
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    tableCheckbox = true;
+    var is_disable_member=0;
+    $table = $("#cusTable");
+    function textFormatter(value, row, index) {
+        if (row.is_xuni == 1) {
+            return "<span style='color:red'>"+value+"</span>";
+        }
+        return "<span>"+value+"</span>";
+    }
+    function userFormatter(value, row, index) {
+        var html = "";
+        html += "<p>昵称:"+row.nick_name+"</p>";
+        html += "<p>手机号:"+row.mobile+"</p>";
+        html += "<p>邀请码:"+row.invite_code+"</p>";
+        html += "<p>CP信息:"+row.cp_id+" <a class=\"btn btn-xs btn-danger\" href=\"javascript:;\"\n\
+ onclick=\"openWindowOwn('"+row.cp_url+"','setcp',600,400);\">{:lang('设置CP')}</a></p>";
+        if (row.is_xuni == 1) {
+            return "<span style='color:red'>"+html+"</span>";
+        }
+        return "<span>"+html+"</span>";
+    }
+    function disableMember(val){
+        is_disable_member=val;
+        var ids = getIdSelections();
+        var info="封停";
+        if(val==1){
+            info="解封";
+        }
+        if(ids.length==0){
+            layer.msg('请勾选要禁用的用户');
+            return;
+        }
+        layer.confirm('确认'+info+'用户么?', {icon: 3, title:'提示'}, function(index){
+            //do something
+            $.post("{:url('member/userBatch')}", {'ids' : ids.join(","),'disable_member':is_disable_member}, function(res){
+                if(1 == res.code){
+                    layer.alert(res.msg, {title: "{:lang('友情提示')}", icon: 1, closeBtn: 0}, function(){
+                        initTable();
+                    });
+                }else if(111 == res.code){
+                    window.location.reload();
+                }else{
+                    layer.alert(res.msg, {title: "{:lang('友情提示')}", icon: 2});
+                }
+            },'json');
+            layer.close(index);
+        })
+    }    
+    var $remove = $("#remove");
+    $remove.click(function () {
+      var ids = getIdSelections();
+      userDel(ids.join(","));
+    });
+    function stateFormatter(value, row, index) {
+        if (row.user_money > 0) {
+            return {
+                //disabled: true
+            }
+        }
+        return value;
+    }
+    function getIdSelections() {
+        return $.map($table.bootstrapTable('getSelections'), function (row) {
+            console.log(row)
+          return row.id
+        })
+    }
+    function viewTopId(tree_id) {
+        var tree = tree_id.split('/');
+        var html = '<div style="padding:15px;">';
+        for(var i=0; i<tree.length; i++) {
+            if (i == tree.length-1) {
+//                html += '<p>自己:' + tree[i] + '</p>';
+            }else{
+                html += '<p>第'+(i+1)+'级: <code>' + tree[i] + '</code></p>';
+            }
+        }
+        html += '</div>';
+        layer.open({
+            type: 1, 
+            area: ['500px', '300px'],
+            title:'上级列表',
+            content: html //这里content是一个普通的String
+        });
+    }
+    index_url="{$url}";
+    $(document).ready(function () {
+        layui.use('laydate', function(){
+            var laydate = layui.laydate;
+            laydate.render({
+                elem: '#start_time'
+                ,trigger: 'click'
+            });
+            laydate.render({
+                elem: '#end_time'
+                ,trigger: 'click'
+            });
+        });
+        initTable();
+        
+        $('#cusTable').on('check.bs.table uncheck.bs.table ' + 'check-all.bs.table uncheck-all.bs.table', function () {
+          $remove.prop('disabled', !$('#cusTable').bootstrapTable('getSelections').length);
+        })
+        //当点击查询按钮的时候执行
+        $("#search").bind("click", initTable);
+    });
+
+    function userDel(id){
+        layer.confirm('确认删除此用户?', {icon: 3, title:'提示'}, function(index){
+            //do something
+            $.getJSON("{:url('member/userDel')}", {'id' : id}, function(res){
+                if(1 == res.code){
+                    layer.alert(res.msg, {title: "{:lang('友情提示')}", icon: 1, closeBtn: 0}, function(){
+                        initTable();
+                    });
+                }else if(111 == res.code){
+                    window.location.reload();
+                }else{
+                    layer.alert(res.msg, {title: "{:lang('友情提示')}", icon: 2});
+                }
+            });
+            layer.close(index);
+        })
+    }
+    function queryParams(params) {   //设置查询参数
+        params.searchText = $('#username').val();
+        params.startTime = $('#start_time').val(); 
+        params.endTime = $('#end_time').val();
+        params.level_id = $('#level_id').val();
+        params.time_type = $('#time_type').val();
+        params.is_xuni = $('#is_xuni').val();
+        params.ip = $('#ip').val();
+        params.repeatIP = $('#repeat_ip').val();
+        return params;
+    }
+</script>
+{include file="footer" /}

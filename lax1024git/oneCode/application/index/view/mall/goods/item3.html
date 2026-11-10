@@ -1,0 +1,16 @@
+<div class="shop-list shop-wapper">
+	{volist name='goods_list' id='goods'}
+    <div class="shop-item">
+		<div class="label">congirle</div>
+		<a href="{:url('goods/info', ['id' => $goods['goods_id']])}"><img class="cover" src="{$goods.pic|toMedia}" alt=""></a>
+		<div class="item-name">
+			<span>{$goods.goods_name}</span>
+			<!-- <span class="iconfont icon-gengduo"></span> -->
+		</div>
+		<div class="item-price">
+			{$goods.retail_price|i18n_currency}
+			<div class="yongjin">{:lang('佣金')}：{$goods.return_bonus|i18n_currency}</div>
+		</div>
+    </div>
+	{/volist}
+</div>

@@ -1,0 +1,288 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{$site_title}</title>
+
+    <!--    <link href="__COMM__/zp/css/mui.min.css" rel="stylesheet">-->
+    <link rel="stylesheet" type="text/css" href="__COMM__/zp/css/award.css?{$css_version}">
+    <link rel="stylesheet" type="text/css" href="__COMM__/zp/css/animate.min.css?{$css_version}">
+    <link rel="stylesheet" type="text/css" href="__CSS__/turntable.css?{$css_version}">
+    <script src="__COMM__/zp/js/jquery.min.js"></script>
+    <script src="__COMM__/zp/js/turntable.js?{$js_version}"></script>
+</head>
+<body>
+<!-------------抽奖页面-------------->
+<div class="ml-main" id="ml-main">
+    <div class="ml-main2"></div>
+        <div class="zp-head">
+            <img class="title1" src="__IMG__/zp/title1.png"/>
+            <img class="info" src="__IMG__/zp/icon-info.png"/>
+        </div>
+        <div class="kePublic">
+            <!--转盘效果开始-->
+            <div style="margin:0 auto">
+                <div class="banner">
+                    <div class="turnplate">
+                        <!-- <canvas class="item" id="wheelcanvas" width="516" height="516"></canvas> -->
+                        <canvas class="item" id="myCanvas" width="520px" height="520px">{:lang("当前浏览器版本过低，请使用其他浏览器尝试")}</canvas>
+                        <img src="{:lang('__IMG__/zp/zp-start.png')}" id="start" class="pointer">
+                        <!-- <img id="tupBtn" class="pointer" src="img/turnplate-pointer_2.png"> -->
+                    </div>
+                </div>
+            </div>
+            <!--转盘效果结束-->
+            <div class="clear"></div>
+        </div>
+        <img class="bottom_shadow" src="{:lang('__IMG__/zp/zp-foot.png')}">
+        <!--------------滚动中奖纪录---------------->
+        {if $gift_log}
+        <div class="record_line" id="Marquee">
+            {volist name='gift_log' id='vo'}
+                <div id="">
+                    {:lang('恭喜')} {$vo.mobile} {:lang('抽中')} <span id="gift_coupon">{$vo.name}</span>
+                </div>
+            {/volist}
+        </div>
+        {/if}
+
+        <!-------------底部声明-------------->
+        <img class="title2" src="{:lang('__IMG__/zp/title2.png')}">
+        <img class="share-bg" src="{:lang('__IMG__/zp/share-bg.png')}" onclick="window.location.href='{:url("user/share")}'">
+        <img class="title3" src="{:lang('__IMG__/zp/title3.png')}">
+        <div class="my_list_log">
+            <ul>
+                {volist name='my_list_log' id='row'}
+                <li class="clearfix"><span class="name">{$row.name}</span> <span class="time">{$row.create_time}</span></li>
+                {/volist}
+            </ul>
+        </div>
+        <div class="zp-copyright">
+            <img class="copyright" onclick="window.location.href='/'" src="{:lang('__IMG__/zp/zp-footer.png')}">
+        </div>
+    
+</div>
+
+<!-------------中奖弹窗页面-------------->
+<div class="zj-main" id="zj-main">
+    <div class="txzl">
+        <div class="zj_text">
+            {:htmlspecialchars_decode(lang('中奖啦&lt;br&gt;恭喜获得'))}<span id="jiangpin"></span><br>
+        </div>
+        <div class="close_zj">{:lang('关闭')}</div>
+    </div>
+</div>
+
+<!-------------谢谢参与弹窗-------------->
+<div class="xxcy-main" id="xxcy-main">
+    <div class="xxcy">
+        <div class="xxcy_text">
+            {:htmlspecialchars_decode(lang('很遗憾&lt;br&gt;没有抽中礼品'))}
+        </div>
+        <div class="close_xxcy">{:lang('关闭')}</div>
+    </div>
+</div>
+
+<div class="log-main" id="prize_log" style="display: none">
+    <div class="p_log">
+        <div class="log_text" id="prize_log_list">
+        </div>
+        <div class="close_prize_log">{:lang('关闭')}</div>
+    </div>
+</div>
+<div id="my-zp-rule">
+    <div class="my-zp-rule">
+        <img class="close" src="{:lang('__IMG__/zp/icon-zp-close.png')}">
+        <img class="rule" src="{:lang('__IMG__/zp/zp-rule.png')}">
+    </div>
+</div>
+
+<script>
+    $(".close").on('click', function(){
+        $("#my-zp-rule").hide(300);
+    });
+    $(".info").on('click', function(){
+        $("#my-zp-rule").show(300);
+    });
+    var wheelSurf;
+    // 初始化装盘数据 正常情况下应该由后台返回
+    var initData = {
+        "success": true,
+        "list" : {$list},
+    };
+
+    var list = {};
+
+    var angel = 360 / initData.list.length;
+    // 格式化成插件需要的奖品列表格式
+    for (var i = 0, l = initData.list.length; i < l; i++) {
+        list[initData.list[i].rank] = {
+            id: initData.list[i].id,
+            name: initData.list[i].name,
+            image: initData.list[i].image
+        }
+    }
+    // 查看奖品列表格式
+
+    // 定义转盘奖品
+    wheelSurf = $('#myCanvas').WheelSurf({
+        list: list, // 奖品 列表，(必填)
+        outerCircle: {
+            linear: ['#E11FBF00']
+        },
+        innerCircle: {
+            linear: ['#E5b2FF00']
+        },
+        dots: ['#fbf0a900', '#fbb93600'], // 装饰点颜色(可选)
+        disk: ['#FFE169', '#FFFFFD', '#FFE169', '#FFFFFD', '#FFE169', '#FFFFFD', '#FFE169'], //中心奖盘的颜色，默认7彩(可选)
+        title: {
+            color: '#5c1e0800',
+            font: '19px Arial'
+        } // 奖品标题样式(可选)
+    });
+
+    // 初始化转盘
+    wheelSurf.init();
+    // 抽奖
+    var throttle = true;
+    $("#start").on('click', function () {
+        // var winData = getGift(); // 正常情况下获奖信息应该由后台返回
+        var winData = initData.list[0]; // 正常情况下获奖信息应该由后台返回
+
+
+
+        $("#message").html('');
+        if (!throttle) {
+            return false;
+        }
+        throttle = false;
+
+        $.ajax({
+            type: "POST",
+            url: '{:url("turntable/getGift")}',
+            dataType: 'json',
+            success: function(res){
+                if(res.code == 200){
+                    winData = res.data;
+                    var count = 0;
+                    // 计算奖品角度
+                    // console.log(list);
+                    for (const key in list) {
+                        if (list.hasOwnProperty(key)) {
+                            if (winData.id == list[key]['id']) {
+                                break;
+                            }
+                            count++;
+                        }
+                    }
+
+                    // 转盘抽奖，
+                    wheelSurf.lottery((count * angel + angel / 2), function () {
+                        if(winData.type == 3){
+                            $("#xxcy-main").fadeIn();
+                        }else{
+                            $("#zj-main").fadeIn();
+                            $("#jiangpin").text('[' + winData.name + ']');
+                        }
+
+                        throttle = true;
+                    })
+                }else{
+                    $('.xxcy_text').text(res.msg);
+                    $('#xxcy-main').fadeIn();
+                }
+            }
+        });
+
+    })
+
+
+    /********弹窗页面控制**********/
+
+    $('.close_zj').click(function () {
+        window.location.reload();
+        $('#zj-main').fadeOut();
+        $('#tx-main').fadeIn();//提醒框显示
+        //判断用户是否确认放弃
+        $(".do").click(function () {
+            //点确认就默认放弃
+            $('#tx-main').fadeOut();
+        });
+        $(".not_do").click(function () {
+            //点取消就回到提交页面
+            $('#tx-main').fadeOut();
+            $('#zj-main').fadeIn();
+        });
+
+        $('#ml-main').fadeIn();
+
+    });
+
+    $('.close_xxcy').click(function () {
+        $('#xxcy-main').fadeOut();
+        window.location.reload();
+    });
+
+    // 中奖者动画
+    var Mar = document.getElementById("Marquee");
+    if(Mar){
+        var child_div = Mar.getElementsByTagName("div");
+        var picH = 35;//移动高度
+        var scrollstep = 3;//移动步幅,越大越快
+        var scrolltime = 50;//移动频度(毫秒)越大越慢
+        var stoptime = 3000;//间断时间(毫秒)
+        var tmpH = 0;
+        Mar.innerHTML += Mar.innerHTML;
+    }
+
+    function start() {
+        if (tmpH < picH) {
+            tmpH += scrollstep;
+            if (tmpH > picH) tmpH = picH;
+            Mar.scrollTop = tmpH;
+            setTimeout(start, scrolltime);
+        } else {
+            tmpH = 0;
+            Mar.appendChild(child_div[0]);
+            Mar.scrollTop = 0;
+            setTimeout(start, stoptime);
+        }
+    }
+    if(Mar) {
+        setTimeout(start, stoptime);
+    }
+    function my_prize_log() {
+        $('#prize_log_list').innerHTML = '';
+        $.ajax({
+            type: "POST",
+            url: '{:url("turntable/myPrizeLog")}',
+            dataType: 'json',
+            success: function(res){
+                if(res.code == 200){
+                    var data = res.data;
+                    let _html = data.map(function (v) {
+                        return '<div class="p_div"><span class="p_name">' + v.name + '</span><span class="p_time">' + v.create_time + '</span></div>';
+                    });
+                    if(_html.length == 0){
+                        _html = '<div class="p_div">{:lang("没有中奖记录")}</div>';
+                    }
+                    $('#prize_log_list').html(_html);
+                }else{
+                    $('.xxcy_text').text(res.msg);
+                    $('#xxcy-main').fadeIn();
+                }
+            }
+        });
+        $('#prize_log').fadeIn();
+    }
+
+    $('.close_prize_log').click(function () {
+        $('#prize_log').fadeOut();
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,212 @@
+#app {
+  background-image: #F4F0E7;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  position: relative;
+}
+.swiper-box {
+  position: absolute;
+  top: 64px;
+  left: 0;
+  width: 100%;
+}
+.swiper-main-pic {
+  height: 9.28019324rem;
+}
+.swiper-main-pic .swiper-slide{
+  height: 9.28019324rem;
+}
+.swiper-main-pic .swiper-slide img {
+  height: 100%;
+  /*width: 100%;*/
+  /*object-fit: fill;*/
+}
+.goods-main {
+  position: relative;
+  z-index: 100;
+  background-color: #F4F0E7;
+}
+.goods-module1-box {
+  margin-top: 9.28550725rem;
+}
+.goods-module1 {
+  background: rgba(243, 239, 237, 0);
+  position: relative;
+  margin-top: 0;
+}
+.goods-module1 .goods-price-box {
+  background: none;
+}
+.goods-module1 .goods-price-box .return_price {
+  font-size: 0.3816425rem;
+  height: 0.678744rem;
+  padding: 0;
+  padding: 0 0.26570048rem;
+  background: #333333;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+}
+.goods-module1 .goods-price-box .retail_price {
+  color: #1b3738;
+  text-indent: 0;
+  font-size: 0.6763285rem;
+}
+.goods-module1 .goods-price-box .retail_price .oldPrice {
+  font-size: 0.33816425rem;
+  color: #BEBEBE;
+}
+.goods-module1 .goods-name {
+  font-size: 0.43478261rem;
+  margin-top: 10px;
+}
+.goods-module1 .tabbox {
+  flex-wrap: wrap;
+  margin-top: 0.48309179rem;
+}
+.goods-module1 .tabbox .tab {
+  padding: 0 0.28985507rem;
+  height: 0.57971014rem;
+  text-align: center;
+  color: #2A876C;
+  font-size: 0.28985507rem;
+  background: #E4EEEA;
+  line-height: 0.57971014rem;
+  margin-right: 0.24154589rem;
+  border: 1px solid #3DC09A;
+}
+.goods-module2 {
+  height: 2.41545894rem;
+}
+.goods-module {
+  margin: 0.36231884rem 0;
+}
+.goods-module3 {
+  height: 1.52173913rem;
+  background: rgba(255, 255, 255, 0.8);
+}
+.goods-module3 .score {
+  flex: 1;
+}
+.goods-module3 .score .score-num {
+  font-size: 0.33816425rem;
+  color: #333333;
+  font-weight: 500;
+  height: 100%;
+  line-height: 100%;
+  margin-left: 0.24154589rem;
+}
+.goods-module3 .score .van-rate__item i {
+  font-size: 0.60386473rem !important;
+}
+.goods-module3 .goods-tools-box {
+  flex: 1;
+}
+.goods-module3 .goods-tools {
+  border: 0;
+  margin: 0;
+}
+.goods-module3 .goods-tools a {
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+.goods-module3 .goods-tools a i {
+  margin-right: 5px;
+  font-size: 0.48309179rem;
+}
+.van-goods-action {
+  height: 2.12560386rem;
+  padding: 0 16px;
+}
+.van-goods-action .info_btm1 img {
+  width: 0.70048309rem;
+  height: 0.65217391rem;
+}
+.van-goods-action .info_btm2 img {
+  width: 0.70048309rem;
+  height: 0.72463768rem;
+}
+.btm_lt {
+  width: 50%;
+  justify-content: space-around;
+}
+.btm_lt .info_btm1 img {
+  margin-bottom: 0.14492754rem;
+}
+.btm_lt .info_btm2 img {
+  margin-bottom: 0.14492754rem;
+}
+.btm_rt {
+  width: 3.67149758rem;
+}
+.btm_rt .van-button--warning {
+  background: #1b3738 !important;
+  border-radius: 0;
+}
+.goods-other-box-header {
+  background: #D0D0D0;
+}
+.goods-other-box-header .pull-left {
+  color: #000000;
+  font-size: 12px;
+}
+.goods-other-box-header .pull-right {
+  color: #000000;
+  font-size: 12px;
+}
+.goods-other-box-title {
+  font-weight: 400;
+  color: #000000;
+  font-size: 14px;
+}
+.goods-other-box {
+  /* background: #EFFAF5; */
+}
+.goods-other-box-list {
+  padding: 0px;
+}
+.item-box {
+  padding: 9px;
+}
+.goods-other-box-list .undone-order-item {
+  height: 1.69082126rem;
+  background: #FFFFFF;
+  margin-bottom: 0.24154589rem;
+  padding: 0px;
+  border: 0px;
+}
+.goods-other-box-list .undone-order-item .user-info .avatar {
+  width: 1.69082126rem;
+  height: 100%;
+  margin-right: 14px;
+}
+.goods-other-box-list .undone-order-item .user-info {
+  height: 100%;
+}
+.user-info-rt {
+  margin-right: 10px;
+}
+.goods-other-box-list .undone-order-item:last-child {
+  margin-bottom: 0px;
+}
+.goods-other-box-list .undone-order-item .join {
+  height: 0.6763285rem;
+}
+.user-info-rt .van-button--warning {
+  background: #1B3738 !important;
+  border: 0px;
+}
+.goods-other-box-title {
+  padding: 9px 0;
+}
+.pingfen {
+	display: flex;
+	align-items: center;
+}
+.pingfen img{
+	width: 16px;
+	height: 16px;
+	margin-right: 8px;
+}

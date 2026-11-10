@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>{:lang('注册')}</title>
+<script>
+    var website_key = '{$recapatcha.website_key}';
+    var verify_layer_index;
+</script>
+{include file="public/js" /}
+<script src="__LIBS__/slider-captcha/longbow.slidercaptcha.js"></script>
+<link rel="stylesheet" href="__LIBS__/slider-captcha/slidercaptcha.css?v2">
+<link rel="stylesheet" href="__CSS__/login/login.css?{$css_version}" />
+</head>
+<body>
+<div id="app">
+    <div class="form reg">
+        <div class="form-main">
+            <div class="reg-box wel-grid">
+				<div class="login-grid">
+				    <!-- {if $setting.logo}
+				    <img src="{$setting.logo|toMedia}" alt="">
+				    {else}
+				    <img src="__IMG__/login.png?{$css_version}" alt="">
+				    {/if} -->
+				    <!-- <img src="__IMG__/login.png" alt=""> -->
+					<div style="font-size: 26px;text-align: left;">{:lang('欢迎登录')}</div>
+				</div>
+                <div class="form-panel regist-panel">
+                    <div class="input-title"><span>{:lang('手机号')}</span></div>
+                    <div class="van-cell van-cell--center van-field">
+                        <div class="van-cell__value van-field__value">
+                            <div class="van-field__body"><input type="text" name="mobile" id="mobile" placeholder="{:lang('请输入手机号')}" class="van-field__control"></div>
+                        </div>
+                    </div>
+                    <div class="input-title"><span>{:lang('昵称')}</span></div>
+                    <div class="van-cell van-cell--center van-field">
+                        <div class="van-cell__value van-field__value">
+                            <div class="van-field__body"><input type="text" name="nick_name" maxlength="10" id="nick_name" placeholder="{:lang('请输入昵称')}" class="van-field__control"></div>
+                        </div>
+                    </div>
+                    {if $is_sms}
+                    <div class="input-title"><span>{:lang('验证码')}</span></div>
+                    <div class="van-cell van-cell--center van-field">
+                        <div class="van-cell__value van-field__value">
+                            <div class="van-field__body">
+                                <input type="text" name="code" id="code" placeholder="{:lang('请输入手机验证码')}" class="van-field__control">
+                                <input type="hidden" name="gRecaptchaResponse" id="gRecaptchaResponse"> 
+                                <input type="hidden" name="smsverify" id="smsverify">
+                                <div class="van-field__right-icon">
+                                    <button class="code-box" id="btnGetCode" onClick="sendMessage({$is_sms_verify})" data-re="{:lang('发送验证码')}">{:lang('发送验证码')}</button></div>
+                            </div>
+                        </div>
+                    </div>
+                    {else}
+                        <input type="hidden" name="code" id="code" value='1111'> 
+                    {/if}
+                    <div class="input-title"><span>{:lang('密码')}</span></div>
+                    <div class="van-cell van-cell--center van-field">
+                        <div class="van-cell__value van-field__value">
+                            <div class="van-field__body"><input type="password" name="password" id="password" placeholder="{:lang('请输入密码')}" class="van-field__control"></div>
+                        </div>
+                    </div>
+                    <div class="input-title"><span>{:lang('确认密码')}</span></div>
+                    <div class="van-cell van-cell--center van-field">
+                        <div class="van-cell__value van-field__value">
+                            <div class="van-field__body"><input type="password" name="repassword" id="repassword" placeholder="{:lang('请确认密码')}" class="van-field__control"></div>
+                        </div>
+                    </div>
+                    <div class="input-title"><span>{:lang('邀请码')}</span></div>
+                    <div class="van-cell van-cell--center van-field">
+                        <div class="van-cell__value van-field__value">
+                            <div class="van-field__body"><input type="text" name="invite_code" id="invite_code" placeholder="{:lang('请输入推荐码')}" value="{$invite_code}" class="van-field__control"></div>
+                        </div>
+                    </div>
+                    {if $setting['front_image_validate_close']}
+                    <div class="input-title"><span>{:lang('验证码')}</span></div>
+                    <div class="van-cell van-cell--center van-field">
+                        <div class="van-cell__value van-field__value">
+                            <div class="van-field__body">
+                                <input type="text" name="code" id="code" placeholder="{:lang('验证码')}" class="van-field__control">
+                                <input type="hidden" name="gRecaptchaResponse" id="gRecaptchaResponse"> 
+                                <input type="hidden" name="smsverify" id="smsverify">
+                                <div class="van-field__right-icon"><img src="{:url('captcha')}" onclick="this.src='{:url('captcha')}?tm='+Math.random();" id="captchaImg" class="code-box"></div>
+                            </div>
+                        </div>
+                    </div>
+                    {else}
+                        <input type="hidden" name="captcha" id="captcha" value='1111'> 
+                    {/if}
+                    <div></div>
+                </div>
+                <div class="btn-space" style="padding: 40px 0px 0px;">
+                    <button class="buttonBack van-button van-button--warning van-button--normal van-button--block" onclick="checkForm();">
+                        <div class="van-button__content"><span class="van-button__text">{:lang('注册')}</span></div>
+                    </button>
+                    
+                </div>
+                
+            </div>
+            <div class="form-foot" style="margin-top:18px;"><a href="{:url('login/index')}">{:lang('已有账号，马上登录')}</a></div>
+        </div>
+    </div>
+</div>
+{include file="public/lang" /} 
+{include file="public/stat" /} 
+{if $recapatcha && $is_sms}
+<!--<script src="https://www.google.com/recaptcha/api.js?render={$recapatcha.website_key}"></script>-->
+<script>
+//igrecaptcha();
+var sliderCaptchaOptions = {
+    remoteUrl:"{:url('api/verify')}",
+    loadingText: '{:lang("正在加载中")}...',
+    failedText: '{:lang("再试一次")}',
+    barText: '{:lang("向右滑动填充拼图")}',
+    verify: function (arr, url) {
+        var ret = false;
+        $.ajax({
+            url: url,
+            data: JSON.stringify(arr),
+            async: false,
+            cache: false,
+            type: 'POST',
+            contentType: 'application/json',
+            dataType: 'json',
+            success: function (result) {
+                ret = result.code;
+                $("#smsverify").val(result.data)
+            }
+        });
+        return ret;
+    },
+    onSuccess:function(){
+        sendMessage(true)
+        layer.close(verify_layer_index)
+    },
+    onFail:function(){
+        $("#smsverify").val('')
+    },
+    onRefresh:function(){
+        $("#smsverify").val('')
+    },
+};
+</script>
+{/if}
+<script>
+
+    function checkForm(){
+        var mobile           = $('#mobile').val();
+        var password         = $('#password').val();
+        var repassword       = $('#repassword').val();
+        var verificationCode = $('#code').val();
+        var nick_name        = $('#nick_name').val();
+        var invite_code      = $('#invite_code').val();
+        var captcha      = $('#captcha').val();
+        if(mobile == ''){
+            layer.msg('{:lang("请填写手机号")}')
+            return false;
+        }
+        if(password == ''){
+            layer.msg('{:lang("请填写密码")}')
+            return false;
+        }
+        if(repassword == ''){
+            layer.msg('{:lang("请确认密码")}')
+            return false;
+        }
+        if(verificationCode == ''){
+            layer.msg('{:lang("请填写手机验证码")}')
+            return false;
+        }
+        if(nick_name == ''){
+            layer.msg('{:lang("请填写昵称")}')
+            return false;
+        }
+        if(captcha == ''){
+            layer.msg('{:lang("请填写验证码")}')
+            return false;
+        }
+        $.ajax({
+            type: "POST",
+            url: '{:url("doReg")}',
+            data: {
+                mobile: mobile.replace(/\s+/g,""),
+                verificationCode: verificationCode,
+                password:password,
+                repassword:repassword,
+                nick_name: nick_name,
+                invite_code: invite_code,
+                captcha:captcha
+            },
+            dataType: 'json',
+            success: function(res){
+                if(res.code == 200){
+                    layer.msg('{:lang("注册成功")}', function(){
+                        location.href = '{:url("login/index")}';
+                    });
+                } else {
+                    $("#captchaImg").click();
+                    layer.msg(res.msg);
+                }
+            }
+        })
+    }
+    $(".left_btn").click(function(){
+        location.href = '{:url("login/index")}';
+    });
+</script>
+</body>
+</html>

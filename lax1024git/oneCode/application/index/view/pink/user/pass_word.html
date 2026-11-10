@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{$site_title}</title>
+    {include file="public/js" /}
+    <link rel="stylesheet" href="__CSS__/user/pass_word.css?{$css_version}" />
+</head>
+<body>
+<div id="app" class="tx-page">
+    {include file="public/header2" /} 
+    <div class="pwd-banner"></div>
+    <div class="pwd-card-box">
+        <div class="pwd-card">
+            <div class="pwd-link">
+                <a href="javascript:;" class="pwd-link-item {if $type neq 'pay'} active{/if}">{:lang("登录密码")}</a>
+                <a href="javascript:;" class="pwd-link-item {if $type eq 'pay'} active{/if}">{:lang("提现密码")}</a>
+            </div>
+            <div class="card-form login-pwd" style="{if $type eq 'pay'} display: none;{/if}">
+                <div class="van-cell van-cell--center van-field">
+                    <div class="van-cell__title van-field__label"><span>{:lang('旧密码')}</span></div>
+                    <div class="van-cell__value van-field__value">
+                        <div class="van-field__body">
+                            <input type="password" name="oldpassword" id="oldpassword" placeholder="{:lang('请输入旧密码')}" class="van-field__control">
+                            <div class="van-field__right-icon sh-pwd">
+                                <i class="van-icon van-icon-closed-eye"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="van-cell van-cell--center van-field">
+                    <div class="van-cell__title van-field__label"><span>{:lang('新密码')}</span></div>
+                    <div class="van-cell__value van-field__value">
+                        <div class="van-field__body">
+                            <input type="password" name="password" id="password" placeholder="{:lang('请输入新密码')}" class="van-field__control">
+                            <div class="van-field__right-icon sh-pwd">
+                                <i class="van-icon van-icon-closed-eye"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="van-cell van-cell--center van-field">
+                    <div class="van-cell__title van-field__label"><span>{:lang('确认新密码')}</span></div>
+                    <div class="van-cell__value van-field__value">
+                        <div class="van-field__body">
+                            <input type="password" name="repassword" id="repassword" placeholder="{:lang('请再次输入密码')}" class="van-field__control">
+                            <div class="van-field__right-icon sh-pwd">
+                                <i class="van-icon van-icon-closed-eye"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pwd-end">
+                    <button class="van-button van-button--warning van-button--normal van-button--block" onclick="next(2);">{:lang('保存')}</button>
+                </div>
+            </div>
+            <div class="card-form pay-pwd" style="{if $type neq 'pay'} display: none;{/if}">
+                {if $userInfo['paypwd']}
+                <div class="van-cell van-cell--center van-field">
+                    <div class="van-cell__title van-field__label"><span>{:lang('旧提现密码')}</span></div>
+                    <div class="van-cell__value van-field__value">
+                        <div class="van-field__body">
+                            <input type="password" name="oldpaypwd" id="oldpaypwd" placeholder="{:lang('请输入旧提现密码')}" class="van-field__control">
+                            <div class="van-field__right-icon sh-pwd">
+                                <i class="van-icon van-icon-closed-eye"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {/if}
+                <div class="van-cell van-cell--center van-field">
+                    <div class="van-cell__title van-field__label"><span>{:lang('新密码')}</span></div>
+                    <div class="van-cell__value van-field__value">
+                        <div class="van-field__body">
+                            <input type="password" name="paypwd" id="paypwd" placeholder="{:lang('请输入新密码')}" class="van-field__control">
+                            <div class="van-field__right-icon sh-pwd">
+                                <i class="van-icon van-icon-closed-eye"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="van-cell van-cell--center van-field">
+                    <div class="van-cell__title van-field__label"><span>{:lang('确认新密码')}</span></div>
+                    <div class="van-cell__value van-field__value">
+                        <div class="van-field__body">
+                            <input type="password" name="repaypwd" id="repaypwd" placeholder="{:lang('请再次输入密码')}" class="van-field__control">
+                            <div class="van-field__right-icon sh-pwd">
+                                <i class="van-icon van-icon-closed-eye"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pwd-end">
+                    <button class="van-button van-button--warning van-button--normal van-button--block" onclick="next(3);">{:lang('保存')}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('.pwd-link-item').on('click', function () {
+        if ($(this).hasClass('active')) {
+            return;
+        }
+        $(this).addClass('active').siblings().removeClass('active');
+        $('.login-pwd').toggle();
+        $('.pay-pwd').toggle();
+    });
+    $('.sh-pwd').on('click', function(){
+        if ($(this).find('i').hasClass('van-icon-eye-o')) {
+            $(this).find('i').addClass('van-icon-closed-eye').removeClass('van-icon-eye-o');
+            $(this).siblings('input').attr('type', 'password');
+        }else{
+            $(this).find('i').removeClass('van-icon-closed-eye').addClass('van-icon-eye-o');
+            $(this).siblings('input').attr('type', 'text');
+        }
+    })
+    // 下一步
+    var step = 1;
+    function next(step) {
+        if(step == 2) {
+            var oldpassword   = $('#oldpassword').val();
+            var password   = $('#password').val();
+            var repassword = $('#repassword').val();
+            if(password == '') {
+                layer.msg('{:lang("请输入密码")}');
+                return false;
+            }
+            if(repassword == '') {
+                layer.msg('{:lang("请确认密码")}');
+                return false;
+            }
+            if(repassword != password) {
+                layer.msg('{:lang("两次密码不一致")}');
+                return false;
+            }
+            var data = {
+                oldpassword:oldpassword,
+                password:   password,
+                repassword: repassword,
+                step:step
+            };
+        }else if(step == 3) {
+            var oldpaypwd   = $('#oldpaypwd').val();
+            var paypwd   = $('#paypwd').val();
+            var repaypwd = $('#repaypwd').val();
+            if(paypwd == '') {
+                layer.msg('{:lang("请输入提现密码")}');
+                return false;
+            }
+            if(paypwd != repaypwd) {
+                layer.msg('{:lang("两次密码不一致")}');
+                return false;
+            }
+            var data = {
+                step: step,
+                oldpaypwd: oldpaypwd,
+                paypwd: paypwd,
+                repaypwd: repaypwd,
+            };
+        }
+        // 向服务端提交数据
+        $.ajax({
+            type: "POST",
+            url: '{:url("pass_word")}',
+            data: data,
+            dataType: 'json',
+            success: function(res){
+                if(res.code == 200){
+                    layer.msg('{:lang("修改成功")}', function(){
+                        location.href = '{:url("user/index")}';
+                    });
+                } else {
+                    layer.msg(res.msg);
+                }
+            }
+        })
+    }
+</script>
+</body>
+</html>

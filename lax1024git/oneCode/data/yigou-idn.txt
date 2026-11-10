@@ -1,0 +1,441 @@
+Ambil Pesanan
+Dapatkan komisi lebih tinggi untuk saluran eksklusif level berikutnya
+Undang % orang untuk meningkatkan
+Pesanan yang tersedia adalah:
+%s komisi saluran eksklusif %s
+Ambil pesanan otomatis
+Hasil hari ini
+Total aset (Rp)
+Hari ini telah meraih komisi
+Pesanan yang telah di ambil hari ini  pesanan
+Pendapatan tim hari ini adalah
+Membuka kunci
+Rician pesanan
+(1) Setiap akun dapat mengambil % pesanan per hari.
+(2) Sistem ini didasarkan pada teknologi LBS dan secara otomatis mencocokkan produk melalui cloud.
+(3) Untuk mencegah pengawasan platform, jika pesanan tidak dikonfirmasi dan dikirimkan dalam waktu 2 menit, sistem akan membekukan jumlah pesanan selama 48 jam, dan sistem akan secara otomatis mencairkannya saat kedaluwarsa.
+Waktu Pesanan
+Jumlah order
+Total pesanan
+Komisi
+Hasil yang diharapkan
+Pesanan Yang di batalkan
+Kirim sekarang
+Isi informasi penerimaan sekarang
+Konfirmasi
+Membatalkan
+Mengerti
+Segera Top-Up
+Penarikan Cepat
+Undang teman
+Profil Perusahaan
+Deskripsi aturan
+Tingkat keanggotaan
+Pembaruan pemeliharaan
+Budaya perusahaan
+Misi
+Pesanan diambil hari ini:
+Perintah yang diharapkan keluar:
+Estimasi rabat saldo :
+Untuk membuka kunci
+Daftar anggota
+Selamat
+% Pesanan telah selesai hari ini
+Memuat
+Tarik ke bawah untuk Merefresh
+Pemberitahuan sistem
+Tidak ada data
+Tarik untuk Merefresh
+Berhasil menyalin
+Penyalinan gagal
+Login
+Terdaftar
+Lupa Password
+Login otomatis
+Masukkan Nama Pengguna
+Masukkan kata sandi
+Masukan nomor telepon
+Masukan password
+Login berhasil
+Dapatkan kembali kata sandi
+Verifikasi telepon
+Nomor ponsel
+Kode verifikasi
+Kirim kode verifikasi
+Langkah berikutnya
+Masukkan kata sandi baru Anda
+kata sandi
+Masukkan kata sandi lagi
+Konfirmasikan Pembaruan
+Masukankode verifikasi
+Konfirmasi kata sandi
+Kata sandi salah
+Berhasil diubah
+Klik pojok kanan atas
+Buka di Chrome
+Masukkan nomor telepon
+Masukankode verifikasi
+Masukkan nama panggilan
+Masukkan kode referral (undangan anda)
+Saya telah mengetahui dan menyetujui perjanjian "Perjanjian Pembukaan Akun"
+Sudah punya akun, masuk sekarang
+Masukkan nama panggilan
+Masukkan kode referral (undangan anda)
+Setujui perjanjian "Perjanjian Pembukaan Akun"
+Registrasi berhasil
+Ambil catatan pesanan
+Data ini secara resmi dibuat oleh %s
+Sisa aset yang tersedia (Rp)
+Semua
+Menunggu keputusan
+Lengkap
+Pembekuan
+Tidak ada data
+Home Page
+Riwayat
+CS ( Customer Service )
+Milikku
+Transfer untuk Top-Up
+Terkirim dalam waktu 5 menit
+Screen short dari APP dan simpan ke kode pemindaian lokal
+Saluran WeChat dapat langsung ditekan lama untuk mengidentifikasi kode QR
+Akun Alipay
+Nama
+Total Top-Up
+Waktu Tagihan
+Keterangan Informasi
+Akun pembayaran
+Masukkan akun pembayaran
+Isi keterangan
+Masukkan Keterangan pembayaran
+ID Saya
+Salin
+Pastikan untuk menyimpan titik desimal dalam jumlah transfer untuk menghindari mempengaruhi waktu isi ulang
+Saya telah menyelesaikan pembayaran
+CaraTop-Up
+1. Salin informasi kartu bank di atas, lalu buka Internet Banking, transfer akun ke akun tersebut, lalu konfirmasi bahwa saya telah menyelesaikan pembayaran.
+2. Operasi di atas selesai, silakan hubungi CS jika akun tidak diterima dalam 5 menit.
+Masukan akaun pembayaran
+Isi keterangannya
+Cara Top-Up
+Masukan Saldo Top-Up
+Yuan
+Pengingat: Lebih dari Rp 10000000, silakan transfer ke kartu bank
+Cara Top-Up Alipay
+Cara transfer dari bank ke Alipay
+Cara Top-Up wechat
+Pilih transaksi pembayaran
+Top-Up di Alipay
+Transfer ke rekening
+Saya mengerti
+Top-Up saldo
+Date
+Waktu
+Status
+2020-01-01 hingga 2020-02-02
+Masukan kartu bank
+Simpan informasi
+Saldo Anda tidak mencukupi
+Maaf, Anda tidak menyelesaikan %s pesanan hari ini, dan Anda dapat menarik hingga
+Akun tidak tersedia
+Catatan
+Komentar tidak boleh lebih dari 50 karakter
+Informasi sebenarnya harus diisi dan tidak dapat diubah
+Nama asli harus diisi dan tidak dapat diubah
+Edit
+Edit alamat pengiriman
+Akun uji, fungsi ini tidak dapat digunakan
+Batalkan pesanan
+Top-Up
+Top-Up pesanan yang akan dibayar
+Top-Up gagal
+Riwayat Top-Up
+Jumlah isi ulang tidak boleh kurang dari %
+Jumlah Top-Up lebih dari 10000000 Rp, harap transfer ke kartu bank
+Jumlah isi ulang salah
+Status Top-Up
+Untuk dibayar
+ada 1 pesanan Top-Up yang belum diselesaikan, silakan periksa catatan Top-Up untuk menyelesaikan atau membatalkan
+Wilayah
+登录超时
+Lengkapi informasi pribadi untuk penarikan pertama
+Telepon
+
+2 Dua
+Level 2
+Berhasil dikirim
+Operasi ilegal
+Hadiah komisi
+Akun pembayaran tidak boleh lebih dari 50 karakter
+Copy Link
+Informasi pribadi
+Informasi lebih lanjut
+Waktu konfirmasi habis, silahkan ulangi lagi
+Nomor aktif
+Berhasil
+Nonaktifkan
+Kata sandi lama
+Kesalahan kata sandi lama
+Kata sandi penarikan lama
+Kata sandi penarikan lama salah
+Siapkan Sekarang
+Dua kata sandi masuk tidak sama
+6 Enam
+Level 6
+Tarik segera
+Tidak ada saluran pembayaran, silakan hubungi CS ( Customer Service )
+Anda hanya dapat mengajukan penarikan sekali sehari
+kata sandi tidak boleh kosong
+Pengaturan kata sandi
+Nama Panggilan
+Informasi Identitas Anda
+Informasi Nomor Rekening anda
+Informasi Alipay anda
+Anda telah menyelesaikan % tugas hari ini
+7 Tujuh
+Level 7
+Pesanan berhasil
+Ambil pesanan
+maaf, Biarkan orang lain mengambil,Lebih cepat lain kali
+maaf, kecepatan tangan terlalu lambat, teruskan
+maaf, saya pesankan untuk Anda
+Jika Anda gagal mengambil pesanan, silakan hubungi CS (Customer Service)
+Harap masukan kartu bank
+Tolong masukan Alipay
+Masukkan kata sandi lama
+Masukkan informasi identitas Anda
+Masukan kata sandi penarikan anda
+Masukkan informasi kartu bank Anda
+Silakan masukkan kata sandi penarikan
+Masukkan kode verifikasi
+Masukkan nomor kartu bank
+Masukan nama bank
+Masukkan nama asli anda
+Masuk ke akun Alipay
+Masukan Area
+Harap isi akun pembayaran
+Masukan jumlah penarikan
+Masukan alamat lengkap
+Harap isi komentar pengguna
+Masukan Kode pos
+Masukan nama asli
+Setujui "Perjanjian Layanan"
+Jangan kirimkan berulang kali
+Silakan atur kata sandi penarikan terlebih dahulu
+Pilih jumlah Top-Up
+Pilih sistem penarikan
+Login kembali
+Parameter yang dibutuhkan tidak ada
+Menentukan
+Anda yakin ingin menyimpan? Informasi tidak dapat di rubah setelah di kirim.
+Konfirmasi untuk mengubah kata sandi login
+Konfirmasi untuk mengubah kata sandi penarikan
+konfirmasi sandi
+3 Tiga
+Level 3
+Hapus
+Tetapkan sebagai alamat umum
+Informasi pengaturan
+Aplikasi berhasil
+Audit gagal
+Menerapkan
+Audit gagal
+Audit di terima
+Apakah itu biasa digunakan
+Alamat Pengiriman
+Menerima catatan alamat
+Informasi alamat pengiriman
+Menerima Informasi Identitas
+Transaksi pembayaran gagal, silakan hubungi CS (Cuostomer Service)
+Akun penerima
+Perhitungan pendapatan
+Nomor telfon
+Nomor telepon tidak boleh kosong
+Format nomor telepon salah
+4 Empat
+Level 4
+Pencarian
+Semua jenis
+Berhasil dikirim
+Pengiriman Gagal
+Menarik
+Riwayat penarikan
+Cara penarikan
+Jumlah penarikan
+Jumlah penarikan kurang dari %, dan pengiriman pesanan gagal
+Nomor kartu penarikan
+Jenis penarikan salah
+Tarik kata sandi
+Kata sandi penarikan salah
+Penarikan gagal
+Penarikan Akun
+Status penarikan
+Berhasil Ditambahkan
+Tambahkan Alamat
+Tambahkan alamat pengiriman
+Tambahkan kartu bank
+Profil
+Pengaturan foto Profil
+Laporan Tim
+Ukuran Tim
+Manfaat tim
+Poster promosi
+Logout
+Tidak ada wilayah yang dimasukkan, masukan wilayah
+Tidak ada nomor telepon yang dimasukkan,  Masukan nomor telfon
+Tidak ada alamat rinci yang dimasukkan, masukan alamat
+Tidak ada nomor kartu Bank yang dimasukkan, Masukan nomor kartu Bank
+Tidak ada nama bank yang di masukan, harap masukan nama bank
+Kode pos belum di masukan, harap masukan
+Tidak ada nama asli yang dimasukkan, Isi nama asli
+Alipay tidak masuk, masukan alipay
+Tidak dapat menerima informasi
+Pesan Pengingat: Halo, untuk kelancaran penarikan anggotanya, untuk sementara sistem belum mendukung koperasi perkreditan rakyat dan bank umum perkreditan rakyat, disarankan mengikatkan diri pada empat bank besar atau bank lain yang biasa digunakan terima kasih!
+Nomor ponsel saya
+Kartu bank saya
+Alipay saya
+Saya telah menyetujui "Perjanjian Layanan"
+5 Lima
+Level 5
+Perubahan sistem
+Akun sistem
+Batasi deskripsi
+Alamat
+Pengguna baru
+Pengumuman
+Informasi salah
+Gagal Diubah
+Modifikasi informasi membutuhkan verifikasi kata sandi penarikan
+Berhasil diverifikasi
+Kode undangan
+Kode undangan tidak ada
+Mengundang orang
+1 Satu
+Level 1
+Ditolak
+Dibatalkan
+Dibayar
+Di transfer keluar
+Di transfer masuk
+Bank
+Kartu bank
+Isi Saldo Rekening
+Nomor Kartu Bank
+Penarikan Bank
+Nama Bank
+Pengembalian komisi
+Penyimpanan-Toko Pengguna
+Pengambilan-Toko-Pengguna
+Kode Pos
+Sesuai
+Saldo tidak mencukupi
+Tidak ada data
+Hasil perubahan akun
+Saldo Rekening
+Detail akun
+Saldo  Rekening
+Tidak dapat mengambil pesanan jika saldo akun kurang dari  %
+Nama Asli Sesuai Identitas
+Normal
+Alipay
+Alipay memiliki batas limit penarikan 10.000 per hari, silakan tarik ke kartu bank Anda
+Batas penarikan Alipay adalah 10.000 Perhari, silakan tarik ke kartu bank Anda
+Penarikan Alipay
+Pembayaran berhasil
+Transaksi gagal
+Dorongan Langsung
+Waktu pendaftaran
+Kata sandi saldo
+Jumlah total tagihan
+Pengguna yang terhormat, untuk melindungi keamanan dana Anda, harap komfirmasi nama asli Anda dan tetapkan kata sandi penarikan. Jika namanya tidak sesuai dengan nama akun, Anda tidak akan bisa menarik uang.
+Anggota Silver
+Akumulasi pendapatan tim
+
+Rp
+
+Belum ada akun
+
+Maksimal penarikann
+Untuk menyempurnakan informasi pribadi
+Semua Bahaasa
+Pilih bahasa
+/upload/image/20200825/tab8-1.png
+/upload/image/20200825/tab8-2.png
+/upload/image/20200913/f2ba529d1019c2cab77cdb964b5d140b.png
+/upload/image/20200913/19739eb0ed06c6429327c42534522220.png
+/upload/image/20200825/tab10.png
+/upload/image/20200825/tab10.png
+/upload/image/20200825/tab11-1.png
+/upload/image/20200825/tab11-2.png
+/upload/image/20200825/tab12-1.png
+/upload/image/20200825/tab12-2.png
+/upload/image/20200920/abc7a58ee05e24d53b5266a1dd55f5f8.png
+/upload/image/20200920/0d1800e7bdd149ca5d6564bdbb2b4b6b.png
+/upload/image/20200920/a2b7a0af2a103f2d534dac0c9134bd48.png
+/upload/image/20200920/ee4f3d565fa45d404a40461c077e2236.png
+/upload/image/20200920/8084d6edb698c7fa7d563bcd90c289dc.png
+Shopee
+Lazada
+Tiki.vn
+Amazon
+eBay
+/upload/image/20200921/aeb865a2d3d0f419d96b549658e6826b.png
+/upload/image/20200825/qiangdan-bg.png
+/upload/image/20200825/login-bg.png
+/upload/image/20200920/3f52e42bcd4100b1274710cc90adab80.jpg
+/upload/image/20200825/status1.png
+/upload/image/20200825/status2.png
+Android
+iOS
+Username atau kata sandi salah
+/upload/image/20200825/icon6.png
+/upload/image/20200825/icon21.png
+/upload/image/20200825/info-bg.png
+/upload/image/20200827/9074cd0847c6cfca9f80bfd39e60dad9.png
+Anggota Platinum
+Anggota Tertinggi
+Anggota Gold
+Anggota Diamond
+/static/index/sgo/images/alipay.png
+/upload/image/20200908/e65889cd882aca67f7884332823571ff.png
+Tugas Anda hari ini sudah selesai
+Say, Kamu hanya dapat menarik 10% dari saldo jika kamu belum mengambil satu nomor pun pada hari itu. Pengingat : Anda hanya dapat menarik sekali sehari, dan setiap penarikan akan mengurangi biaya penanganan 5%!
+Isi ulang selesai
+Tipe pembayaran
+Akun pembayaran
+Pilih jenis Pembayaran
+Sistem layanan pelanggan tidak diAktifkan
+perunggu
+perak
+Gold
+Diamond
+Tertinggi
+Pilih emoji
+Konten tidak boleh lebih dari %d karakter
+Unggah gambar
+Kirim
+Halo ada yang bisa saya bantu?
+Akun sudah ada
+Layanan Online
+Hubungi Customer Service jika Anda memiliki pertanyaan
+Konsultasikan sekarang
+Notifikasi
+Welcome
+Akun
+M-Banking
+Undang N lebih banyak orang untuk meningkatkan
+Berjuang untuk pesanan
+Hasil pesanan akan ditampilkan di bawah ini
+Silakan masukkan kata sandi penarikan
+Operasi gagal
+Pastikan informasi kartu bank terlebih dahulu
+Transfer
+Jumlah order
+Gabungkan diskon dan hasilkan uang dengan mudah
+Langsung ke versi H5
+Download link
+Download link alternatif
+Jangan sering-sering mengklik
+Kode verifikasi telah kedaluwarsa
+Permintaan habis waktunya
+Isi ulang gagal

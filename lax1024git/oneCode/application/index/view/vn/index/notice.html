@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{$site_title}</title>
+    {include file="public/js" /}
+</head>
+<body>
+<div id="app" class="sys-page">
+    {include file="public/header2" /}
+    <div class="wrap">
+        <div class="sys-cells">
+            <div role="button"  class="van-cell van-cell--clickable van-cell--center">
+                <img src="__IMG__/renwu.png"  alt="" class="sys-icon">
+                <div class="van-cell__title"><span>{:lang('系统公告')}</span></div><i class="van-icon van-icon-arrow van-cell__right-icon"></i>
+            </div>
+            <div class="sys-body">
+                {if condition="$info"}
+                <div class="body">{$info.content}</div>
+                <div class="time">{$info.create_time|i18n_datetime2str}</div>
+                {else}
+                <div class="body">{:lang('没有数据')}</div>
+                {/if}
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

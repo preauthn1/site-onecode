@@ -1,0 +1,77 @@
+    {include file="header" /}
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>{:lang("添加/修改")}</h5>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" id="dataForm" method="post" action="{:url('add')}">
+                        <input type="hidden" name="id" value="{$info.level_id}">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">{:lang("级别")}：</label>
+                            <div class="input-group col-sm-4">
+                                <input type="text" class="form-control" value="{$info.sort}" name="sort" required="" aria-required="true">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">{:lang("等级名称")}：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="level_name" type="text" class="form-control" name="level_name" required="" aria-required="true" value="{$info.level_name}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">{:lang("等级图片")}：</label>
+                            <input name="img" id="original_img" type="hidden" value="{$info.img}"/>
+                            <div class="form-inline">
+                                <div class="input-group col-sm-2">
+                                    <button type="button" class="layui-btn" id="test1">
+                                        <i class="layui-icon">&#xe67c;</i>{:lang("上传图片")}
+                                    </button>
+                                </div>
+                                <div class="input-group col-sm-3">
+                                    <div id="sm">
+                                        {if condition="$info['img']"}
+                                        <img src="{$info.img|toMedia}" />
+                                        {/if}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+						<div class="form-group">
+						    <label class="col-sm-3 control-label">{:lang("充值升级金额")}：</label>
+						    <div class="input-group col-sm-4">
+						        <input id="price" type="text" class="form-control" name="price" required="" aria-required="true" value="{$info.price}">
+						    </div>
+						</div>
+						<div class="form-group">
+						    <label class="col-sm-3 control-label">{:lang("最高抢单数量")}：</label>
+						    <div class="input-group col-sm-4">
+						        <input id="dannum" type="text" class="form-control" name="dannum" required="" aria-required="true" value="{$info.dannum}">
+						    </div>
+						</div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">{:lang("是否启用")}：</label>
+                            <div class="input-group col-sm-4">
+                                {foreach name='status' item='vo' key='key'}
+                                <div class="radio i-checks col-sm-4">
+                                    {if condition="$key == $info['status'] " }
+                                    <label> <input type="radio" value="{$key}" checked name="status"> <i></i> {$vo}</label>
+                                    {else}
+                                    <label> <input type="radio" value="{$key}" name="status"> <i></i> {$vo}</label>
+                                    {/if}
+                                </div>
+                                {/foreach}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-6">
+                                <button class="btn btn-primary" type="submit">{:lang("提交")}</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{include file="footer" /}

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{$site_title}</title>
+    <style>
+           .van-nav-bar{
+            background-color: rgba(109, 232, 188, 0);
+        }
+        .van-card__title{
+            max-height: auto !important;
+            height: auto;
+        }
+   
+    </style>
+    
+    {include file="public/js" /}
+    <link rel="stylesheet" href="__CSS__/order/index.css?{$css_version}" />
+</head>
+<body>
+<div id="app">
+    {include file="public/header" /}
+    <div class="van-tabs van-tabs--line order-main">
+        <div class="van-tabs__wrap" id='tablist'>
+            <ul role="tablist" class="van-tabs__nav van-tabs__nav--line" >
+                <li role="tab" class="van-tab van-tab--active">{:lang('我发起的')}</li>
+                <li role="tab" class="van-tab">{:lang('可参与的')}</li>
+                <li role="tab" class="van-tab">{:lang('已完成')}</li>
+            </ul>
+        </div>
+        <div class="van-tabs__content">
+            <div role="tabpanel" class="van-tab__pane pane1">
+                <div role="feed" class="van-list">
+                </div>
+            </div>
+            <div role="tabpanel" class="van-tab__pane pane2" style="display: none;">
+                <div role="feed" class="van-list">
+                </div>
+            </div>
+            <div role="tabpanel" class="van-tab__pane pane3" style="display: none;">
+                <div role="feed" class="van-list">
+                </div>
+            </div>
+            <!--<div role="tabpanel" class="van-tab__pane pane2">-->
+                <!--<div role="feed" class="van-list">-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div role="tabpanel" class="van-tab__pane pane3" style="display: none;">-->
+                <!--<div role="feed" class="van-list">-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+    </div>
+</div>
+<script>
+   
+  
+$(function(){
+    var itemIndex = 0;
+    var tabLoadEnd = new Array();
+    var pages = new Array();
+    pages[0] = 0;
+
+
+    $('#app').scroll(function(){
+        var top  = $(this).scrollTop();
+        $('#app .van-nav-bar').css('background-color','rgba(255, 2, 0, '+top/300+')');
+    })
+    // var type = $("#type_tmp").val();
+    // if (type == '2'){
+    //     $('.van-tab').addClass('van-tab--active').siblings('.van-tab').removeClass('van-tab--active');
+    //     $('.van-tab__pane').eq(0).show().siblings('.van-tab__pane').hide();
+    //     $('.van-tab').eq(1).show().addClass('van-tab--active');
+    //     $('.van-tab__pane').eq(1).show().siblings('.van-tab__pane').show();
+    // }
+
+    $('.van-tab').on('click',function(){
+        console.log('进来了');
+        var $this = $(this);
+        itemIndex = $this.index();
+        if (!pages[itemIndex]) {
+            pages[itemIndex] = 0
+        }
+        $this.addClass('van-tab--active').siblings('.van-tab').removeClass('van-tab--active');
+        $('.van-tab__pane').eq(itemIndex).show().siblings('.van-tab__pane').hide();
+        // 如果数据没有加载完
+        if(!!!tabLoadEnd[itemIndex]){
+            // 解锁
+            console.log('走这里true');
+            dropload.unlock();
+            dropload.noData(false);
+        }else{
+            // 锁定
+            console.log('这里false');
+            dropload.lock('down');
+            dropload.noData();
+        }
+        // 重置
+        dropload.resetload();
+    });
+  
+    // dropload
+    // if (type == 2){
+    //     itemIndex = 1;
+    // }
+
+        var dropload = $('#app').dropload({
+        scrollArea : $('#app'),
+        domUp:{
+            domClass : 'dropload-up',
+            domRefresh : '<div class="dropload-refresh">↓{:lang("下拉刷新")}</div>',
+            domUpdate : '<div class="dropload-update">↑{:lang("释放更新")}</div>',
+            domLoad : '<div class="dropload-load"><span class="loading"></span>{:lang("加载中")}...</div>'
+        },
+        domDown:{
+            domClass : 'dropload-down',
+            domRefresh : '<div class="dropload-refresh">↑{:lang("上拉加载更多")}</div>',
+            domLoad : '<div class="dropload-load"><span class="loading"></span>{:lang("加载中")}...</div>',
+            domNoData : '<div class="dropload-noData">{:lang("暂无数据")}</div>'
+        },
+        loadDownFn : function(me){
+            pages[itemIndex]++
+            $.ajax({
+                type: 'GET',
+                url: '{:url("getLists")}?page=' + pages[itemIndex] + '&type=' + (itemIndex+1),
+                dataType: 'json',
+                success: function (res) {
+                    if (res.code == 1) {
+                        // if (type == 2)
+                        //     $('.van-tab__pane').eq(itemIndex).find('.van-list').html(res.data);
+                        // else
+                        $('.van-tab__pane').eq(itemIndex).find('.van-list').append(res.data);
+                    } else {
+                        tabLoadEnd[itemIndex] = true
+                        // 锁定
+                        me.lock();
+                        // 无数据
+                        me.noData(true);
+                    }
+                    // itemIndex = 0;
+                    me.resetload();
+                },
+                error: function (xhr, type) {
+                    // 即使加载出错，也得重置
+                    me.resetload();
+                }
+            });
+        }
+    });
+    //dropload.lock('down');
+    // dropload.unlock();
+    //         dropload.noData(false);
+    $("html,body").scrollTop(10);
+    // var windowHeight = parseInt($("body").css("height"));
+    // $("html,body").animate({ "scrollTop": windowHeight }, 200,function(){
+    //     $("html,body").scrollTop(64);
+    // });
+})
+
+
+
+
+    // 提交订单
+    var isPay = false;
+    $(document).on('click', '.join', function(){
+        var id = $(this).data('id');
+        // var mode = $("#my_grab_order_mode").val();
+
+        if (isPay) {
+            return;
+        }
+        var _this = $(this);
+        $.ajax({
+            type: "POST",
+            // url: mode==2?'{:url("goods/toCpPay")}':'{:url("goods/toPay")}',
+            url: '{:url("goods/toPay")}',
+            data: {
+                order_id: id,
+            },
+            dataType: 'json',
+            success: function(res){
+                isPay = false;
+                if(res.code == 1){
+//                    _this.parents('.order-item').hide(200);
+                    _this.parents('.order-item').remove();
+                    layer.msg(res.msg, function(){
+//                        location.href = '{:url("order/index")}';
+                    });
+                } else {
+                    isPay = false;
+                    layer.msg(res.msg);
+                }
+            }
+        })
+    })
+
+    // 回购
+    $(document).on('click', '.repurchase', function(){
+        var _this = $(this);
+        if (_this.hasClass('van-button--disabled')) {
+            return;
+        }
+        _this.addClass('van-button--disabled');
+        var id = $(this).data('id');
+        $.ajax({
+            type: "POST",
+            url: '{:url("repurchase")}',
+            data: { id: id },
+            dataType: 'json',
+            success: function(res){
+                if(res.code == 1){
+                    _this.text('{:lang("已申请")}');
+                    layer.msg(res.msg);
+                } else {
+                    _this.removeClass('van-button--disabled');
+                    layer.msg(res.msg);
+                }
+            }
+        })
+    });
+</script>
+<script>
+    
+</script>
+<!-- <script src="https://cdn.bootcdn.net/ajax/libs/eruda/1.6.0/eruda.js"></script>  -->
+      <!-- <script>eruda.init();</script> -->
+</body>
+</html>

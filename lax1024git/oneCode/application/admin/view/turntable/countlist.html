@@ -1,0 +1,56 @@
+{include file="header" /}
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>{$title|lang}</h5>
+        </div>
+        <div class="ibox-content">
+            <div class="form-group clearfix col-sm-7">
+                <a href="{:url('countlist', ['act' => 'add'])}">
+                    <button class="btn btn-outline btn-primary" type="button">添加抽奖次数</button>
+                </a>
+            </div>
+            <!--搜索框开始-->
+            <form id='commentForm' role="form" method="post" class="form-inline pull-right">
+                <div class="content clearfix m-b">
+                    <div class="form-group">
+                        <label>{:lang("关键词")}：</label>
+                        <input type="text" class="form-control" id="title" name="title" placeholder="用户ID/备注">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="button" style="margin-top:5px" id="search"><strong>{:lang('搜索')}</strong>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <!--搜索框结束-->
+            <div class="example-wrap">
+                <div class="example">
+                    <table id="cusTable">
+                        <thead>
+                        <th data-field="user_id">用户ID</th>
+                        <th data-field="num">剩余次数</th>
+                        <th data-field="total">总次数</th>
+                        <th data-field="remark">备注</th>
+                        <th data-field="create_time">创建时间</th>
+                        <th data-field="update_time">更新时间</th>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            <!-- End Example Pagination -->
+        </div>
+    </div>
+<script type="text/javascript">
+    index_url = '{:url("countlist")}';
+    $(document).ready(function () {
+        initTable();
+        //当点击查询按钮的时候执行
+        $("#search").bind("click", initTable);
+    });
+    function queryParams(params) {   //设置查询参数
+        params.title = $('#title').val()
+        return params;
+    }
+</script>
+{include file="footer" /}

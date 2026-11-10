@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{$site_title}</title>
+    {include file="public/js" /}
+</head>
+<body>
+<div id="app">
+    {include file="public/header" /}
+    <div class="wrap">
+        <div>
+        <div class="sp-panel">
+            <div class="sp-panel-hd">{:lang('账户概览')}</div>
+            <div class="sp-grid">
+                <div class="van-row">
+                    <div class="van-col van-col--16">
+                        <div class="tm-data">
+                            <div class="txt"><span>{:lang('账户余额')} ({$symbol})</span> <i class="van-icon van-icon-eye-o hide-money" data-money='{$total}'></i></div>
+                            <div class="val">{$total|i18n_number_format}</div>
+                        </div>
+                    </div>
+                    <div class="van-col van-col--8">
+                        <div class="tm-data">
+                            <div class="txt"><span>{:lang('余额宝')} ({$symbol})</span> <i class="van-icon van-icon-eye-o hide-money" data-money='{$yeb_total}'></i></div>
+                            <div class="val">{$yeb_total}</div>
+                        </div>
+                    </div>
+                    <div class="van-col van-col--16">
+                        <div class="tm-data">
+                            <div class="txt">{:lang('累计收益')}</div>
+                            <div class="val">+{$cumulative_income}</div>
+                        </div>
+                    </div>
+                    <div class="van-col van-col--8">
+                        <div class="tm-data">
+                            <div class="txt">{:lang('预计收益')}</div>
+                            <div class="val">+{$expected_return}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sp-panel">
+            <div class="sp-panel-hd">{:lang('余额转入')}</div>
+            <div class="bla-card">
+                <div class="van-cell van-cell--center van-field">
+                    <div class="van-cell__title van-field__label"><span>{$symbol}</span></div>
+                    <div class="van-cell__value van-field__value">
+                        <div class="van-field__body">
+                            <input type="number" name="money" id="money" placeholder="{:lang('请输入转入金额')}" class="van-field__control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        
+        <div class="price-list" style="margin-top: 20px; padding-bottom: 0;">
+            <div class="van-row">
+                {volist name="lists" id="vo"}
+                <div class="van-col van-col--12">
+                    <div class="price-box" data-id="{$vo.id}" data-json='{$vo|json_encode}'>+{$vo.rate}%<br> {$vo.days}{:lang('天')}</div>
+                </div>
+                {/volist}
+                <input type="hidden" name="rate_id" id="rate_id" value="" />
+            </div>
+            <div class="ads-tip" style="margin-top: 20px;">
+                <div class="hd">{:lang('温馨提示')}</div>
+                <div class="bd">
+                    <p>{:lang('余额宝温馨提示')}</p> 
+                </div>
+            </div>
+        </div>
+        <div class="btn-rows van-row">
+            <div class="van-col van-col--12" style="padding-right: 8px;">
+                <a class="van-button van-button--default van-button--normal van-button--block" href="{:url('lists')}">
+                    {:lang('转出')}
+                </a>
+            </div>
+            <div class="van-col van-col--12" style="padding-left: 8px;">
+                <button class="van-button van-button--warning van-button--normal van-button--block" id="pay">
+                    {:lang('转入')}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var user_money = '{$total|intval}';
+    $(function(){
+        $(".price-box").on('click', function(){
+            $(this).addClass('active').parent().siblings().find('.price-box').removeClass('active');
+            $("#rate_id").val($(this).data('id'))
+        });
+        $(".hide-money").on('click', function(){
+            if ($(this).hasClass('van-icon-closed-eye')) {
+                $(this).addClass('van-icon-eye-o').removeClass('van-icon-closed-eye');
+                $(this).parent().siblings('.val').text($(this).data('money'));
+            }else{
+                $(this).addClass('van-icon-closed-eye').removeClass('van-icon-eye-o');
+                $(this).parent().siblings('.val').text('****');
+            }
+        });
+        var isPay = false;
+        $('#pay').on('click', function(){
+            if (isPay) {
+                return;
+            }
+            var rate_id  = $('#rate_id').val();
+            var money = $('#money').val();
+            if(money == ''){
+                layer.msg('{:lang("请填写金额")}');
+                return false;
+            }
+            if(rate_id == ''){
+                layer.msg('{:lang("请选择收益标准")}');
+                return false;
+            }
+            var json = $('.price-box.active').data('json');
+            //您选择的是存入%s天,金额为:%s,到期后您可以获得:%s,请问是否确定存入
+            var content = '{:lang("存入余额宝提示", ["##DAYS##", "##MONEY##", "<span style=\\'color:red;\\'>##INCOME##</span>"])}';
+            var P = money;
+            var i = parseFloat(json.rate / 100 / json.days);
+            var n = json.days;
+            var income = parseFloat( (P * Math.pow(1 + i, n) - P).toFixed(2) );
+            if (income <= 0) {
+                layer.msg('{:lang("您存入的金额不够产生收益")}');
+                return false;
+            }
+            layer.open({
+                content: content.replace('##DAYS##', json.days).replace('##MONEY##', money).replace('##INCOME##', income)
+                ,btn: ['{:lang("确认")}', '{:lang("取消")}']
+                ,yes: function(index){
+                    layer.close(index);
+                    isPay = true;
+                    $.ajax({
+                        type: "POST",
+                        url: '{:url("doPay")}',
+                        data: {
+                            type:  rate_id,
+                            money: money
+                        },
+                        dataType: 'json',
+                        success: function(res){
+                            isPay = false;
+                            if(res.code == 200){
+                                layer.msg(res.msg, function(){
+                                    location.href = '{:url("lists")}';
+                                });
+                            } else {
+                                layer.msg(res.msg);
+                            }
+                        }
+                    })
+                }
+            });
+        });
+        $('img').bind("contextmenu",function(e){
+            e.preventDefault();
+        });
+    })
+</script>
+</body>
+</html>

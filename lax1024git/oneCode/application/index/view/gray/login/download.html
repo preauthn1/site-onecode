@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!--{if $setting.logo}-->
+
+<link rel="shortcut icon" href="{$setting.logo|toMedia}">
+<!--{/if}-->
+
+<title>{$setting.title}</title>
+{include file="public/js" /}
+<script src="__JS__/web-detector.js"></script>
+<link href="__LIBS__/modal-video/css/modal-video.min.css" rel="stylesheet">
+<script src="__LIBS__/modal-video/js/modal-video.min.js"></script>
+<style>
+    .download-page{
+        {:i18n_cssbg('download-bg')}
+        background-position: bottom center;
+        background-size: auto 48%;
+        background-repeat: no-repeat;
+        background-color: {:lang2('download-bg-color', 'rgb(255, 222, 89)')};
+        min-height: 100vh;
+        
+    }
+    .download-head{
+        text-align: center;
+        padding-top: 0.8rem;
+        padding-bottom: 0.5rem;
+    }
+    .download-head .logo{
+        width: 75px;
+        border-radius: 12px;
+    }
+    .download-head h1{
+        font-size: 22px;
+        margin-bottom: 15px;
+    }
+    .download-head p{
+        font-size: 16px;
+        margin-bottom: 12px;
+    }
+    .down-btn-box{
+        display: flex;
+        padding: 0 5%;
+    }
+    .down-btn {
+        margin: 0 6px;
+        width: 50%;
+        line-height: 40px;
+        height: 44px;
+    }
+    .download-tips {
+        color: rgb(0, 86, 225);
+        text-decoration: underline;
+        text-align: center;
+        font-size: 0.42rem;
+        margin-top: 12px;
+    }
+</style>
+</head>
+<body>
+<div class="download-page">
+    <div class="download-head">
+        {if $setting.logo}
+        <img src="{$setting.logo|toMedia}" class="logo" alt="">
+        {else}
+        <img src="__IMG__/login.png?{$css_version}" class="logo" alt="">
+        {/if}
+        <h1>{$setting.title}</h1>
+        <p>{:lang("下载广告词")}</p>
+    </div>
+    <div class="down-btn-box">
+        <a class="down-btn van-button van-button--warning van-button--normal" href="{$download_url}" style="font-size: 14px;background: #0056e1 !important;border-color: #0056e1 !important;">{:lang('立即下载APP')}</a>
+        <a class="down-btn van-button van-button--warning van-button--normal" href="{$h5url}" style="font-size: 14px;">{:lang('进入网页版')}</a>
+    </div>
+    <div class="download-tips" style="display: none;" data-video-url="{:lang2('download-video')}">{:lang('下载指引')}</div>
+</div>
+
+<script>
+    var isAndroid = detector.os.name === 'android';
+    var isIOS = detector.os.name === 'ios' || detector.os.name === 'ipad' || detector.os.name === 'ipod';
+    var isWeixin = detector.browser.name === "micromessenger" || detector.browser.name === "ali-ap";
+    if (isIOS && $(".download-tips").data('video-url')) {
+        $(".download-tips").show();
+        new ModalVideo('.download-tips', {
+            ratio:"9:12"
+        });
+    }
+</script>
+</body>
+</html>

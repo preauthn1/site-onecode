@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{$site_title}</title>
+    {include file="public/js" /}
+</head>
+<body>
+<div id="app">
+    {include file="public/header" /}
+    <div class="index-main" style="padding-top: 0;">
+        <div class="sticky-box" id="records">
+            <div class="category">
+                <div class="swiper-container swiper-part list">
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next swiper-button-disabled"></div>
+                    <div class="swiper-wrapper">
+                        {volist name='part' id='item'}
+                        <div class="swiper-slide">
+                            <div class="tags {if $key eq 0}active{/if}" data-area='{$key}'>
+                                {$item.name|lang}
+                            </div>
+                        </div>
+                        {/volist}
+                    </div>
+                </div>
+            </div>
+            <div class="proList am-list-view-scrollview">
+                <div class="am-list-body">
+                    <div class="list-view-section-body"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {include file="public/footer" /}
+</div>
+
+<script>
+    $(function () {
+        var swiper = new Swiper(".swiper-part", {
+            slidesPerView: 3,
+            spaceBetween: 0,
+            navigation: {
+                  nextEl: '.swiper-button-next',
+                  prevEl: '.swiper-button-prev',
+            },
+        });
+        var clipboard = new ClipboardJS('.shareIcon'); 
+        clipboard.on('success', function(e) {
+            layer.msg('{:lang("分享链接已复制,赶快去分享吧")}');
+            e.clearSelection();
+        });
+        
+        // 页数
+        var page = 0;
+        var area = 0;
+        $(".tags").on('click', function() {
+            if ($(this).hasClass('active')) {
+                return;
+            }
+            $('.tags').removeClass('active');
+            $(this).addClass('active');
+            area = $(this).data('area');
+            page = 0;
+            $('.list-view-section-body').empty();
+            // 解锁
+            dropload.unlock();
+            dropload.noData(false);
+            // 重置
+            dropload.resetload();
+        })
+        // dropload
+        var dropload = $('#records').dropload({
+            scrollArea: window,
+            domUp:{
+                domClass : 'dropload-up',
+                domRefresh : '<div class="dropload-refresh">↓{:lang("下拉刷新")}</div>',
+                domUpdate : '<div class="dropload-update">↑{:lang("释放更新")}</div>',
+                domLoad : '<div class="dropload-load"><span class="loading"></span>{:lang("加载中")}...</div>'
+            },
+            domDown:{
+                domClass : 'dropload-down',
+                domRefresh : '<div class="dropload-refresh">↑{:lang("上拉加载更多")}</div>',
+                domLoad : '<div class="dropload-load"><span class="loading"></span>{:lang("加载中")}...</div>',
+                domNoData : '<div class="dropload-noData">{:lang("暂无数据")}</div>'
+            },
+            loadDownFn: function (me) {
+                page++;
+                $.ajax({
+                    type: 'GET',
+                    url: '{:url("index")}?page=' + page,
+                    data:{
+                        area:area,
+                        cate_id:'{$cate_id}',
+                    },
+                    dataType: 'json',
+                    success: function (res) {
+                        if (res.code == 1) {
+                            $('.list-view-section-body').append(res.data);
+                        } else {
+                            // 锁定
+                            me.lock();
+                            // 无数据
+                            me.noData(true);
+                        }
+                        me.resetload();
+                    },
+                    error: function (xhr, type) {
+                        // 即使加载出错，也得重置
+                        me.resetload();
+                    }
+                });
+            }
+        });
+    });
+    
+</script>
+</body>
+</html>

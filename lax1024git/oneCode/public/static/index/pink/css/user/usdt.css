@@ -1,0 +1,70 @@
+#app {
+  /* background-image: url(../../images/login_bg.png); */
+  background-color: #F4F0E7;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  min-height: 100vh;
+}
+#app .wrap-box {
+  border: 1px solid #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  padding-top: 0px;
+}
+#app .wrap-box .wrap-box2 {
+  padding: 0.38647343rem;
+  background: #FFFFFF;
+  /* box-shadow: 0px 2px 0.48309179rem 0px rgba(36, 76, 62, 0.1);
+  border-image: linear-gradient(180deg, #baffe7, #f9fdfc) 1 1; */
+}
+#app .wrap-box .wrap-box2 .card-form .van-cell {
+  height: 1.32850242rem;
+  /* background: #E8FFF7; */
+  border-radius: 0.19323671rem;
+  margin-bottom: 0.38647343rem;
+  display: flex;
+  justify-content:space-between
+}
+#app .wrap2 {
+  padding: 0.33816425rem;
+}
+#app .btn-rows {
+  margin: 0 0.33816425rem;
+  margin-top: 1.20772947rem;
+}
+#app .van-button--warning {
+  border-color: #1b3738 !important;
+  background: #1b3738 !important;
+}
+#app .van-field__label {
+  font-weight: 500;
+  color: #333333;
+  font-size: 0.38647343rem;
+}
+.weui-dialog {
+  position: fixed;
+  z-index: 5000;
+  top: 50%;
+  left: 16px;
+  right: 16px;
+  -webkit-transform: translate(0,-50%);
+  transform: translate(0,-50%);
+  background-color: #fff;
+  background-color: var(--weui-BG-2);
+  text-align: center;
+  border-radius: 0;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  max-height: 90%;
+}
+.weui-dialog__btn_primary {
+  background-color: #1b3738;
+  color: #FFFFFF;
+  border:1px solid #1b3738
+}

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{$site_title}</title>
+    {include file="public/js" /}
+</head>
+<body>
+<div id="app">
+    {include file="public/header" /} 
+    <div class="cus-main wrap">
+        <div class="usdt-box">
+            <h3>{$payinfo.name}</h3>
+            <div class="usdt-qrcode" id="qrcode"></div>
+            <div class="usdt-address-box">
+                <div class="usdt-address">
+                    <input type="hidden" id="bankno" value="{$payinfo.account}"/>
+                    {$payinfo.account}
+                </div>
+                <a href="javascript:;" class="copy-usdt-address copy" data-clipboard-text="{$payinfo.account}">{:lang('复制')}</a>
+            </div>
+        </div>
+        <div class="cus-list">
+            <div class="van-cell van-cell--clickable van-cell--center copy" data-clipboard-text="{$money2}">
+                <div class="van-cell__title"><span>{:lang('充值金额')}:</span></div>
+                <div class="van-cell__label" style="color: #ff002d; font-size: 0.4rem;"><span>{$money2|i18n_currency}</span></div>
+                <i class="van-icon iconfont icon-fuzhi van-cell__right-icon"></i>
+            </div>
+            <div class="van-cell van-cell--clickable van-cell--center copy" data-clipboard-text="{$money}">
+                <div class="van-cell__title"><span>{:lang('USDT金额')}:</span></div>
+                <div class="van-cell__label" style="color: #ff002d; font-size: 0.4rem;"><span>{$money} U</span></div>
+                <i class="van-icon iconfont icon-fuzhi van-cell__right-icon"></i>
+            </div>
+<!--            <div class="van-cell van-cell--center">
+                <div class="van-cell__title">{:lang('付款姓名')}<span style="color:red;">*</span></div>
+                <div class="van-cell__value">
+                    <input type="text" class="van-field__control" name="user_note" id="user_note" placeholder="{:lang('请输入付款姓名')}">
+                </div>
+            </div>-->
+            <div class="van-cell van-cell--center">
+                <div class="van-cell__title">{:lang('付款地址')}<span style="color:red;">*</span></div>
+                <div class="van-cell__value">
+                    <input type="text" class="van-field__control" name="pay_account" id="pay_account" placeholder="{:lang('请输入付款地址')}">
+                    <input type="hidden" name="pay_id" id="pay_id" value='{$payinfo.id}'>
+                    <input type="hidden" name="order_id" id="order_id" value='{$order.id|default=0}'>
+                    <input type="hidden" name="car_num" id="car_num" value='{$payinfo.account}'>
+                </div>
+            </div>
+            <div class="van-cell van-cell--center">
+                <div class="van-cell__title">
+                    <input type="hidden" name="img" id="img" value=''>
+                    <div id="show-img" style=' margin-bottom: 0.2rem; text-align: center;'></div>
+                    <button type="button"style="border-radius: 3px;"  class="van-button van-button--primary van-button--normal van-button--block van-button--plain van-button--small" id="test1">
+                        <i class="layui-icon">&#xe67c;</i> {:lang('上传付款凭证')}
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="btn-rows van-row" style="margin-top: 20px;">
+            <button class="van-button van-button--warning van-button--normal van-button--block" onclick="doPay();">
+                {:lang('我已完成支付')}
+            </button>
+        </div>
+        <div class="ads-tip" style="margin-top: 20px;">
+            <div class="hd">{:lang('充值须知')}</div>
+            <div class="bd">
+                <p>{:lang('USDT充值须知1')}</p> 
+                <p>{:lang('USDT充值须知2')}</p> 
+            </div>
+        </div>
+    </div>
+</div>
+<link rel="stylesheet" href="__SERVICE__/css/layui.css?t=2">
+<script src="__SERVICE__/layui.js"></script>
+<script src="__LIBS__/webuploader/webuploader.min.js"></script>
+</body>
+<script>
+    var qrcode = new QRCode("qrcode");
+    qrcode.makeCode("{$payinfo.account}");
+    var clipboard = new ClipboardJS('.copy'); 
+    clipboard.on('success', function(e) {
+        layer.msg('{:lang("复制成功")}');
+        e.clearSelection();    
+        console.log(e.clearSelection);    
+    });
+    // 单张上传图片
+    layui.use('upload', function(){
+        var upload = layui.upload;
+//        var uploadInst = upload.render({
+//            elem: '#test1' //绑定元素
+//            ,url: "{:url('message/upload')}" //上传接口
+//            ,done: function(res){
+//                //上传完毕回调
+//                $("#img").val(res.data.path);
+//                $("#show-img").html('<img src="' + res.data.src + '" style="height: 40px;"/>');
+//            }
+//            ,error: function(){
+//                //请求异常回调
+//            }
+//        });
+    });
+    var uploader = WebUploader.create({
+        auto: true,
+        // swf文件路径
+        swf: '__LIBS__/webuploader/Uploader.swf',
+
+        // 文件接收服务端。
+        server: "{:url('message/upload', ['_ajax' => 1])}",
+
+        // 选择文件的按钮。可选。
+        // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+        pick: '#test1',
+
+        // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
+        resize: true,
+        accept:{
+            extensions:'jpg,jpeg,png'
+        },
+        fileSingleSizeLimit:5*1024*1024
+    });
+    uploader.on( 'uploadSuccess', function( file, res) {
+        if (res.code == 1) {
+            layer.msg(res.msg)
+            return;
+        }
+        //上传完毕回调
+        $("#img").val(res.data.path);
+        $("#show-img").html('<img src="' + res.data.src + '" style="height: 40px;"/>');
+    });
+    uploader.on( 'uploadStart', function( file ) {
+        $("#test1").prop("disabled", true);
+    });
+    uploader.on( 'uploadComplete', function( file ) {
+        $("#test1").prop("disabled", false);
+        $(".webuploader-pick").html('<i class="layui-icon">&#xe67c;</i> {:lang("上传付款凭证")}');
+        uploader.reset();
+    });
+    uploader.on( 'uploadProgress', function( file, percentage ) {
+        $(".webuploader-pick").html('<i class="layui-icon">&#xe67c;</i> {:lang("上传付款凭证")}' + (percentage * 100) + "%");
+    });
+
+    uploader.on( 'uploadError', function( file, reason, b, c ) {
+        console.log(file, reason, 'error');
+        if (reason == 'http') {
+            layer.msg('{:lang("上传图片大小超出5MB限制")}:' + reason);
+        }else{
+            layer.msg('{:lang("上传出错了，请联系客服")}:' + reason);
+        }
+    });
+    uploader.on( 'error', function( type ) {
+        console.log(type, 'error');
+        switch(type) {
+            case 'Q_EXCEED_NUM_LIMIT':
+                layer.msg('{:lang("只能上传一张图片")}');
+                break;
+            case 'Q_EXCEED_SIZE_LIMIT':
+            case 'F_EXCEED_SIZE':
+                layer.msg('{:lang("上传图片大小超出5MB限制")}');
+                break;
+            case 'Q_TYPE_DENIED':
+                layer.msg('{:lang("上传图片类型不支持")}');
+                break;
+        }
+    });
+    // 去充值
+    function doPay() {
+        var pay_account = $('#pay_account').val();
+        var user_note = $('#user_note').val();
+        var pay_id = $('#pay_id').val();
+        var order_id = $('#order_id').val();
+        var car_num = $('#car_num').val();
+        var img = $('#img').val();
+        if(user_note == ''){
+//            layer.msg('{:lang("请填写付款姓名")}');
+//            return false;
+        }
+        if(pay_account == ''){
+            layer.msg('{:lang("请输入付款地址")}');
+            return false;
+        }
+        if(img == ''){
+//            layer.msg('{:lang("请上传付款凭证")}');
+//            return false;
+        }
+        $.ajax({
+            type: "POST",
+            url: '{:url("doPay")}',
+            data: {
+                pay_account: pay_account,
+                user_note: user_note,
+                money:"{$money2}",
+                type:"{$type}",
+                pay_id: pay_id,
+                order_id: order_id,
+                img: img,
+                car_num:car_num
+            },
+            dataType: 'json',
+            success: function(res){
+                console.log(res);
+                if(res.code == 200){
+                    location.href = '{:url("recharge/lists")}';
+                } else {
+                    layer.msg(res.msg);
+                }
+            }
+        })
+    }
+</script>
+</html>

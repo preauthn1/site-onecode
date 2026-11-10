@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{$title}</title>
+    <link href="__CSS__/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="__CSS__/font-awesome.min.css?v=4.7.0" rel="stylesheet">
+    <link href="__CSS__/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+    <link href="__CSS__/animate.min.css" rel="stylesheet">
+    <link href="__CSS__/style.min.css?v=4.1.0" rel="stylesheet">
+    <link href="__JS__/layui/css/layui.css" rel="stylesheet">
+    <link href="__CSS__/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <link href="__CSS__/animate.min.css" rel="stylesheet">
+    <link href="__CSS__/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="__JS__/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet">
+    <script src="__JS__/jquery.min.js?v=2.1.4"></script>
+    <link type="text/css" rel="stylesheet" href="__LIBS__/bmbIframe/bmbIframe.css?{:css_version()}" />
+    <script src="__LIBS__/bmbIframe/jquery.bmbIframe.js"></script>
+    <script src="__JS__/functions.js"></script>
+    <script type="text/javascript">
+        var index_url = "{:url('index')}"
+        var add_url = "{:url('add')}"
+        var del_url = "{:url('del')}"
+        var index = '';
+        var tableCheckbox = false;
+        var pagination = true;
+    </script>
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content">
+<div class="modal" id="bmbModal">
+    <div class="modal-dialog">
+        <div class="modal-content bmd-modalContent">
+
+            <div class="modal-body">
+                <div class="close-button">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" frameborder="0"></iframe>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

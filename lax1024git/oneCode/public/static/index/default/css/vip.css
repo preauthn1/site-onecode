@@ -1,0 +1,224 @@
+.vipPage {
+    background: #f6f6f6;
+}
+.vipWrap {
+    padding-top: 1.76rem;
+    padding-bottom: .88rem;
+}
+
+.myVipMsg {
+    position: fixed;
+    width: 100%;
+    height: 1.76rem;
+    top: 0;
+    left: 0;
+    padding: .2rem .24rem .28rem;
+    box-sizing: border-box;
+    background: #fff;
+    z-index: 10;
+}
+.myVipMsgTop {
+    margin-bottom: .12rem;
+}
+.userName {
+    margin-right: .14rem;
+    font-size: .36rem;
+    font-weight: 700;
+    color: #fc8605;
+    line-height: .48rem;
+    max-width: 3rem;
+}
+.smallVipIcon {
+    width: .36rem;
+    height: .28rem;
+    margin-right: .04rem;
+}
+.bigVipIcon {
+    width: 1.1rem;
+    height: .84rem;
+    margin-bottom: .2rem;
+}
+.levelNum {
+    font-size: .28rem;
+    font-weight: 700;
+    color: #005652;
+    line-height: .32rem;
+}
+.vipMsgText {
+    font-size: .24rem;
+    color: #005652;
+    line-height: .28rem;
+}
+
+.vipListBox {
+    padding: .24rem;
+}
+.vipItem {
+    position: relative;
+    margin-bottom: .24rem;
+    padding: .32rem .32rem .28rem;
+    background: #fff;
+    border-radius: .16rem;
+}
+.vipItemLeft {
+    margin-right: .3rem;
+}
+.biglevelNum {
+    font-size: .32rem;
+    font-weight: 700;
+    color: #005652;
+    line-height: .4rem;
+    text-align: center;
+}
+.vipItemCenter {
+    margin-right: .93rem;
+}
+.vipItemHui {
+    margin-bottom: .04rem;
+    font-size: .24rem;
+    color: #005652;
+    line-height: .28rem;
+}
+.vipItemOrange {
+    font-size: .32rem;
+    font-weight: 700;
+    color: #ffa900;
+    line-height: .4rem;
+}
+.xSpan {
+    position: relative;
+    top: -.03rem;
+}
+.referralSpan {
+    margin-right: .3rem;
+}
+.referralSpan:last-child {
+    margin: 0;
+}
+.vipCurrent {
+    position: absolute;
+    top: -.04rem;
+    right: -.04rem;
+    width: 1.42rem;
+    height: .42rem;
+}
+.vipItemBot {
+    margin-top: .22rem;
+}
+.vipMoney {
+    font-size: .4rem;
+    font-weight: 700;
+    color: #fc8605;
+    line-height: .56rem;
+}
+.vipUnit {
+    margin-left: .16rem;
+    font-size: .24rem;
+    color: #a6c4c3;
+    line-height: .28rem;
+}
+.upgradeBtn {
+    width: 2.74rem;
+    height: .72rem;
+    background: linear-gradient(304deg,#fc8605,#ffbc62);
+    border-radius: .36rem;
+    font-size: .32rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: .72rem;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.upgradeBox {
+    height: 7.18rem;
+    padding: .28rem .4rem;
+    box-sizing: border-box;
+}
+.upgradeTitBox {
+    margin-bottom: .36rem;
+}
+.upgradeTit {
+    font-size: .4rem;
+    font-weight: 700;
+    color: #333;
+    line-height: .64rem;
+}
+.componentClose {
+    font-size: 0.45rem;
+    width: .4rem;
+    height: .4rem;
+    color: #fd8609;
+}
+.upgradeItem {
+    position: relative;
+    width: 2.06rem;
+    height: 2.56rem;
+    margin-right: .26rem;
+    background: #fff;
+    border-radius: .16rem;
+    border: .02rem solid #a6c4c3;
+}
+.upgradeItem:last-child {
+    margin-right: 0;
+}
+.itemTime {
+    font-size: .28rem;
+    color: #005652;
+    line-height: .32rem;
+}
+.itemMoney {
+    margin: .08rem 0 .16rem;
+    font-size: .4rem;
+    font-weight: 700;
+    color: #fc8605;
+    line-height: .48rem;
+}
+.itemUnitBox {
+    font-size: .24rem;
+    color: #005652;
+    line-height: .28rem;
+}
+.itemUnitBox {
+    font-size: .24rem;
+    color: #005652;
+    line-height: .28rem;
+}
+.dayMoney {
+    margin-right: .07rem;
+    font-weight: 700;
+}
+.itemUnitBox {
+    font-size: .24rem;
+    color: #005652;
+    line-height: .28rem;
+}
+.greenBalance {
+    color: #005652!important;
+}
+.upgradeActive {
+    background: #fff9f2!important;
+    border: .02rem solid #fc8605!important;
+}
+.currentBalanceBox {
+    margin: .36rem 0 .24rem;
+    font-size: .24rem;
+    color: red;
+    line-height: .28rem;
+    text-align: center;
+}
+.continueBtn {
+    height: .88rem;
+    border-radius: .44rem;
+    font-size: .36rem;
+    line-height: .88rem;
+}
+.continueBtn, .height8continueBtn {
+    background: #ccc;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+}
+.Allow {
+    background: linear-gradient(304deg,#fc8605,#ffbc62)!important;
+}

@@ -1,0 +1,101 @@
+{volist name='lists' id='row'}
+<div class="van-card order-item">
+    {if $row.type eq 3 || $row.type eq 2}
+    <div class="van-card__top">
+        <div class="order_sn">{:lang('订单号')}:{$row.order_sn}</div>
+        <!-- <div class="create_time">{$row.create_time}</div> -->
+    </div>
+    {/if}
+    <div class="van-card__header guicen">
+        <a class="van-card__thumb guicent" href="{:url('goods/info', ['id' => $row.goods_id])}">
+            <div class="van-image">
+                <!--<img src="{$row.pic}" class="van-image__img" style="object-fit: cover;">-->
+                <img src="{$row.pic}" class="van-image__img {if $row.type eq 3 || $row.type eq 2}van-image__img1{/if}">
+            </div>
+        </a>
+        <div class="van-card__content">
+            <div class="van-card-box guicen">
+                <div class="bg-box">
+                    <div class="van-card__title van-multi-ellipsis--l2" style="max-height: auto  !important;">
+                        <a href="{:url('goods/info', ['id' => $row.goods_id])}">{$row.goods_name}</a>
+                    </div>
+                    <div class="price-box guispe guicen">
+                        <div class="van-card__desc retail_price">
+                            {$row.retail_price|i18n_currency}
+                            <span class="shop_price">{$row.shop_price|i18n_currency}</span>
+                        </div>
+                        <div class="price-rt">
+                            {if $row.type eq 2}
+                            {if isset($row['less_person_num']) && $row['less_person_num'] > 0}
+                            <span class="pull-right" style="margin-right: 5px;">
+                                {:lang('还差%s人拼成', ['<font color="red">'.$row['less_person_num'].'</font>'])}
+                            </span>
+                            {/if}
+                            {/if}
+                        </div>
+                    </div>
+                    <div class="guispe">
+                    <span class="van-tag return_bonus van-tag--danger" style="margin-right: 5px;">
+                        {:lang('佣金')}：{$row.return_bonus|i18n_currency}
+                    </span>
+                        {if $row.type eq 3 || $row.type eq 2}
+                        <span class="price-time">
+                        {$row.create_time}
+                    </span>
+                        {/if}
+                        <!--{if $row.type eq 2}-->
+                        <!--{if isset($row['less_person_num']) && $row['less_person_num'] > 0}-->
+                        <!--<span class="pull-right" style="margin-right: 5px;">-->
+                        <!--{:lang('还差%s人拼成', ['<font color="red">'.$row['less_person_num'].'</font>'])}-->
+                        <!--</span>-->
+                        <!--{/if}-->
+                        <!--{/if}-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--去掉可参与的 start-->
+    <!--{if $row.type eq 2}-->
+    <!--<div class="van-card__footer">-->
+    <!--<span class="nick_name">-->
+    <!--{if $row.user_id > 0}-->
+    <!--{:lang('发起人')}:{$row.nick_name}-->
+    <!--{/if}-->
+    <!--</span>-->
+    <!--{if $row.repurchase_status eq 1}-->
+    <!--<button class="van-button van-button&#45;&#45;warning van-button&#45;&#45;small repurchase" data-id="{$row.id}">{:lang('回购')}</button>-->
+    <!--{else}-->
+    <!--<button class="van-button van-button&#45;&#45;warning van-button&#45;&#45;small van-button&#45;&#45;disabled">{:lang('已申请')}</button>-->
+    <!--{/if}-->
+    <!--</div>-->
+    <!--{/if}-->
+    <!--去掉可参与的 end-->
+    {if $row.type eq 2}
+    <div class="van-card__footer">
+        <span class="nick_name">
+            {if $row.user_id > 0}
+            {:lang('发起人')}:{$row.nick_name}
+            {/if}
+        </span>
+
+        <!--<input type="hidden" id="my_grab_order_mode" value="{$my_grab_order_mode}" />-->
+        <button class="van-button van-button--warning van-button--small join" data-id="{$row.id}">{:lang('参与拼单')}</button>
+    </div>
+    {/if}
+    {if $row.type eq 3}
+    <div class="van-card__footer">
+        <span class="nick_name">
+            {if $row.user_id > 0}
+            {:lang('发起人')}:{$row.nick_name}
+            {/if}
+        </span>
+        {if $row.repurchase_status eq 1}
+        <button class="van-button van-button--warning van-button--small repurchase" data-id="{$row.id}">{:lang('回购')}</button>
+        {else}
+        <button class="van-button van-button--warning van-button--small van-button--disabled">{:lang('已申请')}</button>
+        {/if}
+    </div>
+    {/if}
+</div>
+{/volist}

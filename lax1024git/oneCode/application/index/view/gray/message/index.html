@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{$site_title}</title>
+		{include file="public/js" /}
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="format-detection" content="telephone=no"/>
+        <link rel="stylesheet" href="__SERVICE1__/css/layui.mobile.css?{$css_version}">
+        <script src="__SERVICE1__/jquery-1.9.1.min.js"></script>
+        <script src="__SERVICE1__/jquery.cookie.js"></script>
+        <script src="__SERVICE1__/layui.js"></script>
+{if $setting.logo}
+<link rel="shortcut icon" href="{$setting.logo|toMedia}">
+{/if}
+        <style>
+            /*body .layim-title .layim-chat-back{display: none;}*/
+            /*body .layim-title{display: none;}*/
+            body .layui-layim-photos{ height: 50px;}
+            /*body .layim-chat-main, body .layim-content, body .layui-layim{top: 0}*/
+            .layim-chat-user cite{ color: #333 !important;}
+            .layim-chat-system span {
+                background-color: #fff !important;
+                color: #000 !important;
+            }
+            .layim-title{
+                color: #333 !important;
+            }
+            /* .layim-panel{
+                background-color: #F6F8FA !important;
+            } */
+            .layim-chat-user img{
+                background: #333;
+            }
+            .layim-chat-tool span{
+                color: #319F5F;
+            }
+            .layim-chat-footer{
+                height: 125px !important;
+            }
+            .layim-chat-fastmsg .message{
+                padding: 2px 6px;
+                border: 1px solid #ccc;
+                margin-right: 5px;
+                color: #000;
+                display: inline-block;
+                white-space: nowrap;
+            }
+            .layim-chat-main{
+                bottom: 150px !important;
+            }
+            .layim-chat-fastmsg-box{
+                min-width: 100%;
+                width: max-content;
+            }
+        .layim-title{
+            background-color: #FFFFFF;
+        }
+        /* .layim-title p{
+            text-align: center;
+        } */
+        .layim-title p{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+			color: #FFF;
+        }
+		.err{
+			position: absolute;
+			left: -2.4rem;
+			width:2rem;
+			height: 2rem;
+			display: none;
+		}
+        </style>
+        <link rel="stylesheet" href="__CSS__/message/message.css?{$css_version}" />
+    </head>
+    <body>
+            <script type="text/template" id="fastTemplate">
+                <div class="layim-chat-fastmsg">
+                    <div class="layim-chat-fastmsg-box">
+                    {volist name='kefu_fast_message' id='text'}
+                    <a class="message" href="javascript:;">{$text|lang}</a>
+                    {/volist}
+                    </div>
+                </div>
+            </script>
+			{include file="public/footer" /}
+        <script>
+		
+            /* addEventListener('scroll',function(){
+              var top  = parseInt(document.documentElement.scrollTop)
+                $('.layim-title').css('background-color','rgba(109, 232, 188, '+top/300+')')//parseInt(top/100)
+            }) */
+
+        // $('#chat_input').blur(function(){
+        //     console.log('的房间二分');
+        // })
+        // console.log($('#chat_input'));
+
+
+            var isSend = false;
+            var lastID = "{$msgId}";
+			var error_msg = {};
+            $.cookie("lastID","{$msgId}",{expires:1,path:"/"});
+            
+            var _time = 5000;
+            layui.data('layim-mobile', null, null);
+            layui.config({
+                version: true,
+                v:20200902
+            }).use(['mobile', 'layer'], function () {
+                var mobile = layui.mobile
+                , layim = mobile.layim
+                , layer = layui.layer;
+                layim.config({
+                    init: {
+                        mine: {
+                            "username": "{$info.nick_name}",
+                            "id": "{$info.id}",
+                            "avatar": "{$info.avatar}"
+                        }
+                    },
+                    chatTitleColor:'#1F1A1D',
+                    brief: true,
+                    face: false,
+                    //上传图片接口
+                    uploadImage: {
+                      url: '{:url("upload")}' //（返回的数据格式见下文）
+                      ,type: '' //默认post
+                    },
+                    maxLength:200,
+                    langs:{
+                        send:'{:lang("发送")}'
+                        ,toolImage:'{:lang("上传图片")}'
+                        ,maxLength:'{:lang("内容最长不能超过x个字符", [200])}'
+                    }
+                });
+                layim.chat({
+                    id: "{$info.id}", 
+                    name: "{:lang('客服')}", 
+                    type: 'kefu',
+                    avatar: '__IMG__/service-avatar.png'
+                });
+                layim.on('back', function(insert, send, obj){
+                    window.history.back();
+                });
+                getrecord();
+                setInterval(getrecord, _time);
+                function getrecord(){
+                    $.ajax({
+                        url:"{:url('getrecord')}",
+                        data:{lastID:lastID, type:'{$type}'},
+                        type:"POST",
+                        dataType:"JSON",
+                        success:function(res) {
+                            if (res.code === 0){
+                                layer.msg(res.msg);
+                            }else{
+                                var list = res.data;
+                                for(var i=0,l=list.length;i<l;i++){
+                                    layim.getMessage({
+                                        username: list[i].MasterName,
+                                        avatar: list[i].master_id === 0 ? list[i].avatar : '__IMG__/service-avatar.png',
+                                        id: list[i].user_id,
+                                        type: 'kefu',
+                                        cid:list[i].id,
+                                        content: list[i].content,
+                                        mine: list[i].master_id === 0, 
+                                        ism:true,
+                                        timestamp:list[i].timestamp
+                                    });
+                                    lastID = list[i].id;                                        
+                                }
+                                $.cookie("lastID", lastID ,{expires:1,path:"/"});
+                            }
+                         }
+                    })
+                }
+                
+				function sendMessage(id, content , uuid, fn) {					
+                    if (isSend) {
+                        return false;
+                    }
+                    isSend = true;
+                    var data = {
+                        id:id,
+                        content:content,
+                        type:'{$type}'
+                    };
+                    $.ajax({
+                        url:"{:url('send')}",
+                        data:data,
+                        type:"POST",
+                        dataType:"JSON",
+                        success:function(res) {
+							if(error_msg != {}){
+								error_msg = {};
+							}
+                            isSend = false;
+                            if (res.code === 0){
+                                layer.msg(res.msg);
+                            }else if(res.code === 201){
+                                var guiTimer =  setTimeout(function(){
+                                    var str='<img data-id='+id+' data-content='+content+' style="width:2rem;margin-right:5px;position: absolute;left: -30px;" src="__IMG__/errMsg.png" />';
+                                    $('.layim-chat-mine:last-child .layim-chat-text span').html(str);
+                                    $('.layim-chat-mine .layim-chat-text span img').on('click',function(){
+                                        var _id=$(this).attr('data-id');
+                                        var _content=$(this).attr('data-content');
+                                        sendMessage(_id,_content,function(result){
+                                            if(result.code===1){
+                                                $('.layim-chat-mine:last-child .layim-chat-text span').hide();
+                                            }
+                                        });
+                                    })
+                                },800)
+                            }else{
+                                lastID = res.data.id;
+                                $.cookie("lastID", lastID ,{expires:1,path:"/"});
+                            }
+                            if(fn){
+                                fn(res);
+                            }
+                        },
+						error:function(XMLHttpRequest,textStatus,errorThrown){
+							error_msg = {
+								id:id,
+								content:content,
+								uuid:uuid
+							};
+							layer.msg("消息发送失败");
+							$('#err'+uuid)[0].style.display = "block"
+						}
+                    });
+                };
+                //监听发送消息
+                layim.on('sendMessage', function (res) {
+                    sendMessage(res.mine.id, res.mine.content,res.mine.uuid);
+                });
+                
+                $(".layim-chat-footer").prepend($("#fastTemplate").html())
+                $(".layim-chat-footer").on("click", ".message", function(){
+                    if (isSend) {
+                        return false;
+                    }
+                    layim.getMessage({
+                        username: "{$info.nick_name}",
+                        id: "{$info.id}",
+                        avatar: "{$info.avatar}",
+                        type: 'kefu',
+                        cid:0,
+                        content: $(this).text(),
+                        mine: true, 
+                        ism:true,
+                        timestamp: (new Date()).getTime()
+                    });
+                    sendMessage("{$info.id}", $(this).text());
+                })
+				$('body').on('click','.err',function(){
+					layer.confirm('重发当前消息？', {
+					btn: ['重发', '取消']
+					,btn1: function(index, layero){
+						$('#err'+error_msg.uuid)[0].style.display = "none";
+						sendMessage(error_msg.id,error_msg.content,error_msg.uuid);
+						var timer = setInterval(function(){
+							if(error_msg!={}){
+								layer.msg("消息发送失败");
+								$('#err'+error_msg.uuid)[0].style.display = "block";
+								clearInterval(timer);
+							}
+						},2000);
+						layer.close(index);
+					}});
+				});
+            });
+            
+            $("body").on("click",".layui-layim-photos",function(){
+                var json = {
+                        "title":"{:lang('查看图片')}",
+                        "id":"{$info.id}",
+                        "start":0,
+                        "data":[{
+                           "pid": "{$info.id}", //图片id
+                           "src": $(this).attr("src"), //原图地址
+                           "thumb": $(this).attr("src") //缩略图地址
+                        }]                        
+                    };
+                layer.photos({
+                    photos: json
+                    ,anim: 5 //0-6的选择，指定弹出图片动画类型，默认随机（请注意，3.0之前的版本用shift参数）
+                });
+            });
+        </script>
+    </body>
+</html>

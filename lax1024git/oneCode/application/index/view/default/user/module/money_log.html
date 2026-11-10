@@ -1,0 +1,12 @@
+{volist name='lists' id='row'}
+<div class="van-cell van-cell--large log-item">
+    <div class="van-cell__title">
+        <span>{$row.type}</span>
+        <div class="van-cell__label">{$row.create_time}</div>
+        <!--<div class="van-cell__label">{:lang('账变结果')}:{$row.user_money}</div>-->
+    </div>
+    <div class="van-cell__value">
+        <span class="{$row.money_type}">{$row.money}</span>
+    </div>
+</div>
+{/volist}

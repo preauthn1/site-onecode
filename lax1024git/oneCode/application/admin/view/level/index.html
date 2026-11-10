@@ -1,0 +1,56 @@
+{include file="header" /}
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>{:lang("等级列表")}</h5>
+        </div>
+        <div class="ibox-content">
+            <div class="form-group clearfix col-sm-1">
+                {if authCheck('level/add') }
+                <a href="{:url('level/add')}">
+                    <button class="btn btn-outline btn-primary" type="button">{:lang("添加等级")}</button>
+                </a>
+                {/if}
+            </div>
+            <!--搜索框开始-->
+            <form id='commentForm' role="form" method="post" class="form-inline pull-right">
+                <div class="content clearfix m-b">
+                    <div class="form-group">
+                        <label>{:lang("等级名称")}：</label>
+                        <input type="text" class="form-control" id="name" name="name">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="button" style="margin-top:5px" id="search"><strong>{:lang('搜索')}</strong></button>
+                    </div>
+                </div>
+            </form>
+            <!--搜索框结束-->
+            <div class="example-wrap">
+                <div class="example">
+                    <table id="cusTable">
+                        <thead>
+                            <th data-field="sort">{:lang("级别")}</th>
+                            <th data-field="level_name">{:lang("等级名称")}</th>
+                            <th data-field="img">{:lang("等级图片")}</th>
+							<th data-field="price">{:lang("充值升级金额")}</th>
+							<th data-field="dannum">{:lang("最高抢单数量")}</th>
+                            <th data-field="operate">{:lang("操作")}</th>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            <!-- End Example Pagination -->
+        </div>
+    </div>
+<!-- End Panel Other -->
+<script type="text/javascript">
+    function queryParams(params) {
+        params.searchText = $('#name').val();
+        return params;
+    }
+    $(document).ready(function () {
+        initTable();
+        $("#search").bind("click", initTable);
+    });
+</script>
+{include file="footer" /}

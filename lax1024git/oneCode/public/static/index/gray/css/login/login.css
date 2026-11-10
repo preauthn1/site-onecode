@@ -1,0 +1,86 @@
+#app {
+  height: 100vh;
+  width: 100vw;
+  background-image: url(../../images/login_bg.png);
+  /* background-color: #F4F0E7; */
+  background-repeat: no-repeat;
+  /* background-size: 100%; */
+  background-size: cover;
+}
+.reg .reg-box {
+  background: linear-gradient(180deg, #319F5F 0%, #FFFFFF 100%);
+  box-shadow: 0px 2px 20px 0px rgba(36, 76, 62, 0.1);
+  border-image: linear-gradient(180deg, #baffe7, #f9fdfc) 1 1;
+  padding: 0 21px;
+  padding-top: 27px;
+  padding-bottom: 18px;
+  border: 1px solid #fff;
+  border-radius: 10px;
+}
+.lg .login-box {
+  background: linear-gradient(180deg, #319F5F 0%, #FFFFFF 100%);
+  box-shadow: 0px 0.04830918rem 0.48309179rem 0px rgba(36, 76, 62, 0.1);
+  padding: 0.65217391rem 0.50724638rem 1.03864734rem 0.50724638rem;
+  border-image: linear-gradient(180deg, #baffe7, #f9fdfc) 1 1;
+  overflow: hidden;
+  border: 1px solid #fff;
+  border-radius: 0.24154589rem;
+}
+.loginBtn{
+  width: 100%;
+  height: 50px;
+  font-size:16px;
+  background: -webkit-linear-gradient(top,#787376,#1F1A1D);
+  border-radius: 8px;
+  color: #FFFFFF;
+  /* transition: width 0.3s; */
+}
+@Keyframes donut-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.donut {
+  display: none;
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #FFF;
+  border-radius: 50%;
+  width:40px;
+  height: 40px;
+  animation: donut-spin 1.2s linear infinite;
+}
+.btn-space1{
+	width: 88%;
+	padding:20px 0 20px 0;
+	position:absolute;
+	bottom:0px;
+}
+.van-field__control {
+	display: block;
+	box-sizing: border-box;
+	width: 100%;
+	min-width: 0;
+	margin: 0;
+	padding: 0;
+	padding-bottom: 4px;
+	color: #323233;
+	line-height: inherit;
+	text-align: left;
+	background-color: transparent;
+	border: 0;
+	resize: none
+}
+.form-panel{
+	margin-top:88px;
+}
+.van-field__body{
+	display: flex;
+	-webkit-box-align: center;
+	align-items: center;
+	background-color: #F7F2F5;
+	font-size: 18px;
+	padding: 8px;
+}

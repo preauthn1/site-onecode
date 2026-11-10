@@ -1,0 +1,22 @@
+body{
+  height: 100vh;
+}
+#app {
+  /* background-image: url(../../images/login_bg.png); */
+  background-color: #F7F5F4;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll; 
+}
+#app .van-nav-bar--fixed {
+  position: static;
+
+}
+#app .van-nav-bar{
+  background-color: rgb(109, 232, 188);
+}
+#app .van-nav-bar__left {
+  display: none;
+}

@@ -1,0 +1,22 @@
+<div class="ac-swiper">
+    <div class="swiper-wrapper">
+		{volist name='list' id='row'}
+        <div class="swiper-slide">
+				<div class="img-wapper">
+					<img src="{$row.thumb|toMedia}" alt="">
+				</div>
+        </div>
+		{/volist}
+    </div>
+    <div class="swiper-pagination"></div>
+</div>
+<div class="like-wapper">
+        <div class="like-name">You may like</div>
+		<div class="like-list">
+		{volist name='list' id='row'}
+            <div class="like-item">
+                <img src="{$row.thumb|toMedia}" class="cover">
+            </div>
+		{/volist}
+        </div>
+</div>

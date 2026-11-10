@@ -1,0 +1,37 @@
+#app {
+  /* background-image: url(../../images/login_bg.png); */
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  min-height: 100vh;
+}
+#app .wrap-box {
+  border: 1px solid #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  padding-top: 0px;
+}
+#app .wrap-box .wrap-box2 {
+  padding: 0.38647343rem;
+  /* background: linear-gradient(180deg, #319F5F 0%, #FFFFFF 100%); */
+  background-color: #FFF;
+  box-shadow: 0px 2px 0.48309179rem 0px rgba(36, 76, 62, 0.1);
+  border-image: linear-gradient(180deg, #baffe7, #f9fdfc) 1 1;
+}
+#app .wrap-box .wrap-box2 .card-form .van-cell {
+  height: 1.32850242rem;
+  background: #f3f3f3;
+  border-radius: 0.19323671rem;
+  margin-bottom: 0.38647343rem;
+}
+#app .wrap2 {
+  padding: 0.33816425rem;
+}
+#app .btn-rows {
+  margin: 0 0.33816425rem;
+  margin-top: 1.20772947rem;
+}
+#app .van-field__label {
+  font-weight: 500;
+  color: #333333;
+  font-size: 0.38647343rem;
+}

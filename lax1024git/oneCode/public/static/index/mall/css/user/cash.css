@@ -1,0 +1,22 @@
+#app {
+  height: 100vh;
+  width: 100vw;
+  background: #f2f2f2;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+.card-form{
+  background-color: #fff;
+  border-radius: 0.2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .3);
+  padding: 0 0.4rem;
+}
+.van-cell{
+  border-bottom: 1px dashed #999;
+}
+.van-cell:last-child{
+  border: none;
+}
+.van-field__body input{
+  text-align: right;
+}

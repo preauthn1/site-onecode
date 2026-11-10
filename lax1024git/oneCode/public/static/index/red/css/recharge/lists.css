@@ -1,0 +1,18 @@
+#app {
+  /* background-image: url(../../images/login_bg.png); */
+  background-size: 100%;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+#app .price-line {
+  margin-top: 0.24154589rem;
+  margin-bottom: 0.24154589rem;
+}
+#app .price-line .curreny {
+  font-size: 0.33816425rem;
+  color: #6B6B6B;
+}
+.van-cell--large .van-cell__title {
+  font-size: 0.38647343rem;
+  color: #333333;
+}

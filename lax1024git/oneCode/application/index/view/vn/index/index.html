@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{$site_title}</title>
+    {include file="public/js" /}
+</head>
+<body data-weui-theme='light' style="background: #F6F8FA;">
+<div id="app">
+    <div class="index-main">
+        <div class="uc-top" style="display: flex;">
+            <div class="uc-info">
+                {if $setting.logo}
+                <img class="logo" src="{$setting.logo|toMedia}" alt="">
+                {else}
+                <img class="logo" src="__IMG__/login.png?{$css_version}" alt="">
+                {/if}
+            </div>
+            <div class="middle">
+                <input type="text" onclick="window.location.href='/search'" class="van-field__control" placeholder="{:lang('搜索产品名称')}"/>
+            </div>
+            {if $setting.checkout_language eq 1}
+            <a class="checkoutLanguage form-lang-icon task-icon" href="javascript:;">
+                {:i18n_text()}
+            </a>
+            {else}
+            <a  href="{:url('user/index')}" class="task-icon"><img src="__IMG__/icon-me.png" alt=""></a>
+            {/if}
+        </div>
+        <div role="alert" class="van-notice-bar">
+            <i class="van-icon van-icon-volume-o van-notice-bar__left-icon"></i>
+            <div role="marquee" class="van-notice-bar__wrap">
+                <div class="van-notice-bar__content van-ellipsis">
+                    <div class="notice-swipe swiper-container swiper-notice" style="height: 40px;">
+                        <div class="swiper-wrapper">
+                            {volist name='notice_list' id='item'}
+                            <div class="swiper-slide">{$item.title|lang}</div>
+                            {/volist}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-container swiper-banner my-swipe">
+            <div class="swiper-wrapper">
+                {volist name='banner' id='vo'} 
+                <div class="swiper-slide">
+                    <a href="{$vo.link}"><img src="{$vo.pic}"/></a>
+                </div>
+                {/volist}
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+        </div>
+        <div class="index-menu">
+            {volist name='cates' id='cate'}
+            <div class="menu-item">
+                <a href="{:url('goods/index', ['cate_id' => $cate.id])}" class="index-menu-box">
+                    <div class="menu-icon"><img src="{$cate.pic|toMedia}" alt=""></div>
+                    <div class="txt">{$cate.name|lang}</div>
+                </a>
+            </div>
+            {/volist}
+        </div>
+        <div class="index-panel">
+            <div class="pic-cell">
+                <a href="javascript:;" class="weui-btn weui-btn_primary" id="grab" style="width: 80%;">{:lang('系统抢单')}</a>
+            </div>
+        </div>
+        
+        <div class="index-panel">
+            <div class="pic-cell">
+                {volist name='ad_list' id='ad'}
+                <a href="{$ad.url}"><img src="{$ad.thumb|toMedia}" alt=""></a>
+                {/volist}
+            </div>
+        </div>
+
+        <div class="sticky-box">
+            <div class="category">
+                <div class="swiper-container swiper-part list">
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next swiper-button-disabled"></div>
+                    <div class="swiper-wrapper">
+                        {volist name='part' id='item'}
+                        <div class="swiper-slide">
+                            <div class="tags {if $key eq 0}active{/if}" data-area='{$key}'>
+                                {$item.name|lang}
+                            </div>
+                        </div>
+                        {/volist}
+                    </div>
+                </div>
+            </div>
+            <div class="proList am-list-view-scrollview">
+                <div class="am-list-body">
+                    <div class="list-view-section-body"></div>
+                </div>
+                <div class="am-list-footer">
+                    <div style="padding: 5px; text-align: center;">
+                        <a href="{:url('goods/index')}" class="viewMore" style="display: none;">
+                            {:lang('查看更多')} &gt;&gt;
+                        </a>
+                        <span class="nodata">{:lang('没有数据')}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type='text/template' id='notice-content-template'>
+<div class="dialog-notice">
+<div class="dialog-notice-body">
+{$notice.content}
+</div>
+</div>
+<div class="dialog-close" ><i class="van-icon van-icon-close">&nbsp;</i></div>
+</script>
+{include file="public/lang" /}
+{include file="public/footer" /}
+<script>
+$(function(){
+new Swiper('.swiper-notice', {
+    direction: 'vertical',
+    loop: true,
+    autoplay: {
+        delay: 1500,
+        disableOnInteraction: false,
+    },
+});
+var swiper = new Swiper('.swiper-banner', {
+  spaceBetween: 30,
+  centeredSlides: true,
+  autoplay: {
+        delay: 4500,
+        disableOnInteraction: false,
+  },
+  pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+  },
+  navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+  },
+});
+var swiper = new Swiper(".swiper-part", {
+    slidesPerView: 3,
+    spaceBetween: 0,
+    navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+    },
+});
+var clipboard = new ClipboardJS('.shareIcon');
+clipboard.on('success', function(e) {
+    layer.msg('{:lang("分享链接已复制,赶快去分享吧")}');
+    e.clearSelection();
+});
+//        {if $notice}
+
+var $dialog = weui.dialog({
+    title: '{:lang("最新公告")}',
+    content: $("#notice-content-template").html(),
+    className: 'dialog-diy',
+    buttons: false
+});
+$("body").addClass('van-overflow-hidden');
+//      {/if}
+
+$('.dialog-close').click(function(){
+    $dialog.hide(function(){
+        $("body").removeClass('van-overflow-hidden');
+    });
+});
+
+function loadGoods(area) {
+    $.getJSON('/goods/list/html', {area:area}, function(res){
+        $(".list-view-section-body").html(res.data);
+        if (res.data) {
+            $(".viewMore").show();
+            $(".nodata").hide();
+        }else{
+            $(".viewMore").hide();
+            $(".nodata").show();
+        }
+    });
+}
+loadGoods(0);
+$(".tags").on('click', function() {
+    if ($(this).hasClass('active')) {
+        return;
+    }
+    $('.tags').removeClass('active');
+    $(this).addClass('active');
+    var area = $(this).data('area');
+    loadGoods(area);
+})
+var isGrab = false;
+function grab() {
+    $.post('/goods/grab', function(res){
+        if (res.code === 0) {
+            layer.msg(res.msg);
+            if(res.url != '')
+                window.location.href = res.url;
+            isGrab = false;
+        } else if (res.code == 1) {
+            window.location.href = res.url;
+        } else if (res.code == 8) {
+            $("#grab").text("{:lang('您的CP可能需要重新设置，因为CP正在和其他用户拼单')}");
+        } else {
+            window.setTimeout(function(){
+                grab();
+            }, 5000);
+        }
+    });
+}
+$("#grab").on('click', function() {
+    if (isGrab) {
+        return false;
+    }
+    $(this).text("{:lang('系统正在匹配订单中')}...");
+    $(this).addClass("weui-btn_disabled").removeClass("weui-btn_primary");
+    isGrab = true;
+    grab();
+});
+
+});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{$site_title}</title>
+    {include file="public/js" /}
+    <link rel="stylesheet" href="__COMM__/css/mobileSelect.css?{$css_version}" />
+    <script src="__COMM__/js/mobileSelect.min.js"></script>
+</head>
+<body data-weui-theme='light'>
+<div id="app">
+    {include file="public/header" /} 
+    <div class="wrap">
+        <div class="ads-panel">
+            <div class="card-form">
+                <div class="van-cell van-cell--center van-field">
+                    <div class="van-cell__title van-field__label"><span class="red">*</span>{:lang('USDT类型')}</div>
+                    <div class="van-cell__value van-field__value">
+                        <div class="van-field__body">
+                            <input type="hidden" id="usdt_type" name="usdt_type" value="{$userInfo.usdt_type}"/>
+                            <div id="selectBank" class="select-bank" style="cursor: pointer;display: block;width: 100%;text-align: left;">
+                                {if !$userInfo.usdt_type}
+                                    {:lang('请选择USDT类型')}
+                                {else}
+                                    <span class="bank_name">{$userInfo.usdt_type}</span>
+                                {/if}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="van-cell van-cell--center van-field">
+                    <div class="van-cell__title van-field__label"><span class="red">*</span>{:lang('USDT地址')}</div>
+                    <div class="van-cell__value van-field__value">
+                        <div class="van-field__body">
+                            <input type="text" name="usdt" id="usdt" value="{$userInfo.usdt}" placeholder="{:lang('请输入USDT地址')}" class="van-field__control">
+                        </div>
+                    </div>
+                </div>
+                <div class="van-cell van-cell--center van-field">
+                    <div class="van-cell__title van-field__label"><span class="red">*</span>{:lang('提现密码')}</div>
+                    <div class="van-cell__value van-field__value">
+                        <div class="van-field__body">
+                            <input type="password" name="paypwd" id="paypwd" placeholder="{:lang('请输入提现密码')}" class="van-field__control"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ads-tip">
+            <div class="hd">{:lang('温馨提示')}</div>
+            <div class="bd">
+                <p>{:lang('绑定USDT地址提示')}</p>
+            </div>
+        </div>
+        <div class="btn-rows van-row">
+            <button class="van-button van-button--warning van-button--normal van-button--block" onclick="next();">
+                {:lang('保存信息')}
+            </button>
+        </div>
+    </div>
+</div>
+<script>
+    var mobileSelect1 = new MobileSelect({
+        trigger: '#selectBank',
+        wheels: [
+            {data: [
+                {id:'TRC20', value:'TRC20'},
+                {id:'ERC20', value:'ERC20'},
+                {id:'OMNI', value:'OMNI'},
+                {id:'HECO', value:'HECO'},
+            ]}
+        ],
+        position:[0], //初始化定位 打开时默认选中的哪个 如果不填默认为0
+        ensureBtnText: "{:lang('确认')}",
+        cancelBtnText: "{:lang('取消')}",
+        callback:function(indexArr, data){
+            $("#usdt_type").val(data[0].id);
+        }
+    });
+
+//        {if condition="$userInfo['paypwd'] == ''"}
+
+            weui.dialog({
+                title: '{:lang("提示")}',
+                content: '{:lang("请先设置提现密码")}',
+                className: 'custom-dialog',
+                buttons: [{
+                    label: '{:lang("设置信息")}',
+                    type: 'primary',
+                    onClick: function () {
+                        window.location.href = '{:url("pass_word", ["type" => "pay"])}';
+                    }
+                }]
+            });
+//        {/if}
+    
+    // 下一步
+    function next() {
+        var usdt    = $('#usdt').val();
+        var usdt_type  = $('#usdt_type').val();
+        var paypwd  = $('#paypwd').val();
+        if(usdt_type == '') {
+            layer.msg('{:lang("请选择USDT类型")}');
+            return false;
+        }
+        if(usdt == '') {
+            layer.msg('{:lang("请输入USDT地址")}');
+            return false;
+        }
+        if(paypwd == '') {
+            layer.msg('{:lang("请输入提现密码")}');
+            return false;
+        }
+        weui.dialog({
+            title: '{:lang("提示")}',
+            content: '{:lang("确定保存, 提交后不能修改？")}',
+            className: 'custom-dialog',
+            buttons: [{
+                label: '{:lang("取消")}',
+                type: 'default',
+                onClick: function () {}
+            }, {
+                label: '{:lang("确认")}',
+                type: 'primary',
+                onClick: function () {
+                    $.ajax({
+                        type: "POST",
+                        url: '{:url("usdt")}',
+                        data: {
+                            usdt: usdt,
+                            usdt_type: usdt_type,
+                            paypwd: paypwd
+                        },
+                        dataType: 'json',
+                        success: function(res){
+                            if(res.code == 1){
+                                layer.msg(res.msg, function(){
+                                    location.href = '{:url("user/index")}';
+                                });
+                            } else {
+                                layer.msg(res.msg);
+                            }
+                        }
+                    })
+                }
+            }]
+        });
+    }
+</script>
+</body>
+</html>

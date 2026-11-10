@@ -1,0 +1,486 @@
+Nhận một đơn đặt hàng
+Nhận hoa hồng cao hơn cho cấp độ tiếp theo của các kênh độc quyền
+Mời thêm %d người nâng cấp lên
+Đơn đặt hàng có sẵn là :
+%s hoa hồng độc quyền là %s
+Tự động đặt hàng
+Thành quả hôm nay
+Tổng tài sản
+Hôm nay đã nhận được hoa hồng
+Số lượng đã đặt hàng hôm nay
+thu nhập hội nhóm hôm nay
+Mở khóa
+Chú thích đơn đặt hàng
+(1) Mỗi tài khoản có thể đặt %d đơn hàng
+(2) Hệ thống dựa trên công nghệ LBS và tự động khớp các sản phẩm thông qua đám mây tử động
+(3) Để loại bỏ sự giám sát của nền tảng, nếu đơn đặt hàng không được xác nhận và gửi trong vòng 2 phút hệ thống sẽ đóng băng số lượng đơn đặt hàng trong 48 giờ và hệ thống sẽ tự động giải phóng nó sau khi hết hạn
+Thời gian đặt hàng
+Số thự tự đặt hàng
+Tổng giá đơn hàng
+Hoa hồng
+Lợi nhuận mong đợi
+Hủy bỏ đơn đặt
+Lập tức gửi đi
+Bây giờ bạn vào điền thông tin nhận
+xác nhận
+hủy bỏ
+xem thêm
+Nạp Tiền
+Rút Tiền
+lời mời bạn bè
+giới thiệu doanh nghiệp
+Mô tả quy tắc
+Cấp độ thành viên
+Cập nhật bảo trì
+lễ kỷ niệm
+lựa nhiệm vụ
+Đơn hàng hôm nay đã đặt :
+Đơn hàng sản lượng dự kiến:
+Giảm giá số dư ước tính:
+Đợi mở khóa
+Danh sách thành viên
+chúc mừng
+Hôm nay đã hoàn thành %d đơn
+đang tải
+Kéo xuống để làm mới
+Hệ thống thông báo
+Không có số
+Kéo lên để làm mới
+Sao chép thành công
+Sao chép thất bại
+Đăng nhập
+Đăng ký
+Quên mật khẩu
+Tự động đăng nhập
+Vui lòng nhập tài khoản
+Vui lòng nhập mật khẩu
+Vui lòng điền số điện thoại
+Vui lòng điền mật khẩu
+Đăng nhập thành công
+Lấy lại mật khẩu
+Nhận mã xác mình từ điện thoại
+Số điện thoại
+Mã xác minh
+Gửi mã xác minh
+tiếp theo
+Vui lòng nhập mật khẩu mới
+mật khẩu
+Nhập lại mật khẩu
+Xác định chỉnh sửa
+Điền mã xác minh từ điện thoại
+Vui lòng xác nhận mật khẩu
+nhập 2 lần mật khẩu không khớp
+Chỉnh sửa thành công
+Nhấp góc trên bên phải
+Mở trong trình duyệt
+Vui lòng nhập số điện thoại
+Vui lòng nhập mã xác minh
+Hãy nhập họ và tên
+Hãy nhập mã giới thiệu
+Tôi đã biết và đồng ý với các điều khoản
+Đã có tài khoản , đăng nhập ngay
+Hãy nhập họ và tên
+Hãy nhập mã giới thiệu
+Vui lòng đồng ý với các điều khoản
+Đăng ký thành công
+Lịch sử đặt hàng
+Dữ liệu này được cung cấp bởi %s
+Số dư khả dụng
+Toàn bộ
+Đang chờ xử lý
+Đã hoàn thành
+Đóng băng
+Đóng băng đơn hàng
+trang chủ
+Lịch sử
+chăm sóc khách hàng
+Của tôi
+Chuyển tiền vào các tài khoản dưới đây
+Thời gian đến tài khoản : 5 phút
+Vui lòng chụp ảnh màn hình APP theo cách thủ công và lưu vào mã quét cục bộ
+Thiết bị đầu cuối WeChat có thể nhấn và giữ trực tiếp để xác định mã QR
+Tài khoản alipay
+Họ tên
+Số tiền nạp
+Thời gian thanh toán
+Thông tin ghi chú
+Tài khoản thanh toán
+Vui lòng nhập tài khoản thanh toán
+Hãy điền nhận xét
+Vui lòng nhập thông tin ghi chú thanh toán
+ID của tôi :
+Sao chép
+Các bạn nhớ copy thông tin nhận xét trong phần nhận xét chuyển khoản Alipay nhé! Rất tiện cho việc nhanh chóng đến nơi!
+Tôi đã hoàn thành thanh toán
+Hướng dẫn nạp tiền
+1. Bạn vui lòng copy thông tin thẻ ngân hàng trên, sau đó mở "Internet Banking" và xác nhận chuyển khoản, bấm "Tôi hoàn tất thanh toán".
+2. Các thao tác trên đã hoàn tất, vui lòng liên hệ bộ phận chăm sóc khách hàng kịp thời nếu trong vòng 5 phút mà tài khoản không nhận được
+Vui lòng điền vào tài khoản thanh toán
+Vui lòng điền vào các nhận xét
+Hướng dẫn nạp tiền
+Vui lòng nhập số tiền nạp
+cái khiên
+Nhắc nhở: Hơn 5000 tệ, vui lòng chuyển vào thẻ ngân hàng
+Hướng dẫn nạp tiền Alipay
+Hướng dẫn chuyển khoản ngân hàng Alipay
+Hướng dẫn nạp tiền WeChat
+Vui lòng chọn kênh thanh toán
+nạp tiền trên Alipay
+Chuyển khoản ngân hàng
+tôi biết
+Vui lòng điền số tiền nạp
+bộ lọc
+thời gian
+trạng thái
+%s đến %s
+Bắt buộc thẻ ngân hàng
+Lưu thông tin
+Xin lỗi, số dư của bạn không đủ
+Xin lỗi, bạn đã không hoàn thành %d đơn đặt hàng hôm nay và bạn có thể rút tối đa %s
+Xin lỗi, tài khoản không tồn tại
+ghi chú
+Ghi chú không được vượt quá 50 chữ
+Thông tin thực phải được điền và không thể sửa đổi sau khi ràng buộc. Vui lòng liên hệ CSKH nếu bạn cần thay đổi
+Tên thật phải được điền và không thể sửa đổi sau khi ràng buộc
+biên tập
+Chỉnh sửa địa chỉ giao hàng
+Tài khoản thử nghiệm, không thể sử dụng chức năng này
+Hủy đơn hàng
+Nạp tiền
+Nạp tiền để được thanh toán
+Phương thức nạp tiền sai
+lịch sử nạp tiền
+Số tiền nạp không được ít hơn %d
+Số tiền nạp lớn hơn 5000 tệ, vui lòng chuyển vào thẻ ngân hàng
+Số tiền nạp bị sai
+Trạng thái nạp tiền
+Đợi thanh toán
+Hiện tại còn 1 lệnh nạp tiền chưa hoàn thành, vui lòng kiểm tra lại hồ sơ nạp tiền để hoàn tất hoặc hủy
+khu vực
+Hết thời gian đăng nhập
+Vui lòng điền đầy đủ thông tin cá nhân cho lần rút tiền đầu tiên
+điện thoại
+số điện thoại
+hai
+cấp 2
+Gửi thành công
+Hoạt động bất hợp pháp
+Phần thưởng hoa hồng
+Tài khoản thanh toán không được vượt quá 50 chữ
+sao chép kết nối
+Thông tin cá nhân
+Thêm thông tin
+Cuộc gọi lại đã hết hạn, vui lòng đăng nhập lại
+Số người hoạt động
+đạt được thành công
+Vô hiệu hóa
+Mật khẩu cũ
+Lỗi mật khẩu cũ
+Mật khẩu cũ
+Mật khẩu rút tiền cũ không chính xác
+Thiết lập ngay bây giờ
+nhập 2 lần mật khẩu không khớp
+sáu
+cấp 6
+Rút tiền ngay
+Không có kênh thu tiền, vui lòng liên hệ với bộ phận chăm sóc khách hàng
+Bạn chỉ có thể đăng ký rút tiền một lần một ngày
+mật khẩu không được để trống
+Quản lý mật khẩu
+họ và tên
+Danh tính của bạn
+Thông tin thẻ ngân hàng của bạn
+Thông tin Alipay của bạn
+Bạn đã hoàn thành %d nhiệm vụ hôm nay
+Bảy
+cấp 7
+Đặt hàng thành công
+Nhận đơn đặt hàng
+Thân, để người khác lấy đi, lần sau nhanh lên
+Thân mến, tốc độ tay quá chậm, tiếp tục
+Thân mến, tôi đang nhận một đơn đặt hàng cho bạn
+Nếu bạn không lấy được đơn hàng, vui lòng liên hệ với bộ phận chăm sóc khách hàng
+Vui lòng liên kết thẻ ngân hàng
+Hãy thêm Alipay
+Vui lòng nhập mật khẩu cũ
+Vui lòng nhập thông tin nhận dạng của bạn
+Vui lòng nhập mật khẩu rút tiền của bạn
+Vui lòng nhập thông tin thẻ ngân hàng của bạn
+Vui lòng nhập mật khẩu rút tiền
+vui lòng nhập mã xác nhận
+Vui lòng nhập số tài khoản ngân hàng
+Vui lòng nhập tên ngân hàng
+vui lòng nhập tên thật của bạn
+Vui lòng nhập tài khoản Alipay
+Vui lòng điền vào khu vực
+Vui lòng điền vào tài khoản thanh toán
+Vui lòng điền số tiền rút
+Vui lòng điền vào địa chỉ chi tiết
+Vui lòng điền vào ghi chú của người dùng
+Vui lòng điền mã zip
+Vui lòng điền tên thật của bạn
+Vui lòng đồng ý với "Thỏa thuận dịch vụ"
+Không gửi nhiều lần
+Vui lòng đặt mật khẩu rút tiền trước
+Vui lòng chọn số tiền nạp
+vui lòng chọn kênh rút tiền
+xin vui lòng đăng nhập lại
+Thiếu các thông số bắt buộc
+xác định
+Bạn có chắc chắn lưu, không thể sửa đổi sau khi gửi?
+Xác nhận sửa đổi mật khẩu đăng nhập
+Xác nhận sửa đổi mật khẩu rút tiền
+Xác nhận mật khẩu
+số ba
+cấp 3
+xóa bỏ
+Đặt làm địa chỉ thường dùng
+Cài đặt thông tin
+Ứng dụng thành công
+Ứng dụng không thành công
+đề nghị
+duyệt thất bại
+được duyệt
+có sử dụng phổ biến không
+Địa chỉ giao hàng
+Bản ghi địa chỉ nhận
+Thông tin địa chỉ giao hàng
+Nhận thông tin nhận dạng
+Kênh thanh toán bị sai, vui lòng liên hệ với bộ phận chăm sóc khách hàng
+Nhận tài khoản
+Tính toán thu nhập
+số điện thoại
+Số điện thoại không được để trống
+Định dạng số điện thoại sai
+bốn
+cấp 4
+tìm kiếm
+Các loại
+gửi thành công
+Gửi thất bại
+rút tiền
+lịch sử rút tiền
+Hướng dẫn rút tiền
+Số tiền rút
+Số tiền rút ít hơn %d và việc gửi đơn hàng không thành công
+Số thẻ tiền mặt
+Loại rút tiền sai
+mật khẩu rút tiền
+Mật khẩu rút tiền không chính xác
+Rút tiền không thành công
+Tài khoản rút tiền
+Tình trạng rút tiền
+Thêm thành công
+Thêm địa chỉ
+Thêm địa chỉ giao hàng
+thêm số tài khoản ngân hàng
+hình đại diện
+Cài đặt hình đại diện
+Báo cáo nhóm
+số người hội nhóm
+Lợi ích nhóm
+quảng bá hải ngoại
+đăng xuất
+Không có khu vực nào được nhập, vui lòng cài đặt
+Không có số điện thoại được nhập, vui lòng cài đặt
+Không có địa chỉ chi tiết được nhập, vui lòng đặt
+Không có số thẻ ngân hàng được nhập, vui lòng đặt
+Không có tên ngân hàng được nhập, vui lòng đặt
+Mã bưu điện chưa được nhập, vui lòng cài đặt
+Không có tên thật được nhập, vui lòng cài đặt
+Alipay chưa được nhập, vui lòng đặt
+Thiếu thông tin nhận
+
+số điện thoại di động của tôi
+Thẻ ngân hàng của tôi
+PayPal của tôi
+Tôi đã đồng ý với "Thỏa thuận dịch vụ"
+năm
+cấp 5
+Thay đổi hệ thống
+Tài khoản hệ thống
+Lưu Ý :
+Địa chỉ chi tiết
+Người mới
+thông báo tin nhắn
+Thông tin sai
+không thể chỉnh sửa
+Sửa đổi thông tin yêu cầu xác minh mật khẩu rút tiền
+Đã xác minh thành công
+mã giới thiệu:
+Mã mời không tồn tại
+người mời
+Một
+cấp 1
+đã trả về
+Đã hủy
+Đã thanh toán
+đã chuyển ra
+đã chuyển vào
+ngân hàng
+Thẻ ngân hàng
+Nạp thẻ ngân hàng
+số tài khoản ngân hàng
+Rút tiền từ thẻ ngân hàng
+tên ngân hàng
+Hoàn lại tiền hoa hồng
+tài khoản tồn tại
+tài khoản thoát ra
+Mã bưu điện
+số dư
+Thiếu cân bằng
+Không có dữ liệu
+kết quả thay đổi tài khoản
+
+Chi tiết tài khoản
+Số dư tài khoản:
+Không thể lấy đơn đặt hàng nếu số dư tài khoản nhỏ hơn %d
+tên thật
+bình thường
+Alipay
+Alipay có hạn mức 10.000 trong ngày rút tiền, vui lòng rút về thẻ ngân hàng của bạn
+Hạn mức rút tiền Alipay trong ngày là 10.000, vui lòng rút về thẻ ngân hàng của bạn
+Rút tiền qua Alipay
+thanh toán thành công
+Thanh toán không thành công
+số người cấp 1
+thời gian đăng ký
+Nhập Mật khẩu rút tiền
+tổng số người nạp
+Người dùng thân mến, để bảo vệ sự an toàn cho số tiền của bạn, vui lòng ràng buộc tên thật của bạn và đặt mật khẩu rút tiền.
+bạc hội viên
+Tích lũy doanh thu nhóm
+đơn vị
+₫
+Lệnh trên đám mây Pinduuo
+Vẫn chưa có tài khoản
+Vui lòng nhập thông tin Alipay của bạn
+Rút tiền tối đa
+Để hoàn thiện thông tin cá nhân
+đa ngôn ngữ
+Chọn một ngôn ngữ
+/upload/image/20200825/tab8-1.png
+/upload/image/20200825/tab8-2.png
+/upload/image/20200913/d49db18fd9e015a05027259105b0ba70.png
+/upload/image/20200913/5da62f76b043a6a8496a10d9f5f67158.png
+/upload/image/20200825/tab10.png
+/upload/image/20200825/tab10.png
+/upload/image/20200825/tab11-1.png
+/upload/image/20200825/tab11-2.png
+/upload/image/20200825/tab12-1.png
+/upload/image/20200825/tab12-2.png
+/upload/image/20200825/Shopee.png
+/upload/image/20200825/Lazada.png
+/upload/image/20200825/Tiki.vn.png
+/upload/image/20200825/Amazon.png
+/upload/image/20200825/eBay.png
+Shopee
+Lazada
+Tiki.vn
+Amazon
+eBay
+/upload/image/20200825/icon8.png
+/upload/image/20200825/qiangdan-bg.png
+/upload/image/20200825/login-bg.png
+/upload/image/20200825/share-bg.png
+/upload/image/20200825/status1.png
+/upload/image/20200825/status2.png
+Android
+iOS
+Tên đăng nhập hoặc mật khẩu không chính xác
+/upload/image/20200825/icon6.png
+/upload/image/20200825/icon21.png
+/upload/image/20200825/info-bg.png
+/upload/image/20200827/9074cd0847c6cfca9f80bfd39e60dad9.png
+Bạch kim hội viên
+Tối cao hội viên
+vàng hội viên
+Thành viên kim cương
+/static/index/sgo/images/alipay.png
+/upload/image/20200908/795716d3b7b2c9b39d4903f7ef8efdf3.png
+Nhiệm vụ của bạn cho ngày hôm nay đã kết thúc
+Nếu bạn không quay đủ 50 đơn hàng bạn chỉ có thể rút 10% tổng số vốn bạn đang có. Mỗi tháng miễn phí rút tiền 1 lần, sau đó sẽ tính phí 5% số tiền bạn muốn rút
+Nạp tiền đã hoàn thành
+Hình thức thanh toán
+Tài khoản thanh toán
+Chọn một loại
+Hệ thống dịch vụ khách hàng chưa được bật
+đồng
+bạc
+vàng
+kim cương
+vua
+Chọn biểu tượng cảm xúc
+Nội dung không được vượt quá %d ký tự
+tải lên hình ảnh
+gửi
+Xin chào tôi có thể giúp bạn?
+Tài khoản đã tồn tại
+Thông tin đặt hàng không tồn tại đã được hoàn thành
+Vui lòng nhập mật khẩu quỹ
+Tin nhắn nội dung không được để trống
+Mã xác minh không chính xác
+Mã xác minh đã hết hạn
+Ngân hàng trực tuyến
+chọn thanh toán bằng tiền mặt
+CSKH
+Gọi cho chăm sóc khách hàng nếu gặp vấn đề
+Hỏi ngay
+Gọi cho CSKH khi gặp vấn đề
+thao tác thành công
+thao tác thất bại
+quay lại
+Nạp tiền thất bại
+lời nhắc
+thanh toán
+Hướng dẫn cài đặt
+Liên kết tải xuống
+Địa chỉ tải xuống thay thế
+Nếu phiên bản IOS không thể tải xuống bình thường, vui lòng gỡ cài đặt phiên bản gốc
+Nếu phiên bản IOS không tải được bình thường, vui lòng gỡ cài đặt phiên bản gốc và tải về cài đặt lại.
+Nhấp để mở phiên bản web
+Nhắc nhở: nhấp trực tiếp vào nút liên kết trên điện thoại di động WAP để truy cập
+số tài khoản ngân hàng
+Gửi thất bại
+Lỗi hoạt động
+Thẻ ngân hàng đã được liên kết với một tài khoản khác
+Số tiền gửi tối đa là [20.000.000] VND
+Số tiền tối thiểu cho một lần nạp tiền của người dùng là [350.000] VND
+Kênh hiện không mở
+Yêu cầu đã hết thời gian chờ
+Video hướng dẫn nạp tiền
+Lỗi mã xác minh
+Chưa đáp ứng yêu cầu mở đầu
+Quy tắc truy vấn
+Vui lòng điền mã xác minh
+hôm nay bạn đã điểm danh
+Nhiệm vụ hôm nay chưa hoàn thành
+hôm nay Bạn đã điểm danh để nhận thưởng, điểm danh thất bại
+điểm danh  thành công
+hoàn thành
+Hoạt động Chưa mở Khóa
+Nhận +
+VND
+Kỷ lục phần thưởng
+Hồ sơ đăng ký
+
+tài khoản điểm danh tặng
+Tài khoản bị vô hiệu hóa
+phúc lợi
+Giải thưởng hoạt động
+Hệ thống tiền tệ
+tích phân
+Vuốt sang phải để điền vào câu đố
+thử lại
+phần thưởng
+hôm nay Bạn đã điểm danh để nhận thưởng, điểm danh thất bại
+check-in
+Trung tâm hoạt động
+Nạp tiền thưởng
+phần thưởng hoàn thành
+xảy ra lỗi trên giao diện hệ thống á
+Hủy thành công
+Tài khoản hoặc ngân hàng không chính xác,vui lòng liên hệ  CSKH
+Tài khoản hoặc ngân hàng không chính xác,vui lòng liên hệ  CSKH
+Tài khoản hoặc ngân hàng không chính xác,vui lòng liên hệ  CSKH
+Ảnh đã chọn có định dạng không được hỗ trợ

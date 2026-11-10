@@ -1,0 +1,135 @@
+
+#app {
+  /* background-image: url(../../images/login_bg.png); */
+  background-color: #F4F0E7;
+  background-size: 100%;
+  background-repeat: no-repeat;
+
+}
+.box2 {
+  margin-left: 0.43478261rem;
+  margin-right: 0.43478261rem;
+}
+
+.box2 .item .rt-box {
+  flex: 1;
+  overflow: hidden;
+}
+
+.box2 .item .rt .title {
+  color: #333333;
+  font-weight: 500;
+  font-size: 0.33816425rem;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  word-break: break-all;
+  overflow: hidden;
+}
+.box2 .item .rt .price-box {
+  display: flex;
+  -webkit-display: flex;
+  -ms-display: flex;
+  -o-display: flex;
+  align-items: baseline;
+  margin-top: 0.24154589rem;
+}
+.box2 .item .rt .price-box .price1 {
+  color: #1b3738;
+  font-weight: 500;
+  font-size: 0.43478261rem;
+  margin-right: 0.14492754rem;
+}
+.box2 .item .rt .price-box .price2 {
+  color: #BEBEBE;
+  font-weight: 500;
+  font-size: 0.26570048rem;
+  text-decoration: line-through;
+}
+.box2 .item .rt .btm {
+  display: flex;
+  -webkit-display: flex;
+  -ms-display: flex;
+  -o-display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  margin-top: 0.24154589rem;
+}
+.box2 .item .rt .btm .yongjin {
+  display: inline-block;
+  height: 0.60386473rem;
+  padding: 0 0.19323671rem 0.19323671rem 0.5rem;
+  line-height: 0.60386473rem;
+  text-align: center;
+  background: #F4F0E7;
+  border-radius: 0.5rem 0 0 0.5rem;
+  font-size: 0.24154589rem;
+  color: #000000;
+  font-weight: 500;
+  margin-right: -8px;
+}
+.box2 .item .lt .share {
+  position: absolute;
+  padding :8px;
+}
+.category-box .tab {
+  display: flex;
+  -webkit-display: flex;
+  -ms-display: flex;
+  -o-display: flex;
+  /* height: 1.18357488rem; */
+  align-items: center;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  background: transparent;
+  position: relative;
+  /*margin-top: 0.36231884rem;*/
+}
+.category-box .tab .item {
+  flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  -o-flex: 1;
+  color: #1b3738;
+  font-weight: 500;
+  font-size: 0.38647343rem;
+  text-align: center;
+  padding: 16px;
+  border-bottom: 1px solid #1b3738;
+}
+.category-box .tab .active {
+  /* color: #093324; */
+  background: #1b3738;
+  color: #FFFFFF;
+}
+.category-box .tab .btm_line {
+  position: absolute;
+  bottom: 0;
+  width: 50%;
+  left: 0;
+  height: 100%;
+  color: #FFF0F0;
+  background: #1b3738;
+  color: #000000;
+  /* transition: all 0.5s; */
+}
+.category-box .addTab{
+  position: fixed;
+  top: 64px;
+  left: 0;
+  width: 100%;
+  background: rgb(255, 255, 255);
+  margin-top: 0px;
+}
+
+.box2 .item {
+    background-color: #FFFFFF;
+	margin-top: 16px;
+    width: 48%;
+    overflow: hidden;
+}
+

@@ -1,0 +1,24 @@
+<div class="form-group">
+    <label class="col-sm-3 control-label">{:lang("默认佣金比例")}：</label>
+    <div class="input-group col-sm-2">
+        <input type="text" class="form-control" name="pd_rate_default" value="{$config.pd_rate_default|default=5}">
+        <span class="input-group-addon">%</span>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label"><h3>{:lang("价格划分")}</h3></label>
+</div>
+{volist name='pd_part' id='row'}
+<div class="form-group">
+    <div class="input-group col-sm-6 col-sm-offset-2">
+        <input type="text" class="form-control" name="pd_name_{$key}" value="{$config['pd_name_' . $key]|default=$row.name}">
+        <span class="input-group-addon">拼单价格</span>
+        <input type="number" class="form-control" name="pd_price_min_{$key}" value="{$config['pd_price_min_' . $key]|default=$row.price_maxin}">
+        <span class="input-group-addon">-</span>
+        <input type="number" class="form-control" name="pd_price_max_{$key}" value="{$config['pd_price_max_' . $key]|default=$row.price_max}">
+        <span class="input-group-addon">佣金比例</span>
+        <input type="number" class="form-control" name="pd_rebate_ratios_{$key}" value="{$config['pd_rebate_ratios_' . $key]|default=$row.rebate_ratios}">
+        <span class="input-group-addon">%</span>
+    </div>
+</div>
+{/volist}

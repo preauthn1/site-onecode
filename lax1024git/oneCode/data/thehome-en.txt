@@ -1,0 +1,462 @@
+Scramble for an order
+More commission after upgrading to the next level of membership with specific channel  
+Upgrade by inviting another %d people
+The order available of being scrambled for
+%s commission through %s specific channels
+Automatically scramble for an order 
+Performance today 
+Total assets 
+Commission today 
+Order numbers today 
+Team incomes today 
+Unlock 
+Instructions of scrambling for an order
+(1) %d Orders can be scrambled for daily each account.
+(2) The commission for scrambling for an order by %s users is uniformly %s of such order amount.
+(3) The system can automatically find the matched products online based on LBS technology. 
+(4) To avoid platform monitoring and if an order cannot be confirmed and submitted within 2 minutes after being matched to products by the system, the system will freeze the amount of such order for 48 hours. After that, the system will automatically unfreeze it.  
+Time for scrambling for an order 
+Number of  an order scrambled for 
+Order amount 
+Commission  
+Expected refund
+Cancle an order scrambled for 
+Submit now 
+Fill in products receiving information now 
+Confirm 
+Cancel
+For more details 
+Recharge now 
+Rapid withdrawl  
+Invite friends 
+Company profile 
+Rules   The platform
+Membership level 
+Maintain and upgrade 
+Company culture 
+Task claiming page 
+Orders grabbed today 
+Expected order receipts 
+Expected rebate of residual amount 
+To be unfreezed 
+Membership Rank List 
+Congratulation 
+%d orders obtained today
+Loading 
+Scroll down the collumn for refreshing 
+Announcement in the system 
+No data 
+Scroll up the collumn for refreshing 
+Copy completed 
+Copy failed 
+Login 
+Register 
+Forget password 
+Automatic login 
+Please enter user name 
+Please enter password 
+Please enter phone number 
+Please enter password 
+Login successfully 
+retrieve password 
+Please verify on your phone 
+Phone number 
+Verification code 
+Send verification code 
+Next step 
+Please enter your new password 
+Password 
+Please enter password again 
+Confirm changes 
+Please enter the verification code on your phone 
+Please confirm your password 
+Two passwords do not match 
+Correction finished 
+Please click on the right upper corner 
+Open it on your browser 
+Please enter your phone number 
+Please enter the verification code on your phone 
+Please enter your nickname 
+Please fill in the invitation code 
+Please agree to all articles of "Agreement to Open an Account"
+Register successfully 
+Records for scrambling for orders 
+The data is supplied by %s officially
+Residual assets to be disposed 
+All 
+to be finished 
+Finished 
+Freezing 
+Unfreeze an order 
+Front page 
+Record 
+Customer service hotline 
+Mine 
+Please put more money into the following account 
+Transferring time: 5 minutes 
+Please manually snap a screenshot with APP, store it on your phone photo library and scan it 
+Long press on Wechat to identify the QR code directly 
+Alipay account 
+Name 
+Recharging amount 
+Bill time 
+Notes 
+Account of payment 
+Please enter the account of payment 
+Fill in notes 
+Please enter notes when paying 
+My ID: 
+Copy 
+Please transfer amount to decimal points to avoid recharging delayed 
+Payment made 
+Instructions to recharge 
+1. Please copy the above bank account (Alipay account) information, open Alipay, Wechat or Online bank, transfer money to the following account, and then confim payment.  
+2. After payment made, if the transfer is not finished successfully within 5 minutes, please contact us by customer services hotline timely. 
+Please fill in payment account number 
+Please fill in notes 
+Instructions to recharge 
+Please fill in recharging amount 
+Yuan 
+Tip: Please transfer to bank account for more than 5000 RMB. 
+A course of recharging  by Alipay 
+A course of transferring money to bank account by Alipay 
+A course of recharging on Wechat 
+Please choose payment channel 
+Recharge by Alipay 
+Transferring money to a bank account 
+I see 
+Please fill in recharging  amount 
+Select 
+Time  
+State 
+%s to %s
+Link it to a bank account 
+Store information 
+Sorry, your balance is insufficient. 
+Sorry, with %d orders unfinished, you only can get %s commission at maximum.
+Sorry, invalid account 
+Notes 
+No more than 50 character strings in note collumn  
+Authentic information is necessary and cannot be corrected after linking. 
+True name is necessary and cannot be corrected after linking. 
+Edit 
+Edit the address to receive goods 
+The function of account testing is not available. 
+Cancel an order 
+Recharge 
+Recharged order to be paid 
+Recharge method error 
+Record for recharge 
+The amount to be recharged shall not be less than %d. 
+Please transfer to bank account if the recharging amount is more than 5000 Yuan. 
+Recharging amount error 
+Recharging state 
+To  be paid 
+There is a unfinished order that has been recharged currently. Please check recharging record to cancel the order or finish it. 
+Region 
+Login timeout 
+Please complete personal information for withdrawl for the first time. 
+Telephone 
+Phone number 
+Two  
+The second level 
+Sent successfully 
+Illegal operation 
+Sub-commission reward 
+No more than 50 character strings for payment account 
+Copy the link 
+Personal information 
+For more details 
+Reply time expires. Please login again. 
+Active users number 
+Obtained successfully 
+Not allowed 
+Old password 
+Old password error 
+Old password for withdrawl 
+Error in old password for withdrawl 
+Set up now 
+Two passwords do not match 
+Six 
+The sixth level 
+Withdraw now 
+If you have no channel to receive payment, please contact customer service staff. 
+You can only apply for withdrawl once each day. 
+Password field cannot be empty. 
+Password management 
+Nickname 
+Your ID
+Your bank card information 
+Your Alipay information 
+You have finished % of order tasks today
+Seven 
+The seventh level 
+Order grabbed successfully 
+Payment for order grabbed 
+Dear, the order has been grabbed by another person. Be quicker next time. 
+Dear, you are too slow to get it. Good luck next time. 
+Dear, the order is being grabbed for you. 
+Dear, please contact our customer service staff if you fail to grab an order with abnormal situation occuring. 
+Please link to a bank card 
+Please link to Alipay account 
+Please enter old password 
+Please enter your ID information 
+Please enter your password for cashing out 
+Please enter your bank card information 
+Please enter password for withdrawl 
+Please enter verification code 
+Please enter bank account number 
+Please enter bank name 
+Please enter true name 
+Please enter Alipay account 
+Please fill in region 
+Please fill in payment account information 
+Please fill in the amount to be withdrawn
+Please fill in detailed address 
+Please fill in user notes 
+Please fill in zip code 
+Please fill in true name 
+Please agree to "Agreement to Services" 
+Please do not repeatedly submit 
+Please set up password for withdrawl first 
+Please choose recharging amount 
+Please choose the method of withdrawl 
+Please login again 
+Lack of necessary parameter 
+Confirmed 
+Confirm to store with correction after submission. 
+Confirm to correct password for login 
+Confirm to correct password for withdrawl  
+Confirm passwrod 
+Three 
+The third level 
+Delete 
+Set up as regular address 
+Set up information 
+Application finished 
+Applicaton failed 
+Applying 
+Verification failed 
+Verification passed 
+Frequently used or not 
+Address to receiving goods 
+Record of address to receiving goods 
+Information on address to receiving goods 
+Recipient information 
+Please contact our customer services staff if there is error in your billing method and information. 
+Recipient account number 
+Income calculation 
+Phone number 
+The phone number field shall not be empty. 
+phone number format error 
+Four 
+The forth level 
+Search 
+All types 
+Submitted 
+Submission failed 
+Cash out  
+Record for withdrawl 
+A course of withdrawl
+Amount to be withdrawn
+An order cannot be submitted if the amount to be withdrawn is less than %d.
+Number of bank card for withdrawl 
+Type of withdrawl error 
+Password for withdrawl 
+Error in password for withdrawl 
+Fail to withdraw 
+Number of bank account for withdrawl 
+withdrawl  state 
+Added 
+Add an address 
+Add an address to receive goods 
+Add a bank card 
+Profile photo 
+Set up profile photo 
+Team report 
+team member number 
+Team income 
+Promotion by posts 
+Logout 
+Please enter region . 
+Please enter phone number 
+Please enter detailed address 
+Please enter bank card number 
+Please enter bank name 
+Please enter zip code 
+Please enter true name 
+Please enter Alipay information 
+fail to enter good receiving information 
+Warm Reminder: Dear members, to make sure smooth cash out by members, the system cannot support rural credit union or rural commercial bank. You are suggested cashing out through the regular 4 major banks or other banks. Thank you for your cooperation! 
+My phone number 
+My bank card 
+My Alipay 
+I have agreed to Agreement to Services 
+Five 
+The fifth level 
+Changes to the system 
+System account number 
+Detailed address 
+Newly added person number 
+Announcement 
+Information error 
+Correction failed 
+The password for cashing out should be verified if information needs to be corrected 
+Verified successfully 
+Invitation code 
+Invitation code null and void 
+Invitor 
+One 
+The first level 
+Rejected 
+Cancelled 
+Paid 
+Transferred out 
+Transferred in 
+Bank 
+Bank card 
+Bank card recharge 
+Bank card number 
+bank card withdrawl 
+Bank name 
+Commission returned 
+User deposit ---pay into 
+User deposit--- withdraw 
+Zip code 
+Balance 
+insufficient balance 
+No data now 
+Account changes 
+Account amount 
+Account details 
+Account balance 
+Unable to scramble for an order with account balance less than %d
+True name  
+Normal 
+Alipay  
+The upper limit for withdrawl on Alipay is 10,000 RMB today. Please withdraw the amount by your bank card. 
+The upper limit for withdrawl on Alipay is 10,000 RMB today. Please withdraw the amount by your bank card. 
+Withdrawl on Alipay 
+Paid successfully 
+Fail to pay 
+Number of customers promoted and converted directly by you  
+Registration time 
+capital password 
+Total number of users 
+Dear users, to safeguard your capital security, please make sure your name and password for money withdrawl are true. If there is any discrepancy between your name and opening bank name, you will not able to withdraw money. 
+Silver membership 
+Accumulated team incomes 
+Order 
+￥
+Order on online shopping platform Pinduoduo
+No account 
+Please enter your Alipay information 
+The maximum withdrawl amount 
+Complete your personal information 
+Multi languages 
+Choose language 
+/upload/image/20201124/416920e0181b3a02f6ce959701b701d1.png
+/upload/image/20201124/d0c7c4abe86ae4ecdafd15176ba8b3e3.png
+Android 
+Iphone 
+Account number or password error 
+/static/index/sgo/images/icon6.png
+/upload/image/20201112/d14d4a362971a796cf4660713a302748.png
+/static/index/parttime/images/info-bg.png
+Choose  meme
+No longer than %d character strings
+Upload picture 
+Send  
+Allow %s to poineer your path towards wealth
+/upload/image/20201112/2a3bd0205394831050c1249891cfd55a.png
+Grabbing for an order at full tilt. You will see the result below 
+Login with password 
+Register an account number 
+Switch to another language 
+Version 
+Directly download with your exsiting account 
+/upload/image/20201026/5eeca5367577f389d59ebea6cae07c49.png
+Login soon with existing account
+Video Guidance
+Yu' E Bao
+Rapid Topup
+Payment Method
+Options
+Online Banking
+Payment Account
+Upload Payment Receipt
+Account Balance
+Accumulated Income
+Estimated Income
+Balance Transferred
+Income Standard
+Transfer Into
+Transfer Out
+Please enter the amount to be transferred
+3 days
+7 days
+day
+60 days
+Business Partner
+Scramble for an order at full tilt
+Gloden Membership
+Platinum Membership
+Diamond Membership
+Online Customer Services
+Contact Customer Services Staff if you have any question.
+Consult Now
+Customer Support Services for Zalo Official Benefits
+Hello, how can I help you?
+Hi,may I help you?
+Account
+Account
+Login Password
+Login Password
+Save
+Save
+Deleted
+Deleted
+India
+India
+Please choose income standard
+Please choose income standard
+Please fill in amount
+Please fill in amount
+Withdrawl Record
+Withdrawl Record
+Deposit Record
+Deposit Record
+Records for Deposit and Withdrawl with Yu' E Bao
+Records for Deposit and Withdrawl with Yu' E Bao
+Customer Support Services for Zalo Official Withdrawl
+Customer Support Services for Zalo Official Withdrawl
+Please enter capital password
+Please enter capital password
+Paying
+Paying
+Please enter payment account number
+Please enter payment account number
+Black Diamond Membership
+Black Diamond Membership
+Yellow Diamond Membership
+/upload/image/20201107/408cc28ca2f4aeb1b62e19d017691822.png
+It's the end
+jump
+operation failed
+select your bank
+Please enter the referral code
+I have known and agreed to the treaties of the "Account Opening Agreement"
+download link
+Go directly to the H5 version
+Dear, you have not completed 30 orders and cannot apply for cash withdrawal. Please be aware
+Limit description
+Verification code has expired
+Cooperative agent
+Verification code error
+Your task for today has been completed
+Deposit to Yu'E Bao reminder
+Deposit
+Deposit time
+Settlement time
+take out
+Cannot withdraw before settlement time

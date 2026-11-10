@@ -1,0 +1,110 @@
+.layim-panel {
+  /* background-image: url(../../images/login_bg.png); */
+  background-image: #F4F0E7;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+.layim-chat-send input {
+  background-color: #ebece9 !important;
+  border-radius: 0;
+}
+.layim-chat-fastmsg .message {
+  background: #FFFFFF;
+  border-radius: 0.48309179rem;
+  margin-left:16px;
+}
+.layim-chat-footer {
+  height: auto !important;
+}
+.layim-chat-send {
+  display: flex;
+  align-items: center;
+  height: 75px;
+  background-color: #e9ecf1;
+  justify-content: center;
+  padding-left: 16px;
+}
+.layim-chat-send .send-box {
+  display: flex;
+  height: 40px;
+  width: 68%;
+  border-radius: 8px;
+  overflow: hidden;
+  justify-content: space-between;
+  background-color: #EBF5F3;
+}
+.layim-chat-footer {
+  left: 0 !important;
+  right: 0 !important;
+  width: 100%;
+}
+.layim-chat-send button {
+  background-color: #eee;
+  height: 38px !important;
+  padding: 0px 24px 0px 24px !important;
+  /* width: 6.03864734rem; */
+  background: -webkit-linear-gradient(top,#787376,#1F1A1D) !important;
+  border-radius: 8px;
+  margin-right: 16px;
+}
+.layim-chat-tool {
+  margin-top: 0px !important;
+  height: 56px !important;
+  width: auto !important;
+  padding-left: 4px !important;
+}
+.layim-chat-fastmsg {
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: #f6ebe6;
+  padding: 8px 0 8px;
+  width: 100%;
+}
+.layim-chat-fastmsg .message {
+  border: 0px;
+  padding: 2px 8px;
+  border-radius: 20px;
+  background: #FFFFFF;
+}
+.layim-chat-tool span {
+  margin: 0px !important;
+  display: flex !important;
+  justify-content: flex-end;
+  overflow: hidden;
+  margin-right: 0.72463768rem !important;
+}
+.layim-chat-tool {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.layim-tool-image .file{
+	right: 88px;
+	top: 55px;
+	width: 72px;
+	height: 50px;
+}
+.layim-content{
+	background-color:#fffeff;
+}
+.layim-chat-text{
+	background-color: #000000;
+}
+.layim-chat-text{
+	color: #FFF !important;
+	background-color: #1F1A1D !important;
+}
+.layim-chat-text:after{
+	display: none;
+	/* border-top-color: #1F1A1D !important; */
+}
+.layim-chat-mine .layim-chat-text {
+    background-color: #fffeff !important;
+    color: #1F1A1D !important;
+	box-shadow: #f0f0f0 0px 0px 8px 1px;
+}
+.layim-chat-mine .layim-chat-text:after {
+	display: none;
+    /* border-top-color: #5FB878 !important; */
+}

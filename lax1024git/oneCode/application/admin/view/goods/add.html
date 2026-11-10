@@ -1,0 +1,135 @@
+{include file="header" /}
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>{:lang("添加/修改")}</h5>
+            </div>
+            <ul id="myTab" class="nav nav-tabs ibox-title" style="padding-bottom: 0;">
+                <li class="active"><a href="#home" data-toggle="tab"> {:lang("基础信息")} </a> </li>
+                <li><a href="#attr" data-toggle="tab"> {:lang("商品属性")} </a></li>
+                <li><a href="#detail" data-toggle="tab"> {:lang("商品详情")} </a></li>
+            </ul>
+            <div class="ibox-content">
+                <form class="form-horizontal m-t" id="dataForm" method="post" action="{:url('add')}">
+                    <div id="myTabContent" class="tab-content"> 
+                        <div class="tab-pane fade in active" id="home">
+                            <input type="hidden" name="goods_id" value="{$info.goods_id}"/>
+                            {include file="goods/module/base" /}
+                        </div>
+                        <div class="tab-pane fade" id="attr">
+                            {include file="goods/module/attr" /}
+                        </div>
+                        <div class="tab-pane fade" id="detail">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">{:lang("商品详情")}：</label>
+                                <div class="input-group col-sm-7">
+                                    <script id="container" name="content" type="text/plain">
+                                        {$info['content']|html_entity_decode}
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-3 col-sm-offset-3">
+                                <button class="btn btn-primary btn-block" type="submit">{:lang("提交")}</button>
+                            </div>
+                        </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+{include file="footer" /}
+<link href="__CSS__/css.css" rel="stylesheet">
+<script src="__JS__/move.js"></script>
+<script src="__JS__/publishImg.js"></script>
+<script type="text/javascript">
+function deleteElement(Obj, tip) {
+    var ul = $(Obj).closest('ul');
+    $(Obj).closest('li').remove();
+    imgMove(ul.prop('id'));
+    $("#"+tip).text(ul.find('li').length);
+    mainPic();
+}
+function mainPic() {
+    var main_pic = [];
+    $("#imgMainList").find('li').each(function(i, e){
+        main_pic.push($(e).data('path'));
+    })
+    $("#main_pic").val(main_pic.join(','));
+}
+var currentItemLevel, itemLevel = {$pd_part}, rebateRatio = "{$config.pd_rate_default|default=5}";
+$("#retailPrice").bind('input propertychange',function(){  
+    var val = setCurrentItemLevel(this.value);
+    $("#returnBonus").val(val);
+});
+function setCurrentItemLevel(price) {
+    price = parseFloat(price);
+    var currentLevel;
+    for (var i=0,v;v=itemLevel[i++];) {
+        if (price >= v.price_min && price <= v.price_max) {
+            currentLevel = v;
+        }
+    }
+    if (currentLevel) {
+        $(".rebateRatio").text('（拼单价格按当前比例'+currentLevel.rebate_ratios+'%，四舍五入。可手动修改）');
+        $(".intervalText").text(currentLevel.name);
+        return (price * currentLevel.rebate_ratios / 100).toFixed(0);
+    } else {
+        $(".rebateRatio").text('（拼单价格按当前比例'+rebateRatio+'%，四舍五入。可手动修改）');
+        $(".intervalText").text('');
+        return (price * rebateRatio / 100).toFixed(0);
+    }
+}
+// 初始化
+
+//    {if $info.goods_id}
+
+setCurrentItemLevel("{$info.retail_price}")
+//    {/if}
+
+$(document).ready(function(){
+    var editor = UE.getEditor('container', {
+        serverUrl:"{:url('articles/uploadimg')}",
+    });
+    imgMove("imgMainList");
+    layui.use('upload', function(){
+        var upload = layui.upload;
+        //商品主图多图片上传
+        upload.render({
+            elem: '#addMainImg',
+            url: "{:url('upload/upload')}", //上传接口
+            size: 1024,
+            multiple: true,
+            number: 6,
+            acceptMime: 'image/jpg, image/jpeg, image/png',
+            before: function (obj) {
+                if($('#imgMainList').find('li').length >= 6) {
+                    layer.msg('商品主图最多只能上传6张图');
+                    return false;
+                }
+                layer.load();
+            },
+            done: function (res) {
+                layer.closeAll();
+                if(res.code !== 200) {
+                    layer.msg(res.msg);
+                    return;
+                }
+                if($('#imgMainList').find('li').length >= 6)
+                    return;
+                $('#imgMainList').append('<li data-path="'+res.data.path+'" style="position:relative"><img name="imgMainList" src="' + res.data.url + '"width="150" height="113"><div class="img_close" onclick="deleteElement(this, \'item_main_img_tip\')">X</div></li>');
+                imgMove("imgMainList");
+                $("#item_main_img_tip").text($('#imgMainList').find('li').length);
+                mainPic();
+            }
+        });
+    });
+    $('#myTab a').click(function (e) {
+        e.preventDefault()
+        $(this).tab('show')
+    })
+});
+</script>

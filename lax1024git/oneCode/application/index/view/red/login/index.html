@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{:lang('登录')}</title>
+    {include file="public/js" /}
+    <link rel="stylesheet" href="__CSS__/login/login.css?{$css_version}" />
+</head>
+<body>
+<div id="app">
+    <div class="form lg">
+        <div class="form-main">
+            <div  class="wel-grid">
+				<div class="login-grid">
+				    <!-- {if $setting.logo}
+				    <img src="{$setting.logo|toMedia}" alt="">
+				    {else}
+				    <img src="__IMG__/login.png" alt="">
+				    {/if} -->
+				    <!-- <img src="__IMG__/login.png" alt=""> -->
+					<!-- <div style="font-size: 26px;font-weight: 700;text-align: left;">{:lang('欢迎登录')}</div> -->
+					<!-- <div style="font-size: 12px;color: red;">Login with your phone and password to continue. Your privacy and personal data is important to us.</div> -->
+				</div>
+				<div style="font-size: 26px;font-weight: 700;text-align: left;">{:lang('欢迎登录')}</div>
+                <form class="form-panel ">
+                    <div class="input-title"><span>{:lang('手机号')}</span></div>
+                    <div class="van-cell van-cell--center van-field">
+                        <div class="van-cell__value van-cell__value--alone van-field__value">
+                            <div class="van-field__body">
+                                <input type="text" autocomplete="mobile" name="mobile" id="mobile" placeholder="{:lang('请输入手机号')}" class="van-field__control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-title"><span>{:lang('密码')}</span></div>
+                    <div class="van-cell van-cell--center van-field">
+                        <div class="van-cell__value van-cell__value--alone van-field__value">
+                            <div class="van-field__body">
+                                <input type="password" autocomplete="current-password" name="password" id="password" placeholder="{:lang('请输入密码')}" class="van-field__control">
+                            </div>
+                        </div>
+                    </div>
+                    <div></div>
+                </form>
+                <div class="btn-space" style="padding:20px 0 0 0;">
+                    <div class="guicent">
+                        <div class="loginBtn guicent buttonBack" onclick="checkForm();">
+                            <div class="donut"></div>
+                            <div class="txt">{:lang('登录')}</div>
+                        </div>
+                    </div>
+                    <!--<button class="van-button van-button&#45;&#45;warning van-button&#45;&#45;normal van-button&#45;&#45;block" onclick="checkForm();" type="button">{:lang('登录')}</button>-->
+                    <div class="form-foot">
+                        <p>{:lang('没用账号?')} <a href="{:url('reg')}">{:lang('立即注册')}</a></p>
+                        <!--<p class="end"><a href="{:url('password_mobile')}">{:lang('忘记密码')}</a></p>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
+{include file="public/lang" /} 
+{include file="public/stat" /} 
+<script type="text/javascript">
+    function checkForm(){
+        var mobile           = $('#mobile').val();
+        var password = $('#password').val();
+        var KeepPWD          = $('#KeepPWD:checked').val();
+        if(mobile == ''){
+            layer.msg('{:lang("请填写手机号")}');
+            return false;
+        }
+        if(password == ''){
+            layer.msg('{:lang("请填写密码")}');
+            return false;
+        }
+        if(!KeepPWD) KeepPWD = 0;
+        $('.loginBtn').css({'width':'50px'});
+        $('.loginBtn .txt').hide();
+        $('.loginBtn .donut').fadeIn(500);
+        $.ajax({
+            type: "POST",
+            url: '{:url("doLogin")}',
+            data: {
+                mobile: mobile,
+                password: password,
+                KeepPWD: KeepPWD
+            },
+            dataType: 'json',
+            success: function(res){
+                if(res.code == 200){
+                    // layer.msg('{:lang("登录成功")}', function(){
+                    //     location.href = '{:url("index/index")}';
+                    // });
+
+                    setTimeout(function(){
+                        $('.loginBtn').css({'width':'100%'});
+                        $('.loginBtn .donut').hide();
+                        $('.loginBtn .txt').fadeIn(500);
+                    },800)
+                    setTimeout(function(){
+                        location.href = '{:url("index/index")}';
+                    },1000)
+                } else {
+                    layer.msg(res.msg);
+                    setTimeout(function(){
+                        $('.loginBtn').css({'width':'100%'});
+                        $('.loginBtn .donut').hide();
+                        $('.loginBtn .txt').fadeIn(500);
+                    },800)
+                }
+            }
+        })
+    }
+
+    $(function(){
+        $('img').bind("contextmenu",function(e){
+            e.preventDefault();
+        });
+    });
+    function kefu() {
+        window.location.href = '{:url("service/index")}';
+    }
+</script>
+</body>
+</html>

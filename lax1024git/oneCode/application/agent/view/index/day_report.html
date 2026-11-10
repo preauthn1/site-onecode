@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日报表</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="__CSS__/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="__CSS__/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="__CSS__/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+    <link href="__CSS__/animate.min.css" rel="stylesheet">
+    <link href="__CSS__/style.min.css?v=4.1.0" rel="stylesheet">
+    <link href="__CSS__/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <link href="__JS__/layui/css/layui.css" rel="stylesheet">
+</head>
+<body class="gray-bg">
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>{:lang("日报表")}</h5>
+        </div>
+        <div class="ibox-content">
+            <!--搜索框开始-->
+            <form id='commentForm' role="form" method="post" class="form-inline" action="{:url('day_report')}">
+                <div class="content clearfix m-b">
+                    <div class="form-group">
+                        <label>{:lang("选择时间")}：</label>
+                        <input type="text" class="form-control" id="start_time" value="{$startTime}" name="startTime" placeholder="yyyy-MM-dd" lay-key="1" autocomplete="off">
+                        -
+                        <input type="text" class="form-control" id="end_time" value="{$endTime}" name="endTime" placeholder="yyyy-MM-dd" lay-key="2" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="submit" style="margin-top:5px" id="search"><strong>{:lang("查 询")}</strong></button>
+                    </div>
+                </div>
+            </form>
+            <!--搜索框结束-->
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="text-center">{:lang("日期")}</th>
+                                <th class="text-center">{:lang("充值总额")}</th>
+                                <th class="text-center">{:lang("提现总额")}</th>
+                                <th class="text-center">{:lang("充值人数")}</th>
+                                <th class="text-center">{:lang("提现人数")}</th>
+                                <th class="text-center">{:lang("首次充值人数")}</th>
+                                <th class="text-center">{:lang("在线人数")}</th>
+                                <th class="text-center">{:lang("抢单人数")}</th>
+                                <th class="text-center">{:lang("存取差额")}</th>
+                                <th class="text-center">{:lang("拼单商品总额")}</th>
+                                <th class="text-center">{:lang("回购佣金总额")}</th>
+                                <th class="text-center">{:lang("佣金提成总额")}</th>
+                                <th class="text-center">{:lang("手工赠金")}</th>
+                                <th class="text-center">{:lang("余额")}</th>
+                                <th class="text-center">{:lang("操作")}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {volist name='list' id='row'}
+                            <tr>
+                                <td class="text-center">{$row.stat_date}</td>
+                                <td class="text-center">{$row.recharge|sprintf4f}</td>
+                                <td class="text-center">{$row.withdraw|sprintf4f}</td>
+                                <td class="text-center">{$row.recharge_user}</td>
+                                <td class="text-center">{$row.withdraw_user}</td>
+                                <td class="text-center">{$row.first_recharge_user}</td>
+                                <td class="text-center">{$row.online_user}</td>
+                                <td class="text-center query" data-date="{$row.stat_date}" data-key="order_user">{$row.order_user}
+                                    <a><i class="fa fa-refresh"></i></a>
+                                </td>
+                                <td class="text-center">
+                                    {if $row.wr_diff < 0}
+                                    <span style="color:red;">{$row.wr_diff}</span>
+                                    {else}
+                                    <span style="color:#007bff;">{$row.wr_diff}</span>
+                                    {/if}
+                                </td>
+                                <td class="text-center hover query" data-date="{$row.stat_date}" data-key="order_price">
+                                    {$row.order_price|sprintf4f}
+                                    <a><i class="fa fa-refresh"></i></a>
+                                </td>
+                                <td class="text-center query" data-date="{$row.stat_date}" data-key="order_gray">
+                                    {$row.order_gray|sprintf4f}
+                                    <a><i class="fa fa-refresh"></i></a>
+                                </td>
+                                <td class="text-center query" data-date="{$row.stat_date}" data-key="rebate">
+                                    {$row.rebate|sprintf4f}
+                                    <a><i class="fa fa-refresh"></i></a>
+                                </td>
+                                <td class="text-center query" data-date="{$row.stat_date}" data-key="manual_money">
+                                    {$row.manual_money|sprintf4f}
+                                    <a><i class="fa fa-refresh"></i></a>
+                                </td>
+                                <td class="text-center">{$row.user_money|sprintf4f}</td>
+                                <td class="text-center">
+                                    <a href="{:url('day_report', ['startTime' => $startTime,'endTime' => $endTime,'update' => $row.stat_date])}" class="btn btn-info btn-xs">
+                                        <i class="fa fa-refresh"></i> {:lang("刷新")}
+                                    </a>
+                                </td>
+                            </tr>
+                            {/volist}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- End Example Pagination -->
+        </div>
+    </div>
+<!-- End Panel Other -->
+<script src="__JS__/jquery.min.js?v=2.1.4"></script>
+<script src="__JS__/bootstrap.min.js?v=3.3.6"></script>
+<script src="__JS__/content.min.js?v=1.0.0"></script>
+<script src="__JS__/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="__JS__/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+<script src="__JS__/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="__JS__/plugins/suggest/bootstrap-suggest.min.js"></script>
+<script src="__JS__/plugins/sweetalert/sweetalert.min.js"></script>
+<script src="__JS__/plugins/layer3/layer.js"></script>
+<script src="__JS__/layui/layui.js"></script>
+<script>
+$(document).ready(function () {
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#start_time'
+            ,trigger: 'click'
+        });
+        laydate.render({
+            elem: '#end_time'
+            ,trigger: 'click'
+        });
+    });
+});
+$(".query").on('click', function(){
+    var _this = $(this);
+    if (_this.hasClass('loading')) {
+        return;
+    }
+    _this.addClass('loading');
+    _this.prepend('<i class="fa fa-spinner fa-pulse"></i> ');
+    
+    var key = $(this).data('key');
+    var date = $(this).data('date');
+    $.ajax({
+        url:'{:url("day_report?act=query")}',
+        dataType:"JSON",
+        data:{key:key, date:date},
+        success:function(res){
+            _this.removeClass('loading').find('i').remove();
+            if(res.code === 1) {
+                _this.text(res.data);
+            }else{
+                layer.msg(res.msg);
+            }
+        }
+    })
+})
+</script>
+</body>
+</html>

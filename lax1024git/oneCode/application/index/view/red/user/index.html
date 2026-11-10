@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{$site_title}</title>
+    {include file="public/js" /}
+    <link rel="stylesheet" href="__CSS__/user/index.css?{$css_version}" />
+</head>
+<body>
+    <div id="app">
+        <div class="ucenter us">
+            <div class="uc-main">
+                <div class="uc-top">
+                    <div class="uc-info uc-info2">
+                        <a href="{:url('avatar')}" class="uc-avatar"><img src="{$userInfo['avatar']}" alt=""></a>
+                        <div class="flex-bd">
+                            <div class="us-top-box1">
+                                <div class="uc-id">
+                                    <span class="nickname">{$userInfo.nick_name}</span>
+                                </div>
+                                <div class="rt">
+                                    {:lang('会员等级')}: {$userLevel.level_name|default='VIP0'}
+                                </div>
+                            </div>
+							
+                            <div class="uc-id guidisplay guispe guicen">
+								<span class="userId">{:lang("ID")}: {$userInfo.id}</span>
+                                <div class="guicen">
+                                    <span class="invite">{:lang('邀请码')}: {$userInfo.invite_code}</span>
+                                    <img class="copy_icon copy-btn" data-clipboard-text="{$userInfo.invite_code}" src="__IMG__/copy_icon.png" alt="">
+                                </div>
+                            </div>
+							<div class="level guispe">
+								<div></div>
+							    <span>{:lang('积分')}: {$userInfo.points|floatval}</span>
+							</div>
+                            
+                        </div>
+                    </div>
+					<!-- <div class="box1-box">
+					    <div style="display: flex;justify-content: space-between;border-radius: 16px;">
+							<div class="Balance guicen">
+								<img src="__IMG__/ucenter/icon-balance.png" style="width: 26px;height: 26px;margin-right: 8px;"/>
+								<div>{:lang('余额')}：{$userInfo.user_money}</div>
+							</div>
+							<div style="display: flex;font-size: 14px;">
+								<a class="balance_r"  href="{:url('recharge/index', ['type' => 1])}">{:lang('充值')}</a>
+								<div class="balance_w cash" href="javascript:;" data-href="{:url('user/cash')}" >{:lang('提现')}</div>
+							</div>
+						</div>
+					</div> -->
+                </div>
+                <div class="box1">
+					<div style="font-size: 18px;color: #FFF;">ยอดรวม:{$userInfo.user_money}</div>
+                    <div class="btm guidisplay guicen">
+						<div class="btm-item">
+							<div class="price-name">{:lang('今日收益')}</div>
+                            <div class="price">{$userInfo.todaysy_money}</div>
+                        </div>
+                        <div class="btm-item">
+							<div class="price-name">{:lang('总收益')}</div>
+                            <div class="price">{$userInfo.earnings_money}</div>
+                        </div>
+                    </div>
+					<div class="box1-box">
+						<a href="{:url('message/index')}"><div class="box1-btn">{:lang("充值")}</div></a>
+						<div class="box1-btn cash">{:lang("提现")}</div>
+						<a href="{:url('recharge/lists')}"><div class="box1-btn">{:lang("充值记录")}</div></a>
+						<a href="{:url('user/cash_log')}"><div class="box1-btn">{:lang("提现记录")}</div></a>
+						<a href="{:url('user/money_log')}"><div class="box1-btn">{:lang("资金明细")}</div></a>
+					</div>
+                </div>
+                <div class="box2">
+                    <div class="title">{:lang('我的订单')}</div>
+                    <div class="item-box item-box1 guispe" style="justify-content: space-around;">
+                        <a class="item" href="{:url('order/index')}">
+							<div class="item-btn">
+								<img src="__IMG__/ucenter/icon-pindan.png" alt="">
+							</div>
+                            <p>{:lang('拼单')}</p>
+                        </a>
+                        <a class="item" href="{:url('order/repurchase_log')}">
+							<div class="item-btn">
+								<img src="__IMG__/ucenter/icon-huigou.png" alt="">
+							</div>
+                            <p>{:lang('回购')}</p>
+                        </a>
+                        <a class="item" href="{:url('user/collect')}">
+							<div class="item-btn">
+								<img src="__IMG__/ucenter/icon-shoucang.png" alt="">
+							</div>
+                            <p>{:lang('收藏')}</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="box2">
+                    <div class="item-box">
+                        <a href="{:url('recharge/lists')}" class="item item3 guicen">
+							<div style="display: flex;">
+								<img src="__IMG__/ucenter/icon-chongzhi.png" alt="">
+								<p>{:lang('充值记录')}</p>
+							</div>
+                            <img src="__IMG__/ucenter/icon-next.png" alt="">
+                        </a>
+						<a href="{:url('user/cash_log')}" cancelText="{:lang('取消')}" confirmText="{:lang('去添加')}" title="{:lang('提示')}" message="{:lang('您还没有添加银行卡')}"  class="item item3 guicen"><!--- ref="bindcard"  @click="handleUSDT"-->
+						    <div style="display: flex;">
+								<img src="__IMG__/ucenter/icon-tixian.png" alt="">
+								<p>{:lang('提现记录')}</p>
+							</div>
+							<img src="__IMG__/ucenter/icon-next.png" alt="">
+						</a>
+						<a href="{:url('user/money_log')}" class="item item3 guicen">
+							<div style="display: flex;">
+								<img src="__IMG__/ucenter/icon-mingxi.png" alt="">
+								<p>{:lang('资金明细')}</p>
+							</div>
+						    <img src="__IMG__/ucenter/icon-next.png" alt="">
+						</a>
+						<a href="{:url('user/bind_card')}" cancelText="{:lang('取消')}" confirmText="{:lang('去添加')}" title="{:lang('提示')}" message="{:lang('您还没有添加银行卡')}"  class="item item3 guicen"><!--- ref="bindcard"  @click="handleUSDT"-->
+						    <div style="display: flex;">
+								<img src="__IMG__/ucenter/icon-bank.png" alt="">
+								<p>{:lang('银行卡')}</p>
+							</div>
+							<img src="__IMG__/ucenter/icon-next.png" alt="">
+						</a>
+						<!-- <a href="{:url('user/usdt')}" cancelText="{:lang('取消')}" confirmText="{:lang('去添加')}" title="{:lang('提示')}" message="{:lang('您还没有添加USDT')}"  class="item item3 guicen">
+						    <div style="display: flex;">
+								<img src="__IMG__/ucenter/icon-bank.png" alt="">
+								<p>{:lang('USDT')}</p>
+							</div>
+							<img src="__IMG__/ucenter/icon-next.png" alt="">
+						</a> -->
+                        {volist name='navs' id='nav'}
+                        <a  href="{$nav.url}"  class="item item3 guicen"  cancelText="{:lang('取消')}" confirmText="{:lang('去添加')}" title="{:lang('提示')}" message="{:lang('您还没有添加')}{$nav.title|lang}" ><!---ref="usdt"   @click="handleCard"-->
+							<div style="display: flex;">
+								<img src="{$nav.thumb}" alt="">
+								<p>{$nav.title|lang}</p>
+							</div>
+							<img src="__IMG__/ucenter/icon-next.png" alt="">
+                        </a>
+                        {/volist}
+                        <a href="{:url('user/pass_word')}" class="item item3 guicen">
+							<div style="display: flex;">
+								<img src="__IMG__/ucenter/icon-mima.png" alt="">
+								<p>{:lang('修改密码')}</p>
+							</div>
+							<img src="__IMG__/ucenter/icon-next.png" alt="">
+                        </a>
+                    </div>
+                </div>
+				
+				<div style="display: flex;justify-content: center;">
+					<a href="{:url('login/loginOut')}" class="btm guicent">
+					    <!-- <img src="__IMG__/Logout_icon.png" alt=""> -->
+					    <span>{:lang('退出登陆')}</span>
+					</a>
+				</div>
+            </div>
+        </div> 
+  
+        
+
+        {include file="public/footer" /}
+    </div>
+<script>
+
+
+$(document).ready(function(){
+    var clipboard = new ClipboardJS('.copy-btn');
+    clipboard.on('success', function(e) {
+        layer.msg('{:lang("复制成功")}');
+        e.clearSelection();
+    });
+    $(".cash").on('click', function() {
+        weui.actionSheet([
+            {
+                label: '{:lang("银行卡")}',
+                onClick: function () {
+//        {if condition="$userInfo['bank_number'] == ''"}
+
+            weui.dialog({
+                title: '{:lang("提示")}',
+                content: '{:lang("您还没有设置银行卡收款账号")}',
+                className: 'custom-dialog',
+                buttons: [{
+                    label: '{:lang("取消")}',
+                    type: 'default',
+                    onClick: function () {}
+                }, {
+                    label: '{:lang("去添加")}',
+                    type: 'primary',
+                    onClick: function () {
+                        window.location.href = '{:url("user/bind_card")}';
+                    }
+                }]
+            });
+//        {else}
+        
+        goCash(1);
+//        {/if}
+
+                }
+            }, 
+// 			{
+//                 label: '{:lang("USDT")}',
+//                 onClick: function () {
+// //        {if condition="$userInfo['usdt'] == ''"}
+
+//             weui.dialog({
+//                 title: '{:lang("提示")}',
+//                 content: '{:lang("您还没有设置USDT收款地址")}',
+//                 className: 'custom-dialog',
+//                 buttons: [{
+//                     label: '{:lang("取消")}',
+//                     type: 'default',
+//                     onClick: function () {}
+//                 }, {
+//                     label: '{:lang("去添加")}',
+//                     type: 'primary',
+//                     onClick: function () {
+//                         window.location.href = '{:url("user/usdt")}';
+//                     }
+//                 }]
+//             });
+// //        {else}
+        
+//         goCash(4);
+// //        {/if}
+
+//                 }
+//             }
+        ], [
+            {
+                label: '{:lang("取消")}',
+                onClick: function () {
+                    console.log('取消');
+                }
+            }
+        ], {
+            className: 'custom-classname',
+            title:'{:lang("请选择提现方式")}',
+            onClose: function(){
+                console.log('关闭');
+            }
+        });
+    });
+    
+    function goCash(type) {
+        window.location.href = "{:url('user/cash')}?type=" + type;
+    }
+});
+
+</script>
+</body>
+</html>

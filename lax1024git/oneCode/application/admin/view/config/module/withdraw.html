@@ -1,0 +1,83 @@
+<div class="form-group">
+    <label class="col-sm-3 control-label">{:lang("提现开关")}：</label>
+    <div class="input-group col-sm-4">
+        <input type="text" class="form-control" name="withdraw_open" value="{$config.withdraw_open|default=1}">
+        <p class="help-block">是否开启：0关闭，1开启</p>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label">{:lang("提现日(星期)")}：</label>
+    <div class="input-group col-sm-4">
+        <input type="text" class="form-control" name="withdraw_day" value="{$config.withdraw_day|default='0,1,2,3,4,5,6'}">
+        <p class="help-block">
+            可填值为：周日(0),周一(1)...周六(6)<br>
+            多个使用","分隔
+        </p>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label">{:lang("提现时间")}：</label>
+    <div class="input-group col-sm-4">
+        <input type="text" class="form-control" name="withdraw_time_start" value="{$config.withdraw_time_start|default='00:00'}" style="width: 30%;">
+        <label class="form-control" style="width: 10%; border: none;">-</label>
+        <input type="text" class="form-control" name="withdraw_time_end" value="{$config.withdraw_time_end|default='23:59'}" style="width: 30%;">
+        <div style="clear: both;"></div>
+        <p class="help-block">设置可申请提现时间段</p>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label">{:lang("提现手续费")}（单位：%）：</label>
+    <div class="input-group col-sm-4">
+        <input type="text" class="form-control" id="withdraw_rate" name="withdraw_rate" value="{$config.withdraw_rate}">
+        <p class="help-block">填写数字，单位 % </p>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label">{:lang("手续费扣出方式")}：</label>
+    <div class="input-group col-sm-4">
+        <input type="text" class="form-control" id="withdraw_rate" name="withdraw_rate_method" value="{$config.withdraw_rate_method|default=0}">
+        <p class="help-block">0: 在账户余额中扣除<br>1: 在提现金额中扣除 </p>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label">{:lang("免手续费提现金额")}：</label>
+    <div class="input-group col-sm-4">
+        <input type="text" class="form-control" name="free_withdraw_amount" value="{$config.free_withdraw_amount}">
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label">{:lang("最小提现金额")}：</label>
+    <div class="input-group col-sm-4">
+        <input type="text" class="form-control" id="tx_min" name="tx_min" value="{$config.tx_min}">
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label">{:lang("最大提现金额")}：</label>
+    <div class="input-group col-sm-4">
+        <input type="text" class="form-control" id="tx_max" name="tx_max" value="{$config.tx_max|default=0}">
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label">{:lang("每天提现次数")}：</label>
+    <div class="input-group col-sm-4">
+        <input type="text" class="form-control" name="day_tx_count" value="{$config.day_tx_count|default=1}">
+        <p class="help-block">填0时为不限制提现次数</p>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label">{:lang("限额说明")}：</label>
+    <div class="input-group col-sm-7">
+        <textarea class="form-control" name="tx_info" id="tx_info">{$config['tx_info']}</textarea>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label">{:lang("提现教程视频ID")}：</label>
+    <div class="input-group col-sm-4">
+        <input type="text" class="form-control" name="withdraw_video" value="{$config.withdraw_video}">
+        <p class="help-block">只支持YouTube视频，获取视频id <br>
+            https://youtu.be/<span style="color:red;">UCg9i5oHtI0</span><br>
+            https://www.youtube.com/watch?v=<span style="color:red;">UCg9i5oHtI0</span><br>
+            以上视频链接的视频ID为：<code style="color:red;">UCg9i5oHtI0</code>
+        </p>
+    </div>
+</div>

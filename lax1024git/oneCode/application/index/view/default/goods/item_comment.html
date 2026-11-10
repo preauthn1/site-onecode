@@ -1,0 +1,26 @@
+{volist name='lists' id='row'}
+<div class="van-card goods-comment-item">
+    <div class="van-card__top">
+        <div class="userinfo">
+            <img src="{$row.avatar}" class="avatar">
+            <span>
+                {$row.nick_name}
+            </span>
+        </div>
+        <div class="create_time">
+            <div class="rating" data-rate-value="{$row.rate}"></div>
+        </div>
+    </div>
+    <div class="van-card__header">
+        <div class="van-card__content">
+            <div>
+                <div class="van-card__title van-multi-ellipsis--l2">
+                </div>
+                <div class="van-card__desc">
+                    {$row.text} 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/volist}

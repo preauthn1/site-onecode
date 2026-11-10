@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{$site_title}</title>
+    {include file="public/js" /}
+    <script src="__JS__/web-detector.js"></script>
+    <style>
+        .shareIcon {
+            background: none;
+        }
+    </style>
+</head>
+<body>
+<div class='sin-page'>
+    {include file="public/header2" /}
+    <div class="sin-banner"><img src="__IMG__/login.png" alt=""></div>
+    <div class="share-bar"><img src="{$userInfo['avatar']}" alt="">
+        <div>{:lang('邀请码:')}{$invite_code}</div>
+    </div>
+    <div class="sin-wx"><div id="qrcode"></div></div>
+    <div class="copy-bar">
+        <div class="txt">{$share_url}</div>
+        <button data-clipboard-text="{$share_url}" class="clipboardBtn van-button van-button--default van-button--normal">
+            <div class="van-button__content"><span class="van-button__text">{:lang('复制')}</span></div>
+        </button>
+    </div>
+    <div class="shareList flexBetween" style="margin-top: 0.24rem;">
+        <a class="shareItem flexStart" href="{:genShareUrl($share_url, 'whatsapp')}">
+            <i class="shareIcon fa fa-whatsapp"></i>
+            <span class="shareTit">
+                WhatsApp
+            </span>
+        </a>
+        <a class="shareItem flexStart" href="{:genShareUrl($share_url, 'sms')}">
+            <i class="shareIcon fa fa-commenting"></i>
+            <span class="shareTit">
+                SMS
+            </span>
+        </a>
+        <a class="shareItem flexStart" href="{:genShareUrl($share_url, 'email', $userInfo['true_name'] ? $userInfo['true_name'] : $userInfo['mobile'])}">
+            <i class="shareIcon fa fa-at"></i>
+            <span class="shareTit">
+                Email
+            </span>
+        </a>
+    </div>
+    <div class="sin-text">
+        <div class="bd">
+            {:html_entity_decode(lang2('邀请活动提示', ''))}
+        </div>
+    </div>
+    <p class="share-tips">
+        {:html_entity_decode(lang2('邀请活动提示', ''))}
+    </p>
+</div>
+</body>
+<script>   
+     var isAndroid = detector.os.name === 'android';
+     var isIOS = detector.os.name === 'ios' || detector.os.name === 'ipad' || detector.os.name === 'ipod';
+     var qrcode = new QRCode("qrcode");
+     qrcode.makeCode("{$share_url}");
+
+    var clipboard = new ClipboardJS('.clipboardBtn'); 
+    clipboard.on('success', function(e) {   
+        layer.msg("{:lang('复制成功')}") 
+        e.clearSelection();    
+        console.log(e.clearSelection);    
+    });    
+</script>    
+</html>

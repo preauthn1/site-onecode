@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{$site_title}</title>
+    {include file="public/js" /}
+</head>
+<body>
+    <div id="app">
+        {include file="public/header" /}
+        <div class="cus-main">
+            <div class="cus-list">
+                {volist name='message_type' id='row'}
+                <a href="{:url('message/index', ['type' => $key])}" class="van-cell van-cell--clickable van-cell--center">
+                    <div class="van-cell__title"><span>{$row|lang}</span></div>
+                    <i class="van-icon van-icon-arrow van-cell__right-icon"></i>
+                </a>
+                {/volist}
+            </div>
+        </div>
+    </div>
+<script>
+    var clipboard = new ClipboardJS('.copy-btn2'); 
+    clipboard.on('success', function(e) {   
+        layer.msg("{:lang('复制成功')}") 
+        e.clearSelection();    
+        console.log(e.clearSelection);    
+    });
+</script>    
+</body>
+</html>

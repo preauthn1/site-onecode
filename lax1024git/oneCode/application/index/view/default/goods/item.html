@@ -1,0 +1,11 @@
+{volist name='goods_list' id='goods'}
+<a class="proRow" href="{:url('goods/info', ['id' => $goods['goods_id']])}">
+    <img class="proImg" src="{$goods.pic|toMedia}">
+    <img src="__IMG__/icon-share.png" class="shareIcon" data-clipboard-text="{$goods.share_url}">
+    <div class="overHd3 proName">{$goods.goods_name}</div>
+    <div class="proPrice retailPrice">
+        {$goods.retail_price|i18n_currency}<span class="oldPrice">{$goods.shop_price|i18n_currency}</span>
+    </div>
+    <div class="proPrice returnPrice">{:lang('佣金')}:{$goods.return_bonus|i18n_currency}</div>
+</a>
+{/volist}

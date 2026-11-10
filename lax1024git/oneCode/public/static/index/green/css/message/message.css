@@ -1,0 +1,77 @@
+.layim-panel {
+  background-image: url(../../images/service_bg.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+.layim-chat-send input {
+  background-color: #EBF5F3 !important;
+}
+.layim-chat-fastmsg .message {
+  background: #FFFFFF;
+  border-radius: 0.48309179rem;
+}
+.layim-chat-send button {
+  background-color: #eee;
+}
+.layim-chat-footer {
+  height: auto !important;
+}
+.layim-chat-send {
+  display: flex;
+  align-items: center;
+  height: 75px;
+  background-color: #fff;
+  justify-content: center;
+}
+.layim-chat-send .send-box {
+  display: flex;
+  height: 40px;
+  width: 68%;
+  border-radius: 8px;
+  overflow: hidden;
+  justify-content: space-between;
+  background-color: #EBF5F3;
+}
+.layim-chat-footer {
+  left: 0 !important;
+  right: 0 !important;
+  width: 100%;
+}
+.layim-chat-send button {
+  height: 38px !important;
+  padding: 0px !important;
+  width: 6.03864734rem;
+  background: #d2d2d2 !important;
+  border-radius: 8px !important;
+}
+.layim-chat-tool {
+  margin-top: 0px !important;
+  height: 40px !important;
+  width: auto !important;
+  padding-left: 4px !important;
+}
+.layui-disabled {
+  background-color: #EBF5F3 !important;
+}
+.layim-chat-fastmsg {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.layim-chat-fastmsg .message {
+  border: 0px;
+  padding: 2px 8px;
+  border-radius: 20px;
+  background: #FFFFFF;
+}
+.layim-chat-tool span {
+  margin: 0px !important;
+  display: flex !important;
+  justify-content: flex-end;
+  overflow: hidden;
+  margin-right: 0.72463768rem !important;
+}
+.layim-chat-tool {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}

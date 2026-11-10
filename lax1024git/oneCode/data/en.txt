@@ -1,0 +1,376 @@
+Grab Orders
+Increase higher commissions from an upgraded channel 
+invite %d affiliates will be upgraded to
+Available Orders:
+%sexclusive channel commisions%s
+Auto Grab Orders
+Today's result
+Total asset
+Today's commissions
+Today's purchase orders
+Today's income
+Unlock
+Description for Grab Orders
+(1) Each account is entitled  to %d orders。
+(2) %s The user's commissions for grabbing orders is based on the order amount %s。
+(3) System is based on LSB technology，items are automatched by cloud server。
+(4) To avoid supervision from platform, if matched orders are not being submitted within 2 minutes, system will automatically hold the selected orders for 48 hours. It will be release after that period.
+Period for Grabbing Orders
+Orders serial number
+Total sum for grabbed orders
+Commissions
+Estimated Profit
+Cancel Orders
+Submit
+Fill in your shipping address
+Confirm
+Cancel
+Understood
+Reload
+Withdraw
+Invite affiliates
+Basic Introduction
+Rules and Regulations
+Member Ranking
+Server maintenance
+Company Background
+Daily Task Channel
+Today's grabbed orders
+Estimated produced orders
+Estimated profit balance
+To be unlocked
+Member List
+Congratulations
+Completion of today's task, %d will be rewarded
+Loading
+Scroll down to refresh
+System announcment
+No Data
+Scroll up to refresh
+copy successful
+copy unsuccessful
+Log in
+Register
+Forgot Password
+Auto log in
+Please enter username
+Please enter password
+Please fill in handphone number
+Please fill in password
+Log in successful
+Find my password
+
+Mobile number
+Verification code
+Send verification code
+Next
+Please insert your new password
+password
+Please insert password again
+Confirm changes
+Please fill in mobile verification code
+Please confirm password
+Password does not match
+changes completed
+Please click top right corner
+Select Internet Browser
+Please enter mobile number
+Please enter verification code
+Please enter  your Nickname
+Please enter referrral code
+I agree to the Terms and Conditions upon register
+Account exist, please log in
+Fill In Nickname
+Fill in referral code
+Please agree to the Terms and Conditions
+Registration successful
+Transaction Record
+Data provided by %s Agency
+Balance
+Total Sum
+Processing
+Completed
+On hold
+Processed transactions
+Main page
+Record
+Customer Service
+My Profile
+Designated bank account for top up
+Processing Time: 5 minutes
+Screenshot and save to phone 
+Press and hold QR code while on Wechat App
+E wallet account
+Full name
+Reload amount
+Transaction duration
+Remark Information
+Payee account
+Please enter payee account number
+Fill in Remark
+Fill in Payment Remark
+My ID:
+Copy
+Please enter the exact amount including decimal to prevent transaction delay
+Top up sucessful
+Reload Instructions
+Please copy bank account details, after confirmed the details, please complete funds transaction.
+Upon completion all of the above, please contact customer service if transaction has yet to receive after 5 minutes
+Please fill in payee account 
+Please fill in remark
+Top up instructions
+Please enter reload amount
+Baht
+Notice: 5,000 Baht and above, please transfer to the selected bank account
+Alipay top up method
+Alipay transfer to bank account guideline
+Wechat reload method
+Please select Alipay  payment channel
+Alipay top up
+Bank transfer
+I understood
+Please enter top up amount
+Select
+Time
+Status
+%s to %s
+Attached bank account
+save
+Sorry, insufficient balance
+Sorry, you have yet to complete today's %d orders, maximum withdrawal %s
+Sorry, account does not exist
+Remark
+Remark not more than 50 characters
+Please fill in valid information, corrections can not be made upon completion
+Please fill in your real name, corrections can not be made upon completion
+Edit
+Edit recipient address
+Functions cannot be used on trial account
+Remove orders
+Top up
+Pending payment
+Wrong top up method
+Top up history
+Minimum top up amount not less than %d
+Top up amount more than 5,000, please transfer to bank account
+Top up error
+Top up status
+Pending payment
+Incomplete top up transaction, please check the top up history to proceed or cancel
+Area
+Login timeout
+First withdrawal, please complete you personal details
+Mobile phone
+Mobile number
+Second
+Second Level
+Successfully sent
+Activation error
+Bonus reward
+Payee account not more than 50 characters
+Copy Link
+Personal details
+Additional information
+
+Active members
+Received successful
+Restricted activity
+Old password
+Old password error
+Old withdraw password
+Old withdraw password error
+Set up immediatrely
+Password does not match
+Sixth
+Sixth level
+Withdraw
+Unavailable payment channel, please contact customer service
+Only one withdrawal transaction per day
+Password must not be blank
+Manage password
+Nickname
+Your personal details
+Your bank account details
+Your Ali pay details
+Your daily completed %d transaction orders
+Seventh
+Seventh level
+Grab orders process successful
+Ali pay orders
+Sorry, your orders have been taken by others. please be quicker in the future
+Sorry, you are too slow, but dont give up
+Grabbing orders in process
+Grabbing Orders failed, error detected, please contact customer service
+Please attach your bank account
+Please attach your Ali pay account
+Please enter password
+Please enter personal details
+Please enter withdrawal password
+Please enter  your bank account details
+Please enter withdrawal password
+Please enter verification code
+Please enter bank account number
+Please enter name of bank
+Please enter your name
+Please enter Ali pay account
+Please fill in area
+Please fill in payee account 
+Please fill in  withdrawal aomunt
+Please fill in address
+Please fill in members remark
+Please fill in postcode
+Please fill in your name
+Please agree to the terms and conditions
+Please do not submit again
+Please set  withdrawal password
+Please select reload amount
+Please select withdrawal paymenet channel
+Please log in again
+Missing necessary information
+Confirm
+Confirm, no changes can be made after submit
+Agree to change login password
+Agree to change withdrawal password
+Confirm password
+Third
+Third level
+Delete
+Set as main address
+Personal details settings
+Application aprroved
+Application failed
+Pending application
+Verification failed
+Verification approved
+Frequently used
+Mailing address
+Mailing address record
+Mailing address information
+Recipient information
+Payment channel error, please contact customer service
+Recipient account number
+Income calculation
+Mobile number
+Mobile number cannot be blank
+Mobile number format error
+Fourth
+Fourth Level
+Search
+Every category
+Submission approved
+Submission failed
+Submit
+Withdraw  history
+Withdraw tutorial
+Withdraw amount
+Withdraw amount less than %d, unable to withdraw
+Withdraw bank account number
+Withdraw category error
+Withdraw password
+Withdraw password error
+Withdraw unsuccessful
+Withdraw bank account number
+Withdraw status
+Successfully added
+Add address
+Add recipient address
+Add bank account
+Profile Picture
+Profile Picture Settings
+Team report information
+Team members
+Team commissions
+Advertising poster
+Log out
+Please fill in area
+Please fill in mobile number
+Please fill in address
+Please fill in bank account
+Please fill in bank name
+Please fill in postcode
+Please fill in name
+Please fill in Ali pay
+Please fill in recipient address
+A gentle reminder, to ensure the convenience for the withdrawal process of members, the system does not support rural credit payment gateways, rural commercial banks,It is recommended that you attach commonly used bank accounts. Thank you!!
+My mobile number
+My bank account
+My Ali pay
+I have agree to the Terms and Conditions
+Fifth
+Fifth Level
+System update
+System account
+Funds limit description
+Proper address
+New members
+Notice
+Information error
+Correction fail
+Withdrawal password is required to change any personal details
+Verification approved
+Invitation code
+Invitation code does not exist
+Inviter
+First 
+First Level
+Rejected
+Cancelled
+Paid
+Transferred
+Transferred
+Bank
+Bank account
+Top up via bank accont
+Bank account number
+Withdraw via bank account
+Bank name
+Returned commissions
+Member Funds- Deposit
+Member Funds- Withdraw
+Postcode
+Balance
+Insufficient balance
+Data not available
+App account activity
+Account amount
+Account details
+Account balance
+Unable to grab orders because account balance less than %d
+Given name
+normal
+Ali pay
+Ali pay withdrawal is limit to only 100,000 daily, please withdraw to your bank account
+Ali pay withdrawal is limit to only 100,000 daily, please withdraw to your bank account
+Ali pay withdrawal 
+Payment successful
+Payment unsuccessful
+Direct members
+Registration period
+Fund password
+Total members
+Dear members, in order to ensure the safety of your funds, please write your proper name and set a withdrawal password. If the name does not match with your account, you will not be able to withdraw the money.
+Platinum members
+Team profit
+Orders
+Baht
+
+No account
+Please enter your Ali pay details
+Maximum withdrawal amount
+Please complete personal details
+Languages
+Select language
+Android
+IOS
+Account or password error
+Please select emoticons
+Content not exceed %d characters
+Upload photo
+Send
+Allow %s to start your journey to prosperity
+During the process of grabbing orders, the results are shown in the information below
+Login password
+Register account
+Select language
+Version
+Account already exist, please proceed to download

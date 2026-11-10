@@ -1,0 +1,35 @@
+#app {
+  background: #f2f2f2;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  min-height: 100vh;
+}
+#app .wrap-box {
+  border: 1px solid #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  padding-top: 0px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .3);
+
+}
+#app .wrap-box .wrap-box2 {
+  padding: 0.38647343rem;
+  background: #FFF;
+}
+#app .wrap-box .wrap-box2 .card-form .van-cell {
+  height: 1.32850242rem;
+  border-bottom: 1px dashed #666;
+}
+#app .wrap2 {
+  padding: 0.33816425rem;
+}
+#app .btn-rows {
+  margin: 0 0.33816425rem;
+  margin-top: 1.20772947rem;
+}
+
+#app .van-field__label {
+  font-weight: 500;
+  color: #333333;
+  font-size: 0.38647343rem;
+}

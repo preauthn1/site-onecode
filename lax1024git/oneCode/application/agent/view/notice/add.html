@@ -1,0 +1,68 @@
+    {include file="header" /}
+    <div class="row">
+        <div class="col-sm-10">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>{:lang("编辑公告")}</h5>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" id="dataForm" method="post" action="{:url('notice/add')}">
+                        <input type="hidden" name="id" value="{$info['id']}"/>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">{:lang("语言")}：</label>
+                            <div class="input-group col-sm-4">
+                                <select name='lang' class="form-control">
+                                    {volist name='langs' id='lang'}
+                                    <option value="{$lang.lang}" {if $info.lang eq $lang.lang} selected{/if}>{$lang.title}</option>
+                                    {/volist}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">{:lang("用户ID")}：</label>
+                            <div class="input-group col-sm-4">
+                                <input type="number" class="form-control" name="user_id" value="{$info.user_id}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">{:lang("公告内容")}：</label>
+                            <div class="input-group col-sm-7">
+                                <script id="container" name="content" type="text/plain">
+                                    {$info['content']|html_entity_decode}
+                                </script>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">{:lang("是否启用")}：</label>
+                            <div class="input-group col-sm-4">
+                                {foreach name='status' item='vo' key='key'}
+                                <div class="radio i-checks col-sm-4">
+                                    {if condition="$key == $info['status']"}
+                                    <label><input type="radio" value="{$key}" checked name="status"> <i></i> {$vo}</label>
+                                    {else}
+                                    <label><input type="radio" value="{$key}" name="status"> <i></i> {$vo}</label>
+                                    {/if} 
+                                </div>
+                                {/foreach}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-8">
+                                <!--<input type="button" value="提交" class="btn btn-primary" id="postform"/>-->
+                                <button class="btn btn-primary" type="submit">{:lang("提交")}</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{include file="footer" /}
+<script type="text/javascript">
+    $(document).ready(function(){
+        var editor = UE.getEditor('container', {
+            serverUrl:"{:url('notice/uploadimg')}",
+        });
+    });
+</script>

@@ -1,0 +1,40 @@
+{if !$Think.config.app_debug && $setting.stat_code}
+<div style='display:none;'>
+{$setting.stat_code|html_entity_decode}
+</div>
+{/if}
+
+{if isset($tyj_expire_tips) && $tyj_expire_tips}
+<script type="text/javascript">
+    layer.open({
+        content: '{$setting.tyj_expire_tips|lang}'
+        ,btn: '{:lang("我知道了")}'
+        ,yes: function(index){
+            layer.close(index);
+            // 向服务端提交数据
+            $.ajax({
+                type: "POST",
+                url: '{:url("index/tyj")}',
+                dataType: 'json',
+                success: function(){
+                }
+            });
+        }
+    });
+</script>
+{/if}
+{if $setting.kefu_code}
+{$setting.kefu_code|html_entity_decode}
+{/if}
+{if isset($is_zp_enable) && $is_zp_enable}
+<script type="text/javascript" src="__LIBS__/draggable/jquery.draggable.min.js?{$js_version}"></script>
+<img src="__IMG__/zp/zp-float-pic.png" id="bmall-zp" style=" position: fixed; top:20%; right: 15px; z-index: 9999; max-width: 100px;"/>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#bmall-zp").draggableTouch();
+        $("#bmall-zp").on('click', function(){
+            window.location.href="{:url('turntable/index')}";
+        });
+    });
+</script>
+{/if}
